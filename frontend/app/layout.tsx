@@ -13,7 +13,7 @@ const patrickHand = Patrick_Hand({
 
 export const metadata: Metadata = {
   title: "Ratchet — release calibration bench",
-  description: "A declaration-to-replay inspection bench for protocol releases on GenLayer Studio Next.",
+  description: "A declaration-to-replay inspection bench for protocol releases on stable GenLayer Studionet.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

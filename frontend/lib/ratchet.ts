@@ -1,6 +1,5 @@
 import { createClient } from "genlayer-js";
-import { TransactionHashVariant } from "genlayer-js/types";
-import { createTransactionKit, type FeeSuggestions, type PolicyQuote, type SubmitInput } from "@genlayer/transaction-kit";
+import { TransactionHashVariant, TransactionStatus, executionResultNumberToName, transactionsStatusNumberToName } from "genlayer-js/types";
 import { chain, CHAIN_ID, CONTRACT_ADDRESS, EXPLORER_URL, NETWORK_LABEL, RPC_URL } from "./network";
 import { guardedProvider, type InjectedProvider } from "./wallet";
 
@@ -220,38 +219,39 @@ export async function sendWrite(
   account: string,
   method: string,
   args: unknown[],
-  onQuote: (quote: PolicyQuote) => void,
-): Promise<{ txId: `0x${string}`; explorerUrl: string; finalized: boolean; successful: boolean }> {
+  onSubmitted: (txId: string) => void,
+): Promise<{ txId: string; explorerUrl: string; finalized: boolean; successful: boolean }> {
   const address = requireContractAddress();
-  const tx: SubmitInput = { kind: "write", address, method, args };
-  let suggestions: FeeSuggestions | undefined;
-  try {
-    const response = await fetch("/fee-profile.json", { cache: "no-store" });
-    if (response.ok) {
-      const profile = await response.json() as FeeSuggestions;
-      if (String(profile.chainId) === String(chain.id)) suggestions = profile;
-    }
-  } catch {
-    // A fresh network quote remains available when no measured profile is published.
-  }
-  const kit = createTransactionKit({
+  const client = createClient({
     chain,
-    provider: guardedProvider(provider, account),
-    account: account as `0x${string}`,
-    suggestions,
+    provider: guardedProvider(provider, account) as never,
+    account: account as never,
   });
-  const quote = await kit.estimate({ preset: "standard" }, tx);
-  if (quote.verification.status === "mismatch") {
-    throw new Error(`${NETWORK_LABEL} fee policy changed during the quote. Request a fresh quote and submit again.`);
-  }
-  onQuote(quote);
-  const { genlayerTxId } = await kit.submit(quote, tx);
-  const final = await kit.track(genlayerTxId, () => {}, { until: "finalized" });
+  const genlayerTxId = await client.writeContract({
+    address,
+    functionName: method,
+    args: args as never,
+    value: 0n,
+  });
+  onSubmitted(genlayerTxId);
+  const final = await client.waitForTransactionReceipt({
+    hash: genlayerTxId,
+    status: TransactionStatus.FINALIZED,
+    interval: 10_000,
+    retries: 180,
+  });
+  const status = final.statusName ?? (typeof final.status === "number"
+    ? (transactionsStatusNumberToName as Record<string, string>)[String(final.status)]
+    : String(final.status ?? ""));
+  const execution = final.txExecutionResultName ?? (typeof final.txExecutionResult === "number"
+    ? (executionResultNumberToName as Record<string, string>)[String(final.txExecutionResult)]
+    : "");
+  const consensus = final.resultName ?? (final.consensus_data as { result_name?: string } | undefined)?.result_name ?? "";
   return {
     txId: genlayerTxId,
-    explorerUrl: `${EXPLORER_URL}/tx/${genlayerTxId}`,
-    finalized: final.phase === "finalized",
-    successful: final.phase === "finalized" && final.successful === true,
+    explorerUrl: EXPLORER_URL + "/tx/" + genlayerTxId,
+    finalized: status === "FINALIZED",
+    successful: status === "FINALIZED" && execution === "FINISHED_WITH_RETURN" && consensus === "MAJORITY_AGREE",
   };
 }
 

@@ -2,7 +2,7 @@
 
 | Decision | Choice | Reason and boundary |
 |---|---|---|
-| GenLayer target | Studionet, chain 61999, for the public demo; Studio Next, chain 61997, for development/preview | The public release target uses the stable network. Deployment manifests, transactions, tests, and proof files are network-scoped so preview and production records cannot be mixed. |
+| GenLayer target | Studionet only, chain 61999 | The app, contract, deploy scripts, and live proof use one stable network and one finalized SDK family. Earlier Studio Next records remain historical and are not active deployment targets. |
 | Runner | Full pinned `py-genlayer` hash in contract metadata | Reproducible GenVM runtime compatibility. |
 | UI direction | Ratchet Calibration Bench | A light, friendly inspection workbench carries declaration-to-observation comparison while keeping severity and proof readable. |
 | UI build path | Code-led | The brief explicitly selects disciplined code-led work; no comp is required. |
@@ -14,7 +14,7 @@
 | Error handling | Evidence retrieval failures produce HOLD; transient LLM-call failures and malformed LLM output fail validator comparison | Provider failures and malformed responses stay distinguishable using the pinned SDK's nondeterministic-response error cause. Neither is converted into an authoritative verdict. |
 | Default screen state | Live contract reads only | An unconfigured or unreachable network remains visibly unavailable instead of using fixtures. |
 | Integration proof | Network-selected, read-only verification of finalized seeded transactions | Consensus and execution evidence should be validated without additional writes; explicit test selection follows `RATCHET_NETWORK`. |
-| Pinned runner compatibility | Use `gl.vm.run_nondet` supported by the exact pinned runner | The first Studio Next deployment used `run_nondet_unsafe`, which the deployed runner does not expose. That retired deployment is not part of the final proof. |
+| Pinned runner compatibility | Use `gl.vm.run_nondet` supported by the exact pinned stable runner | The retired preview deployment used an unsupported nondeterministic API and is not part of the current stable proof. |
 | LLM service failure during seeding | Keep failed attempts as receipts and leave the sealed release retryable | Two ADVANCE adjudication transactions on the prior contract returned `LLM_CALL_FAILED`; the release stayed SEALED. Receipts are retained under the corresponding network's receipt directory. Version 1.0.1 labels call failures as transient separately from malformed JSON. |
 | Strict identifier mapping | Each normalized output list is restricted to its own frozen policy ID set | Two ROLLBACK attempts returned an unknown identifier in `violated_ids`; validators disagreed and no verdict was stored. Version 1.0.2 makes the list-to-ID mapping explicit in the prompt while the contract continues to reject unknown IDs. |
 | Pause transfer declaration | Declare the recipient transfer suppressed by an active pause | The 1.0.2 ADVANCE receipt reached `MAJORITY_DISAGREE`: one leader treated the missing post-transfer `Withdrawn` event as an undeclared external-call change. The final declaration names this paused transfer path, and the replay report labels its completed-transfer receipt witness. |

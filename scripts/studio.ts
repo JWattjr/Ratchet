@@ -2,28 +2,27 @@ import { createHash } from "node:crypto";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { createAccount, createClient, generatePrivateKey } from "genlayer-js";
-import { studioDevnet, studionet } from "genlayer-js/chains";
-import { TransactionHashVariant, executionResultNumberToName, transactionsStatusNumberToName } from "genlayer-js/types";
-import { createTransactionKit, type FeeSuggestions, type SubmitInput } from "@genlayer/transaction-kit";
+import { studionet } from "genlayer-js/chains";
+import { TransactionHashVariant, TransactionStatus, executionResultNumberToName, transactionsStatusNumberToName } from "genlayer-js/types";
 
 export const ROOT = process.cwd();
 export const CONTRACT_PATH = resolve(ROOT, "contracts", "ratchet.py");
-const requestedNetwork = process.env.RATCHET_NETWORK?.trim() || "studioDevnet";
-if (requestedNetwork !== "studioDevnet" && requestedNetwork !== "studionet") {
-  throw new Error("RATCHET_NETWORK must be studioDevnet or studionet.");
+const requestedNetwork = process.env.RATCHET_NETWORK?.trim() || "studionet";
+if (requestedNetwork !== "studionet") {
+  throw new Error("Ratchet's active deployment target is Studionet; set RATCHET_NETWORK=studionet.");
 }
-export const NETWORK = requestedNetwork;
-export const NETWORK_SLUG = NETWORK === "studionet" ? "studionet" : "studio-next";
-export const NETWORK_LABEL = NETWORK === "studionet" ? "Studionet" : "Studio Next";
-export const DEPLOYMENT_PATH = resolve(ROOT, "deploy", NETWORK === "studionet" ? "ratchet-studionet-deployment.json" : "ratchet-deployment.json");
+export const NETWORK = "studionet";
+export const NETWORK_SLUG = "studionet";
+export const NETWORK_LABEL = "Studionet";
+export const DEPLOYMENT_PATH = resolve(ROOT, "deploy", "ratchet-studionet-deployment.json");
 export const PROOF_PATH = resolve(ROOT, "deploy", `${NETWORK_SLUG}-proof.json`);
 export const PENDING_PATH = resolve(ROOT, ".keys", `pending-${NETWORK_SLUG}-transaction.json`);
 export const DEPLOYER_KEY_PATH = resolve(ROOT, ".keys", "deployer.key");
-export const chain = NETWORK === "studionet" ? studionet : studioDevnet;
+export const chain = studionet;
 export const CHAIN_ID = chain.id;
 export const RPC_URL = chain.rpcUrls.default.http[0];
-export const EXPLORER_URL = chain.blockExplorers?.default?.url?.replace(/\/$/, "") ?? "https://explorer-studio-dev.genlayer.com";
-export const RUNNER_HASH = "5jycge4q8k23462jtb0b9fyey1s9qz928sz2nbrd9mg4sxqg2qng";
+export const EXPLORER_URL = chain.blockExplorers?.default?.url?.replace(/\/$/, "") ?? "https://genlayer-explorer.vercel.app";
+export const RUNNER_HASH = "1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6";
 
 const nativeFetch = globalThis.fetch.bind(globalThis);
 let nextRpcSlot = 0;
@@ -82,11 +81,13 @@ export async function deployerAccount() {
     try {
       key = (await readFile(DEPLOYER_KEY_PATH, "utf8")).trim();
     } catch {
-      key = generatePrivateKey();
-      await writeFile(DEPLOYER_KEY_PATH, key, { mode: 0o600, flag: "wx" });
+      const generatedKey = generatePrivateKey();
+      key = generatedKey;
+      await writeFile(DEPLOYER_KEY_PATH, generatedKey, { mode: 0o600, flag: "wx" });
       console.log(`Created a fresh ${NETWORK_LABEL} development signer under ignored .keys/. Its private key is not printed.`);
     }
   }
+  if (!key) throw new Error("No deployer private key was available.");
   return createAccount(key as `0x${string}`);
 }
 
@@ -113,30 +114,10 @@ export async function ensureFunded(address: string): Promise<void> {
   console.log(`Funded the development signer from ${NETWORK_LABEL}'s test faucet.`);
 }
 
-const estimatingProvider = { request: async (): Promise<never> => { throw new Error("Fee estimation uses public chain reads only."); } };
-
-export async function quote(tx: SubmitInput) {
-  let suggestions: FeeSuggestions | undefined;
-  try {
-    const profile = await readJsonFile(resolve(ROOT, "deploy", "ratchet-fee-profile.json"));
-    if (String(profile.chainId) === String(chain.id)) suggestions = profile as unknown as FeeSuggestions;
-  } catch { /* Use the chain's live default quote until finalized receipts are profiled. */ }
-  const kit = createTransactionKit({ chain, provider: estimatingProvider, suggestions });
-  const result = await kit.estimate({ preset: "standard" }, tx);
-  if (result.verification.status === "mismatch") throw new Error(`${NETWORK_LABEL} fee policy changed during estimation; run the command again for a fresh quote.`);
-  return result;
-}
-
-export function feeArgs(quoteResult: Awaited<ReturnType<typeof quote>>) {
-  return quoteResult.gasless ? {} : {
-    fees: { distribution: quoteResult.distribution, feeValue: quoteResult.feeValue },
-  };
-}
-
 export async function waitFor(hash: string) {
   return readClient().waitForTransactionReceipt({
     hash: hash as never,
-    waitUntil: "finalized",
+    status: TransactionStatus.FINALIZED,
     interval: 10_000,
     retries: 180,
   });
@@ -219,9 +200,11 @@ export async function loadDeployment(): Promise<Record<string, unknown> | null> 
 }
 
 export function checkRunner(code: string): string {
-  const header = code.split(/\r?\n/, 1)[0] ?? "";
-  if (!header.includes(RUNNER_HASH)) throw new Error("Ratchet contract runner does not match the pinned GenVM hash.");
-  return header;
+  const runnerHeader = code.split(/\r?\n/)[0]?.trim() ?? "";
+  if (runnerHeader !== '# { "Depends": "py-genlayer:' + RUNNER_HASH + '" }') {
+    throw new Error("Ratchet contract must pin Studionet's stable GenVM runner on the first line.");
+  }
+  return runnerHeader;
 }
 
 export function publicEvidenceBase(): string {

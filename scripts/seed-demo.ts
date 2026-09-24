@@ -1,7 +1,6 @@
 import { createHash } from "node:crypto";
 import { mkdir, readFile } from "node:fs/promises";
 import { resolve } from "node:path";
-import type { SubmitInput } from "@genlayer/transaction-kit";
 import {
   DEPLOYMENT_PATH,
   CHAIN_ID,
@@ -18,10 +17,8 @@ import {
   deployerAccount,
   executionStatus,
   explorerTx,
-  feeArgs,
   loadDeployment,
   publicEvidenceBase,
-  quote,
   readContract,
   readJsonFile,
   receiptStatus,
@@ -48,10 +45,8 @@ async function submitAction(account: Awaited<ReturnType<typeof deployerAccount>>
     if (pending.kind === "write" && pending.action_key === actionKey && typeof pending.hash === "string") hash = pending.hash;
   } catch { /* no matching pending write */ }
   if (!hash) {
-    const tx: SubmitInput = { kind: "write", address: address as `0x${string}`, method, args };
-    const priced = await quote(tx);
-    console.log(`${actionKey}: submitting ${method} (${priced.gasless ? "gasless" : "live fee quote"}).`);
-    hash = await (await writeClient(account)).writeContract({ address: address as `0x${string}`, functionName: method, args: args as never, ...feeArgs(priced) });
+    console.log(actionKey + ": submitting " + method + " to " + NETWORK_LABEL + ".");
+    hash = await (await writeClient(account)).writeContract({ address: address as never, functionName: method, args: args as never, value: 0n });
     await writeJson(PENDING_PATH, { kind: "write", action_key: actionKey, hash, submitted_at: new Date().toISOString() });
   }
   const finalHash = hash;

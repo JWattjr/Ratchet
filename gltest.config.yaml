@@ -1,10 +1,8 @@
-# Direct tests are in-memory. Live targets are explicit so proofs cannot cross networks.
+# Direct tests are in-memory; hosted proof and deployment scripts target Studionet.
 networks:
   default: localnet
   localnet:
     url: "http://127.0.0.1:4000/api"
-  studio_devnet:
-    url: "https://studio-dev.genlayer.com/api"
   studionet:
     url: "https://studio.genlayer.com/api"
 paths:

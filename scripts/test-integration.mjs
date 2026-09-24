@@ -4,11 +4,11 @@ import { dirname, resolve } from "node:path";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const python = resolve(root, "scripts", "python.mjs");
-const requestedNetwork = process.env.RATCHET_NETWORK?.trim() || "studioDevnet";
-if (requestedNetwork !== "studioDevnet" && requestedNetwork !== "studionet") {
-  throw new Error("RATCHET_NETWORK must be studioDevnet or studionet.");
+const requestedNetwork = process.env.RATCHET_NETWORK?.trim() || "studionet";
+if (requestedNetwork !== "studionet") {
+  throw new Error("Ratchet integration checks target Studionet only.");
 }
-const network = requestedNetwork === "studioDevnet" ? "studio_devnet" : "studionet";
+const network = "studionet";
 const result = spawnSync(process.execPath, [
   python,
   "-m", "pytest", "-s", "-p", "no:cacheprovider", "tests/integration", "-q", "--network", network,

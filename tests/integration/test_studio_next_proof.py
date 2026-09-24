@@ -14,14 +14,14 @@ from gltest.assertions import tx_execution_succeeded
 
 
 ROOT = Path(__file__).resolve().parents[2]
-NETWORK = os.environ.get("RATCHET_NETWORK", "studioDevnet")
-if NETWORK not in {"studioDevnet", "studionet"}:
-    raise RuntimeError("RATCHET_NETWORK must be studioDevnet or studionet")
-NETWORK_SLUG = "studionet" if NETWORK == "studionet" else "studio-next"
-DEPLOYMENT_PATH = ROOT / "deploy" / ("ratchet-studionet-deployment.json" if NETWORK == "studionet" else "ratchet-deployment.json")
+NETWORK = os.environ.get("RATCHET_NETWORK", "studionet")
+if NETWORK != "studionet":
+    raise RuntimeError("Ratchet integration checks target Studionet only")
+NETWORK_SLUG = "studionet"
+DEPLOYMENT_PATH = ROOT / "deploy" / "ratchet-studionet-deployment.json"
 DEPLOYMENT = json.loads(DEPLOYMENT_PATH.read_text(encoding="utf-8"))
 PROOF = json.loads((ROOT / "deploy" / f"{NETWORK_SLUG}-proof.json").read_text(encoding="utf-8"))
-CHAIN_ID = 61999 if NETWORK == "studionet" else 61997
+CHAIN_ID = 61999
 ADDRESS = DEPLOYMENT["contract"]
 EXPECTED = {
     "RATCHET-ADVANCE": ("ADVANCE", "ADVANCED"),

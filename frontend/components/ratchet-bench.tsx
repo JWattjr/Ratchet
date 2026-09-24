@@ -164,7 +164,6 @@ export default function RatchetBench() {
   const [actionBusy, setActionBusy] = useState(false);
   const [actionMessage, setActionMessage] = useState("");
   const [actionError, setActionError] = useState("");
-  const [feeQuote, setFeeQuote] = useState<unknown>(null);
   const [showCreate, setShowCreate] = useState(false);
   const [createBusy, setCreateBusy] = useState(false);
   const [createError, setCreateError] = useState("");
@@ -327,12 +326,10 @@ export default function RatchetBench() {
     }
     setActionBusy(true);
     setActionError("");
-    setActionMessage(`Quoting ${label.toLowerCase()} on ${NETWORK_LABEL}…`);
-    setFeeQuote(null);
+    setActionMessage("Preparing " + label.toLowerCase() + " on " + NETWORK_LABEL + "…");
     try {
-      const sent = await sendWrite(walletProvider, walletAddress, method, args, (quote) => {
-        setFeeQuote(quote.breakdown);
-        setActionMessage(`Submitted ${label.toLowerCase()}. Waiting for a finalized ${NETWORK_LABEL} receipt…`);
+      const sent = await sendWrite(walletProvider, walletAddress, method, args, () => {
+        setActionMessage("Submitted " + label.toLowerCase() + ". Waiting for a finalized " + NETWORK_LABEL + " receipt…");
       });
       setLastTxHash(sent.txId);
       if (!sent.finalized) throw new Error(`Transaction ${sent.txId} did not reach finality.`);
@@ -543,7 +540,6 @@ export default function RatchetBench() {
                       </div>
                     </div>
 
-                    {feeQuote ? <div className="fee-note">Live transaction-kit estimate · {JSON.stringify(feeQuote)}</div> : null}
                     {revisionForm && release.state === "HELD" ? (
                       <div className="revision-form">
                         <div className="revision-title"><span className="section-index">ATTEMPT {release.attempt_count + 1} · EVIDENCE ONLY</span><button className="quiet-icon-button" aria-label="Close revision form" onClick={() => setRevisionForm(false)}><CloseMark /></button></div>

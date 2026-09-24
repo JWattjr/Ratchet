@@ -3,27 +3,10 @@ import json
 import re
 
 import pytest
-import json
 
 from windows_stdin_compat import install as install_windows_stdin_compat
 
 install_windows_stdin_compat()
-
-# gltest 0.30.0rc2 eagerly parses mocked JSON responses into Python objects,
-# but the pinned genlayer std SDK's response_format="json" decoder expects
-# source text. Double-encode at the mock boundary so the SDK receives text.
-from gltest.direct.vm import VMContext
-
-_original_mock_llm = VMContext.mock_llm
-
-
-def _mock_llm_as_json_text(self, prompt_pattern, response):
-    raw_text = response if isinstance(response, str) else json.dumps(response)
-    return _original_mock_llm(self, prompt_pattern, json.dumps(raw_text))
-
-
-VMContext.mock_llm = _mock_llm_as_json_text
-
 
 DECLARATION_IDS = [
     "DECL-SOURCE",

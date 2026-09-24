@@ -20,9 +20,13 @@ const portalShotDir = process.env.RATCHET_SCREENSHOT_DIR
   ? resolve(root, process.env.RATCHET_SCREENSHOT_DIR)
   : resolve(root, "artifacts", "screenshots");
 const deployment = JSON.parse(await readFile(resolve(frontend, "lib", "deployment.json"), "utf8"));
-const network = process.env.NEXT_PUBLIC_RATCHET_NETWORK?.trim() || deployment.network || "studioDevnet";
-const networkLabel = network === "studionet" ? "Studionet" : "Studio Next";
-const chainId = network === "studionet" ? 61999 : 61997;
+const configuredNetwork = process.env.NEXT_PUBLIC_RATCHET_NETWORK?.trim();
+if (configuredNetwork && configuredNetwork !== "studionet") {
+  throw new Error("Ratchet's active deployment target is Studionet. Set NEXT_PUBLIC_RATCHET_NETWORK=studionet.");
+}
+const network = "studionet";
+const networkLabel = "Studionet";
+const chainId = 61999;
 const configuredAddress = process.env.NEXT_PUBLIC_RATCHET_ADDRESS?.trim() || (
   deployment.network === network && deployment.chainId === chainId ? deployment.contract : ""
 );

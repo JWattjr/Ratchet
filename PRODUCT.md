@@ -8,7 +8,7 @@ web
 
 ## Stack
 
-Next.js App Router, TypeScript strict mode, React, Node.js 22+, and GenLayer Studio Next. Use `genlayer-js` and `@genlayer/transaction-kit` where compatible. No database, conventional backend, paid external API, or non-wallet authentication.
+Next.js App Router, TypeScript strict mode, React, Node.js 22+, stable Studionet, and `genlayer-js`. No database, conventional backend, paid external API, or non-wallet authentication.
 
 ## Users
 
@@ -16,7 +16,7 @@ Protocol release owners prepare and seal upgrade declarations, attach replay evi
 
 ## Product Purpose
 
-Ratchet governs protocol releases by comparing a frozen declaration envelope with a reproducible differential replay. Studio Next validators retrieve and interpret the evidence; the Intelligent Contract applies the consensus verdict to release authorization and the demonstration bond. Success means a reviewer can trace declared intent through replay observations, consensus, and deterministic contract action.
+Ratchet governs protocol releases by comparing a frozen declaration envelope with a reproducible differential replay. Studionet validators retrieve and interpret the evidence; the Intelligent Contract applies the consensus verdict to release authorization and the demonstration bond. Success means a reviewer can trace declared intent through replay observations, consensus, and deterministic contract action.
 
 ## Positioning
 
@@ -24,15 +24,15 @@ Ratchet's mechanism is declaration-to-replay adjudication: a release cannot adva
 
 ## Operating Context
 
-The primary workflow is to create a release proposal, declare source/build provenance and permitted changes, freeze the declaration and settlement rules, publish a replay report, and submit it for validator adjudication. Reviewers inspect declaration fields beside transaction-level replay differences, coverage, invariants, validator outcome, contract consequence, and receipt. The Studio Next target is chain ID 61997 at `https://studio-dev.genlayer.com/api`; the explorer is `https://explorer-studio-dev.genlayer.com`.
+The primary workflow is to create a release proposal, declare source/build provenance and permitted changes, freeze the declaration and settlement rules, publish a replay report, and submit it for validator adjudication. Reviewers inspect declaration fields beside transaction-level replay differences, coverage, invariants, validator outcome, contract consequence, and receipt. The Studionet target is chain ID 61999 at `https://studio.genlayer.com/api`; the explorer is `https://genlayer-explorer.vercel.app`.
 
 ## Capabilities and Constraints
 
 The MVP supports `ADVANCE`, `HOLD`, and `ROLLBACK`. `ADVANCE` clears the release for its next step and returns the demonstration bond. `HOLD` blocks the candidate and locks the bond while bounded evidence revisions remain. `ROLLBACK` closes the candidate path, keeps the current implementation approved, and applies the charter's frozen bond consequence; it does not execute a real EVM rollback. Declaration and settlement terms freeze at sealing; evidence attempts are append-only. Consensus inputs use stable IDs and normalized fields, not free-form LLM explanations or model-selected remedies.
 
-CI runs the same transaction corpus against isolated local EVM deployments of current and candidate implementations and generates canonical replay artifacts from actual executions. Replay coverage is policy-defined and representative, not exhaustive. Validators fetch the artifacts independently; the report is not treated as a trusted oracle. The application must distinguish real live Studio Next reads from unavailable data and must never present fallback fixtures as on-chain state. Demonstration bond units are not assets. Evidence pages identify the demo as synthetic and not an incident, independent audit, or exhaustive test.
+CI runs the same transaction corpus against isolated local EVM deployments of current and candidate implementations and generates canonical replay artifacts from actual executions. Replay coverage is policy-defined and representative, not exhaustive. Validators fetch the artifacts independently; the report is not treated as a trusted oracle. The application must distinguish real live Studionet reads from unavailable data and must never present fallback fixtures as on-chain state. Demonstration bond units are not assets. Evidence pages identify the demo as synthetic and not an incident, independent audit, or exhaustive test.
 
-Target Studio Next only (chain ID 61997); do not deploy to Bradbury. Pin critical dependency versions and the complete contract runner hash. Use wallet interaction only for on-chain actions. Keep the contract, replay generator, public evidence, frontend, and deployment proofs as distinct project boundaries.
+Target Studionet only (chain ID 61999); do not deploy to Studio Next or Bradbury. Pin critical dependency versions and the complete stable contract runner hash. Use wallet interaction only for on-chain actions. Keep the contract, replay generator, public evidence, frontend, and deployment proofs as distinct project boundaries.
 
 ## Brand Commitments
 

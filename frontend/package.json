@@ -14,8 +14,7 @@
   "dependencies": {
     "@fontsource-variable/nunito-sans": "^5.3.0",
     "@fontsource/ibm-plex-mono": "^5.3.0",
-    "@genlayer/transaction-kit": "0.1.0-rc.2",
-    "genlayer-js": "2.0.0-rc.1",
+    "genlayer-js": "1.1.8",
     "next": "16.3.4",
     "react": "19.2.8",
     "react-dom": "19.2.8"

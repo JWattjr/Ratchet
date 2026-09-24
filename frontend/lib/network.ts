@@ -1,15 +1,16 @@
-import { studioDevnet, studionet } from "genlayer-js/chains";
-import type { GenLayerChain } from "genlayer-js/types";
+import { studionet } from "genlayer-js/chains";
 import deployment from "./deployment.json";
 
-export type RatchetNetwork = "studioDevnet" | "studionet";
-const configuredNetwork = process.env.NEXT_PUBLIC_RATCHET_NETWORK?.trim() || deployment.network;
-export const NETWORK: RatchetNetwork = configuredNetwork === "studionet" ? "studionet" : "studioDevnet";
-export const chain: GenLayerChain = NETWORK === "studionet" ? studionet : studioDevnet;
-export const NETWORK_LABEL = NETWORK === "studionet" ? "Studionet" : "Studio Next";
+const configuredNetwork = process.env.NEXT_PUBLIC_RATCHET_NETWORK?.trim();
+if (configuredNetwork && configuredNetwork !== "studionet") {
+  throw new Error("Ratchet's active deployment target is Studionet. Set NEXT_PUBLIC_RATCHET_NETWORK=studionet.");
+}
+export const NETWORK = "studionet";
+export const chain = studionet;
+export const NETWORK_LABEL = "Studionet";
 export const CHAIN_ID = chain.id;
 export const RPC_URL = chain.rpcUrls.default.http[0];
-export const EXPLORER_URL = chain.blockExplorers?.default?.url?.replace(/\/$/, "") ?? "https://explorer-studio-dev.genlayer.com";
+export const EXPLORER_URL = chain.blockExplorers?.default?.url?.replace(/\/$/, "") ?? "https://genlayer-explorer.vercel.app";
 const configuredAddress = process.env.NEXT_PUBLIC_RATCHET_ADDRESS?.trim() || (
   deployment.network === NETWORK && deployment.chainId === CHAIN_ID ? deployment.contract : ""
 );

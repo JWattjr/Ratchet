@@ -18,8 +18,6 @@ import {
   ensureFunded,
   explorerAddress,
   explorerTx,
-  feeArgs,
-  quote,
   readClient,
   readContract,
   receiptStatus,
@@ -57,12 +55,11 @@ async function main() {
   } catch { /* no matching deploy is pending */ }
 
   if (!hash) {
-    const tx = { kind: "deploy", code } as const;
-    const priced = await quote(tx);
-    console.log(`Submitting Ratchet deployment with ${priced.gasless ? "gasless" : "Transaction Kit fee estimate"}.`);
-    hash = await (await writeClient(account)).deployContract({ code, ...feeArgs(priced) });
+    console.log("Submitting Ratchet deployment to " + NETWORK_LABEL + ".");
+    hash = await (await writeClient(account)).deployContract({ code, args: [] });
     await writeJson(PENDING_PATH, { kind: "deploy", code_hash: sha256(codeBytes), hash, submitted_at: new Date().toISOString() });
   }
+  if (!hash) throw new Error("No deployment transaction hash was recorded.");
 
   const receipt = await waitFor(hash);
   await writeJson(receiptPath, receipt);

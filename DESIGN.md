@@ -1,6 +1,6 @@
 ---
 name: Ratchet
-description: A paper-and-pencil release review notebook for GenLayer Studio Next.
+description: A paper-and-pencil release review notebook for stable GenLayer Studionet.
 colors:
   ink: "#34362f"
   ink-strong: "#292b26"
@@ -170,7 +170,7 @@ Buttons use Patrick Hand with warm tinted fills and a light dashed edge. The HOL
 
 ### Live status
 
-Keep Studio Next connection state, chain label, refresh action, and explorer-linked contract address visible. Keep the real live release selector and never substitute sample releases when contract reads fail.
+Keep Studionet connection state, chain label, refresh action, and explorer-linked contract address visible. Keep the real live release selector and never substitute sample releases when contract reads fail.
 
 ## Accessibility and evidence integrity
 

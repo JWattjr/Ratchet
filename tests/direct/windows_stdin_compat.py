@@ -1,9 +1,9 @@
 """Work around gltest's Windows stdin temp-file cleanup ordering.
 
-gltest 0.30.0rc2 closes and unlinks the temp file after duplicating it onto
-fd 0. Windows refuses to unlink the file while fd 0 still holds it open.
-Keep the generated path on the VM and unlink it after gltest restores stdin.
-This compatibility shim only affects the local direct-test process.
+gltest closes and unlinks its temporary file after duplicating it onto fd 0.
+Windows refuses to unlink the file while fd 0 still holds it open. Keep the
+generated path on the VM and unlink it after gltest restores stdin. This shim
+only affects the local direct-test process.
 """
 
 from __future__ import annotations
@@ -22,8 +22,8 @@ def install() -> None:
         return
 
     def inject_message_to_fd0(vm_context) -> None:
-        calldata = loader.import_calldata()
-        Address = loader.import_address()
+        from genlayer.py import calldata
+        from genlayer.py.types import Address
 
         sender_addr = vm_context.sender
         if isinstance(sender_addr, bytes):

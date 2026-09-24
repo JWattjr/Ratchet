@@ -1,4 +1,4 @@
-# { "Depends": "py-genlayer:5jycge4q8k23462jtb0b9fyey1s9qz928sz2nbrd9mg4sxqg2qng" }
+# { "Depends": "py-genlayer:1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6" }
 """Ratchet release governance.
 
 CI executes the EVM replay. This Intelligent Contract independently retrieves
@@ -11,9 +11,7 @@ import hashlib
 import json
 import re
 
-import genlayer as gl
-from genlayer.types import Address, u256
-from genlayer.storage import DynArray, TreeMap
+from genlayer import *
 
 
 VERSION = "ratchet/1.0.9"
@@ -602,7 +600,7 @@ def _deterministic_result(envelope: dict, report: dict, ci_report: dict, policy:
     }
 
 
-class Ratchet(gl.contract.Contract):
+class Ratchet(gl.Contract):
     owner: Address
     release_ids: DynArray[str]
     release_data: TreeMap[str, str]

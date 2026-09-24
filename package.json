@@ -28,16 +28,16 @@
     "verify:proof": "tsx scripts/verify-proof.ts",
     "release:gate": "tsx scripts/release-gate.ts",
     "restore:proof-receipts": "tsx scripts/restore-proof-receipts.ts",
-    "profile:fees": "tsx scripts/generate-fee-profile.ts",
     "test:ui": "npm run test:ui --workspace frontend",
     "test:responsive": "npm run test:responsive --workspace frontend",
-    "reset:demo": "npm run replay:generate && npm run replay:verify && npm run prepare:demo && npm run deploy && npm run seed:demo && npm run verify:proof && npm run profile:fees && npm run build"
+    "reset:demo": "npm run replay:generate && npm run replay:verify && npm run prepare:demo && npm run deploy && npm run seed:demo && npm run verify:proof && npm run build"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-ethers": "3.1.3",
     "dotenv": "17.2.3",
     "ethers": "6.17.0",
-    "genlayer": "0.40.0-rc.3",
+    "genlayer": "0.39.2",
+    "genlayer-js": "1.1.8",
     "hardhat": "2.29.1",
     "solc": "0.8.30",
     "tsx": "4.20.6",

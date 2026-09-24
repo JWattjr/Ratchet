@@ -47,35 +47,35 @@
   "releases": [
     {
       "release_id": "RATCHET-ADVANCE",
-      "declaration_file": "frontend/public/evidence/declarations/RATCHET-ADVANCE.json",
-      "declaration_url": "https://ratchet-genlayer.vercel.app/evidence/declarations/RATCHET-ADVANCE.json",
-      "declaration_hash": "2bc807b0046f8e21b7c9c5539ca27291400039deaec24d4fca5932b1f823232f",
-      "declaration_bytes": 2751,
-      "replay_report_url": "https://ratchet-genlayer.vercel.app/evidence/honest-advance.json",
+      "declaration_file": "frontend/public/evidence/studionet/declarations/RATCHET-ADVANCE.json",
+      "declaration_url": "https://ratchet-genlayer.vercel.app/evidence/studionet/declarations/RATCHET-ADVANCE.json",
+      "declaration_hash": "91b066aae8687801b9b203110425fc2cfc155c2b5704e830fa20923cd90a278f",
+      "declaration_bytes": 2844,
+      "replay_report_url": "https://ratchet-genlayer.vercel.app/evidence/studionet/honest-advance.json",
       "replay_report_hash": "7eee52519f7691eeba46af6ecb0891f0ca4e9aa5af3c00450552d3267a430ca7",
-      "ci_report_url": "https://ratchet-genlayer.vercel.app/evidence/honest-advance.ci.json",
+      "ci_report_url": "https://ratchet-genlayer.vercel.app/evidence/studionet/honest-advance.ci.json",
       "ci_report_hash": "8574e815d0ebd8ec985984383aa2c66fd1803a2ac81eb4a1a4ba4e3e9ccb57e9"
     },
     {
       "release_id": "RATCHET-HOLD",
-      "declaration_file": "frontend/public/evidence/declarations/RATCHET-HOLD.json",
-      "declaration_url": "https://ratchet-genlayer.vercel.app/evidence/declarations/RATCHET-HOLD.json",
-      "declaration_hash": "fcdebed41f777b1b8d4a640569737aacf6f36f738e2b8601e554d09e3eaff688",
-      "declaration_bytes": 2754,
-      "replay_report_url": "https://ratchet-genlayer.vercel.app/evidence/incomplete-replay.json",
+      "declaration_file": "frontend/public/evidence/studionet/declarations/RATCHET-HOLD.json",
+      "declaration_url": "https://ratchet-genlayer.vercel.app/evidence/studionet/declarations/RATCHET-HOLD.json",
+      "declaration_hash": "740db3ebfe80e94dc600dd610ea4668f39dffafea6104e3b933fc8cc1cd000df",
+      "declaration_bytes": 2847,
+      "replay_report_url": "https://ratchet-genlayer.vercel.app/evidence/studionet/incomplete-replay.json",
       "replay_report_hash": "19d2291048444b68333893e9db79f8647626acf482738715725309c68ab5c068",
-      "ci_report_url": "https://ratchet-genlayer.vercel.app/evidence/incomplete-replay.ci.json",
+      "ci_report_url": "https://ratchet-genlayer.vercel.app/evidence/studionet/incomplete-replay.ci.json",
       "ci_report_hash": "baccb58ceae162a5dfb792934d976dd98d5a3f2f34425a2db08b3f3b9a5a9b29"
     },
     {
       "release_id": "RATCHET-ROLLBACK",
-      "declaration_file": "frontend/public/evidence/declarations/RATCHET-ROLLBACK.json",
-      "declaration_url": "https://ratchet-genlayer.vercel.app/evidence/declarations/RATCHET-ROLLBACK.json",
-      "declaration_hash": "8c4408aa98207d76f23cd5f1d6f988740147de02753a704e734e8eb44e20a23e",
-      "declaration_bytes": 2226,
-      "replay_report_url": "https://ratchet-genlayer.vercel.app/evidence/undeclared-capability.json",
+      "declaration_file": "frontend/public/evidence/studionet/declarations/RATCHET-ROLLBACK.json",
+      "declaration_url": "https://ratchet-genlayer.vercel.app/evidence/studionet/declarations/RATCHET-ROLLBACK.json",
+      "declaration_hash": "28b5faa5a2e0bcdb2ce138c924248c6c76b54dab96534ed4897240edd9d4dd60",
+      "declaration_bytes": 2319,
+      "replay_report_url": "https://ratchet-genlayer.vercel.app/evidence/studionet/undeclared-capability.json",
       "replay_report_hash": "3655e0cd50993c0ce7827a10580bd86b4ea3b29434a5c35d19885a80bba317be",
-      "ci_report_url": "https://ratchet-genlayer.vercel.app/evidence/undeclared-capability.ci.json",
+      "ci_report_url": "https://ratchet-genlayer.vercel.app/evidence/studionet/undeclared-capability.ci.json",
       "ci_report_hash": "881c71fffac2b72058019f817bffa9912742d2074abe5b9b5675024b2fc18162"
     }
   ]
