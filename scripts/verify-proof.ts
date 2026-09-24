@@ -1,7 +1,13 @@
 import { createHash } from "node:crypto";
+import { execFileSync } from "node:child_process";
+import { mkdir } from "node:fs/promises";
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import {
+  CHAIN_ID,
+  NETWORK,
+  NETWORK_LABEL,
+  NETWORK_SLUG,
   EXPLORER_URL,
   PROOF_PATH,
   ROOT,
@@ -21,7 +27,8 @@ import {
   writeJson,
 } from "./studio.js";
 
-const reportPath = resolve(ROOT, "deploy", "verification-report.json");
+const reportPath = resolve(ROOT, "deploy", `${NETWORK_SLUG}-verification-report.json`);
+const publicProofPath = resolve(ROOT, "frontend", "public", "proof", "verified-summary.json");
 
 function recordFrom(value: unknown, label: string): Record<string, unknown> {
   return asRecord(value, label);
@@ -34,10 +41,10 @@ async function readRecord(address: string, method: string, args: (string | numbe
 async function main() {
   const deployment = await loadDeployment();
   if (!deployment || typeof deployment.contract !== "string" || typeof deployment.deployTransaction !== "string") {
-    throw new Error("No complete Studio Next deployment manifest exists. Run npm run deploy first.");
+    throw new Error(`No complete ${NETWORK_LABEL} deployment manifest exists. Run npm run deploy with RATCHET_NETWORK=${NETWORK} first.`);
   }
   const proof = await readJsonFile(PROOF_PATH);
-  if (proof.contract !== deployment.contract || proof.network !== "studioDevnet" || proof.chain_id !== 61997) {
+  if (proof.contract !== deployment.contract || proof.network !== NETWORK || Number(proof.chain_id) !== Number(CHAIN_ID)) {
     throw new Error("Studio proof refers to a different contract or network than the deployment manifest.");
   }
   const evidenceBase = publicEvidenceBase();
@@ -45,11 +52,11 @@ async function main() {
   const client = readClient();
   const txResults: Record<string, unknown>[] = [];
 
-  const deploymentReceipt = await readJsonFile(resolve(ROOT, "artifacts", "studio-next-deploy-receipt.json"));
+  const deploymentReceipt = await readJsonFile(resolve(ROOT, "artifacts", `${NETWORK_SLUG}-deploy-receipt.json`));
   const deploymentRecord = deploymentReceipt as Record<string, unknown>;
   requireSuccessfulReceipt(deploymentRecord as never, "Saved deployment");
   const deployTx = await client.getTransaction({ hash: deployment.deployTransaction as never });
-  requireSuccessfulReceipt(deployTx as never, "Live Studio Next deployment");
+  requireSuccessfulReceipt(deployTx as never, `Live ${NETWORK_LABEL} deployment`);
   txResults.push({ action: "deploy", hash: deployment.deployTransaction, explorer_url: explorerTx(deployment.deployTransaction), lifecycle: receiptStatus(deployTx as never), execution: executionStatus(deployTx as never), consensus: consensusStatus(deployTx as never) });
 
   const releases = proof.releases;
@@ -76,7 +83,7 @@ async function main() {
       const savedReceipt = JSON.parse(bytes.toString("utf8")) as Record<string, unknown>;
       requireSuccessfulReceipt(savedReceipt as never, `${releaseId}/${String(tx.action)} saved receipt`);
       const live = await client.getTransaction({ hash: hash as never });
-      requireSuccessfulReceipt(live as never, `${releaseId}/${String(tx.action)} live Studio receipt`);
+      requireSuccessfulReceipt(live as never, `${releaseId}/${String(tx.action)} live ${NETWORK_LABEL} receipt`);
       txResults.push({ release_id: releaseId, action: tx.action, hash, explorer_url: tx.explorer_url, lifecycle: receiptStatus(live as never), execution: executionStatus(live as never), consensus: consensusStatus(live as never), local_receipt_sha256: localHash });
     }
     for (const field of ["declaration_url", "replay_report_url", "ci_report_url"] as const) {
@@ -93,8 +100,8 @@ async function main() {
   const report = {
     schema_version: "1",
     verified_at: new Date().toISOString(),
-    network: "studioDevnet",
-    chain_id: 61997,
+    network: NETWORK,
+    chain_id: CHAIN_ID,
     contract: deployment.contract,
     explorer: EXPLORER_URL,
     verified_transactions: txResults,
@@ -103,8 +110,41 @@ async function main() {
     live_contract_receipts_match: true,
   };
   await writeJson(reportPath, report);
-  console.log(`Verified ${txResults.length} finalized Studio Next transactions, 3 live release receipts, and 9 hosted evidence hashes.`);
-  console.log(`Saved verification summary to ${reportPath}.`);
+  await mkdir(resolve(publicProofPath, ".."), { recursive: true });
+  const sourceCommit = process.env.GITHUB_SHA?.trim() || execFileSync("git", ["-c", `safe.directory=${ROOT.replaceAll("\\", "/")}`, "rev-parse", "HEAD"], { cwd: ROOT, encoding: "utf8" }).trim();
+  const summary = {
+    schema_version: "1",
+    proof_kind: "verified-archival-snapshot",
+    verified_at: report.verified_at,
+    source_commit: sourceCommit,
+    network: NETWORK,
+    chain_id: CHAIN_ID,
+    contract: deployment.contract,
+    explorer: EXPLORER_URL,
+    deployment_transaction: deployment.deployTransaction,
+    github_ci_runs: "https://github.com/JWattjr/Ratchet/actions/workflows/ci.yml",
+    releases: releases.map((raw) => {
+      const release = recordFrom(raw, "proof release");
+      const txs = Array.isArray(release.transactions) ? release.transactions.map((item) => recordFrom(item, "proof transaction")) : [];
+      const adjudication = txs.find((item) => item.action === `${String(release.release_id)}-adjudicate`);
+      if (!adjudication || typeof adjudication.hash !== "string") throw new Error(`${String(release.release_id)} has no verified adjudication transaction for the saved proof view.`);
+      return {
+        release_id: release.release_id,
+        state: release.state,
+        verdict: release.actual_verdict,
+        evidence_status: release.evidence_status,
+        declaration_hash: release.declaration_hash,
+        replay_report_hash: release.replay_report_hash,
+        ci_report_hash: release.ci_report_hash,
+        bond: release.bond,
+        adjudication_transaction: adjudication.hash,
+        adjudication_explorer_url: adjudication.explorer_url,
+      };
+    }),
+  };
+  await writeJson(publicProofPath, summary);
+  console.log(`Verified ${txResults.length} finalized ${NETWORK_LABEL} transactions, 3 live release receipts, and 9 hosted evidence hashes.`);
+  console.log(`Saved verification report to ${reportPath} and dated archival proof to ${publicProofPath}.`);
 }
 
 main().catch((error: unknown) => {

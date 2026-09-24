@@ -5,8 +5,9 @@
 1. **Replay producer:** Hardhat deploys the baseline and candidate vault contracts to isolated local EVM instances, runs the same transaction corpus, gathers deployment/transaction receipts and storage layouts, and computes invariant and difference reports.
 2. **Public evidence:** generated JSON reports, CI receipts, declaration envelopes, and HTML evidence pages are published as static frontend assets. The declaration records source/build provenance, expected changes, required invariant and corpus IDs, evidence URLs and hashes, and frozen retry/bond rules.
 3. **Intelligent Contract:** `Ratchet` validates the declaration and policy, stores their canonical hashes and URLs, and freezes the proposal at sealing. `adjudicate` retrieves the declaration, report, and CI receipt; checks their raw SHA-256 hashes and schema markers; asks the leader and validator to independently interpret the evidence; normalizes their stable-ID result; applies deterministic state/bond rules; and records the receipt.
-4. **Frontend:** Next.js reads version, statistics, releases, attempts, history, and adjudication receipts from the configured Studio Next contract. Writes require an injected wallet, chain ID 61997, a fresh Transaction Kit estimate, and transaction finality. Public evidence can be reviewed without a wallet.
-5. **Deployment/proof scripts:** Studio scripts pin the runner and network, write deployment and receipt records, preflight public evidence byte-for-byte, seed deterministic demo proposals, compare saved receipts to live state, and derive fee suggestions from actual finalized receipts.
+4. **Frontend:** Next.js reads version, statistics, releases, attempts, history, and adjudication receipts from the network in `frontend/lib/deployment.json` (or an explicit build-time network override). Writes require an injected wallet on that chain, a fresh Transaction Kit estimate, and transaction finality. Public evidence can be reviewed without a wallet. The public demo targets Studionet (`61999`); Studio Next (`61997`) is the preview target.
+5. **Deployment/proof scripts:** Studio scripts select a network explicitly, pin its runner and chain definition, write isolated deployment and receipt records, preflight public evidence byte-for-byte, seed deterministic demo proposals, compare saved receipts to live state, and derive fee suggestions from that network's finalized receipts.
+6. **Release gate:** A manual GitHub Actions workflow checks that the exact Studionet release ID and declaration hash match a finalized on-chain `ADVANCE` receipt with successful execution and majority agreement. It authorizes a caller's external promotion step; it does not deploy EVM bytecode or perform an upgrade itself.
 
 ## Trust boundaries
 
@@ -14,7 +15,9 @@
 - A URL and digest are committed by the release owner. Validators retrieve the bytes independently and compare the exact digest before interpretation.
 - Leader and validator executions share the same frozen policy and evidence, but the LLM's interpretation is nondeterministic. The contract checks normalized result structure and consensus outcome; it cannot prove that a semantic interpretation is objectively correct.
 - The contract is a release-authorization ledger. It cannot stop a team from upgrading elsewhere and does not control an EVM proxy.
-- Demo bond amounts are integer accounting units, not held assets. Only GenLayer transaction fees are paid according to Studio Next/Transaction Kit rules.
+- Demo bond amounts are integer accounting units, not held assets. Only GenLayer transaction fees are paid according to the selected network's Transaction Kit rules.
+
+Frontend RPC reads are shared briefly in memory and explicit refreshes bypass that cache. The app does not poll continuously, which reduces pressure on public RPC quotas while preserving a clear manual refresh path.
 
 ## Release state
 

@@ -20,8 +20,11 @@ const portalShotDir = process.env.RATCHET_SCREENSHOT_DIR
   ? resolve(root, process.env.RATCHET_SCREENSHOT_DIR)
   : resolve(root, "artifacts", "screenshots");
 const deployment = JSON.parse(await readFile(resolve(frontend, "lib", "deployment.json"), "utf8"));
+const network = process.env.NEXT_PUBLIC_RATCHET_NETWORK?.trim() || deployment.network || "studioDevnet";
+const networkLabel = network === "studionet" ? "Studionet" : "Studio Next";
+const chainId = network === "studionet" ? 61999 : 61997;
 const configuredAddress = process.env.NEXT_PUBLIC_RATCHET_ADDRESS?.trim() || (
-  deployment.network === "studioDevnet" && deployment.chainId === 61997 ? deployment.contract : ""
+  deployment.network === network && deployment.chainId === chainId ? deployment.contract : ""
 );
 
 async function findBrowser() {
@@ -86,7 +89,7 @@ try {
   }
   const body = await page.locator("body").innerText();
   assert.match(body, /Ratchet/);
-  assert.match(body, /Studio Next/);
+  assert.ok(body.includes(networkLabel), `page should identify ${networkLabel}`);
   assert.match(body, /DECLARED|Declared/i);
   assert.match(body, /OBSERVED|Observed/i);
   assert.match(body, /ADVANCE/);
@@ -94,8 +97,8 @@ try {
   assert.match(body, /ROLLBACK/);
   if (configuredAddress) {
     assert.ok(body.includes(configuredAddress.slice(0, 12)), "configured page must display the deployed contract address");
-    assert.match(body, /No release selected|RATCHET-|RPC unavailable|Could not read Studio Next/i, "configured page must show live contract state or an honest read failure");
-    if (body.includes("Live RPC")) assert.match(body, /Live RPC · chain 61997/, "Studio Next chain IDs must be displayed in decimal");
+    assert.match(body, /No release selected|RATCHET-|RPC unavailable|Could not read/i, "configured page must show live contract state or an honest read failure");
+    if (body.includes("Live RPC")) assert.ok(body.includes(`Live RPC · chain ${chainId}`), `${networkLabel} chain IDs must be displayed in decimal`);
   } else {
     assert.match(body, /No contract|not configured|Connect Ratchet/i);
     assert.doesNotMatch(body, /0x[a-fA-F0-9]{40}/, "unconfigured page must not display a fabricated live contract address");
@@ -121,7 +124,7 @@ try {
         const status = document.querySelector(".release-heading-row .status")?.textContent?.trim();
         const failure = Array.from(document.querySelectorAll(".inline-alert.error"))
           .map((alert) => alert.textContent?.trim() ?? "")
-          .find((message) => message.includes(releaseId) || message.includes("Could not read Studio Next"));
+          .find((message) => message.includes(releaseId) || message.includes("Could not read"));
         if (failure) return { failure, title, verdict, status };
         return title === releaseId && verdict === releaseId.replace("RATCHET-", "") && status === releaseState
           ? { title, verdict, status }

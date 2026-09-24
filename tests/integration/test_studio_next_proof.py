@@ -1,4 +1,4 @@
-"""Read-only full-consensus checks for the three seeded Studio Next flows.
+"""Read-only full-consensus checks for the three seeded Ratchet flows.
 
 Run after deploy/seed-demo has finalized its transactions:
   npm run test:integration
@@ -6,6 +6,7 @@ These checks inspect real existing receipts and never submit transactions.
 """
 
 import json
+import os
 from pathlib import Path
 
 from gltest import get_contract_factory, get_default_account, get_gl_client
@@ -13,8 +14,14 @@ from gltest.assertions import tx_execution_succeeded
 
 
 ROOT = Path(__file__).resolve().parents[2]
-DEPLOYMENT = json.loads((ROOT / "deploy" / "ratchet-deployment.json").read_text(encoding="utf-8"))
-PROOF = json.loads((ROOT / "deploy" / "studio-next-proof.json").read_text(encoding="utf-8"))
+NETWORK = os.environ.get("RATCHET_NETWORK", "studioDevnet")
+if NETWORK not in {"studioDevnet", "studionet"}:
+    raise RuntimeError("RATCHET_NETWORK must be studioDevnet or studionet")
+NETWORK_SLUG = "studionet" if NETWORK == "studionet" else "studio-next"
+DEPLOYMENT_PATH = ROOT / "deploy" / ("ratchet-studionet-deployment.json" if NETWORK == "studionet" else "ratchet-deployment.json")
+DEPLOYMENT = json.loads(DEPLOYMENT_PATH.read_text(encoding="utf-8"))
+PROOF = json.loads((ROOT / "deploy" / f"{NETWORK_SLUG}-proof.json").read_text(encoding="utf-8"))
+CHAIN_ID = 61999 if NETWORK == "studionet" else 61997
 ADDRESS = DEPLOYMENT["contract"]
 EXPECTED = {
     "RATCHET-ADVANCE": ("ADVANCE", "ADVANCED"),
@@ -30,11 +37,11 @@ def as_record(value, label):
     return value
 
 
-def test_seeded_studio_next_contract_and_validator_consensus():
-    assert DEPLOYMENT["network"] == "studioDevnet"
-    assert DEPLOYMENT["chainId"] == 61997
-    assert PROOF["network"] == "studioDevnet"
-    assert PROOF["chain_id"] == 61997
+def test_seeded_contract_and_validator_consensus():
+    assert DEPLOYMENT["network"] == NETWORK
+    assert DEPLOYMENT["chainId"] == CHAIN_ID
+    assert PROOF["network"] == NETWORK
+    assert PROOF["chain_id"] == CHAIN_ID
     assert PROOF["contract"].lower() == ADDRESS.lower()
     assert len(PROOF["releases"]) == 3
 

@@ -1,6 +1,8 @@
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import {
+  NETWORK_LABEL,
+  NETWORK_SLUG,
   PROOF_PATH,
   ROOT,
   asRecord,
@@ -28,7 +30,7 @@ async function main() {
   const client = readClient();
   const deployReceipt = await client.getTransaction({ hash: deployment.deployTransaction as never });
   requireSuccessfulReceipt(deployReceipt as never, "Live Studio deployment");
-  await writeJson(resolve(ROOT, "artifacts", "studio-next-deploy-receipt.json"), deployReceipt);
+  await writeJson(resolve(ROOT, "artifacts", `${NETWORK_SLUG}-deploy-receipt.json`), deployReceipt);
 
   let restored = 1;
   for (const rawRelease of proof.releases) {
@@ -51,7 +53,7 @@ async function main() {
   }
 
   await writeJson(PROOF_PATH, proof);
-  console.log(`Restored ${restored} finalized Studio receipts and refreshed their local SHA-256 pins.`);
+  console.log(`Restored ${restored} finalized ${NETWORK_LABEL} receipts and refreshed their local SHA-256 pins.`);
 }
 
 main().catch((error: unknown) => {

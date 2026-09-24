@@ -19,4 +19,15 @@ jobs:
       - run: npm ci
       - run: npx playwright-core install --with-deps chromium
       - run: npm run setup:python
+      - run: npm run replay:generate
+      - run: npm run replay:verify
       - run: npm run check
+      - name: Write replay attestation
+        run: node scripts/write-ci-attestation.mjs "$RUNNER_TEMP/replay-attestation.json"
+      - name: Publish replay attestation
+        uses: actions/upload-artifact@v4
+        with:
+          name: ratchet-replay-attestation-${{ github.sha }}
+          path: ${{ runner.temp }}/replay-attestation.json
+          if-no-files-found: error
+          retention-days: 90

@@ -1,7 +1,9 @@
-import { mkdir, readFile } from "node:fs/promises";
+import { copyFile, mkdir, readFile } from "node:fs/promises";
+import { execFileSync } from "node:child_process";
 import { resolve } from "node:path";
 import {
   ROOT,
+  NETWORK_SLUG,
   canonicalJson,
   publicEvidenceBase,
   readJsonFile,
@@ -9,7 +11,8 @@ import {
   writeJson,
 } from "./studio.js";
 
-const declarationDir = resolve(ROOT, "frontend", "public", "evidence", "declarations");
+const evidenceDir = resolve(ROOT, "frontend", "public", "evidence", NETWORK_SLUG);
+const declarationDir = resolve(evidenceDir, "declarations");
 const reportDir = resolve(ROOT, "replay", "generated");
 const declarationIds = ["DECL-SOURCE", "DECL-STORAGE", "DECL-PERMISSIONS", "DECL-EXTERNAL-CALLS", "DECL-CAPABILITIES", "DECL-MIGRATION", "DECL-ROLLBACK", "DECL-CORPUS"];
 const invariantIds = ["INV-BALANCE-CONSERVATION", "INV-NO-UNDECLARED-ADMIN", "INV-WITHDRAWAL-BOUND"];
@@ -43,8 +46,17 @@ function readString(record: Record<string, unknown>, key: string, label: string)
 
 async function main() {
   const base = publicEvidenceBase();
+  const git = (args: string[]) => execFileSync("git", ["-c", `safe.directory=${ROOT.replaceAll("\\", "/")}`, ...args], { cwd: ROOT, encoding: "utf8" }).trim();
+  const sourceCommit = process.env.RATCHET_SOURCE_COMMIT?.trim() || git(["rev-parse", "HEAD"]);
+  if (!/^[0-9a-f]{40}$/i.test(sourceCommit)) throw new Error("RATCHET_SOURCE_COMMIT must be a full Git commit SHA.");
+  const dirtyFiles = git(["status", "--porcelain"]);
+  if (dirtyFiles) throw new Error("Commit or stash source changes before preparing declarations so their Git provenance is reproducible.");
   const provenance = await readJsonFile(resolve(reportDir, "provenance.json"));
   await mkdir(declarationDir, { recursive: true });
+  for (const row of manifest) {
+    await copyFile(resolve(reportDir, row.reportFile), resolve(evidenceDir, row.reportFile));
+    await copyFile(resolve(reportDir, row.ciFile), resolve(evidenceDir, row.ciFile));
+  }
   const output = [];
   for (const row of manifest) {
     const reportBytes = await readFile(resolve(reportDir, row.reportFile));
@@ -59,17 +71,18 @@ async function main() {
     const candidateHash = readString(candidate, "source_hash", row.reportFile);
     const sourceHash = readString(baseline, "source_hash", row.reportFile);
     const datasetHash = readString(corpus, "dataset_hash", row.reportFile);
-    const reportUrl = `${base}/evidence/${row.reportFile}`;
-    const ciUrl = `${base}/evidence/${row.ciFile}`;
-    const declarationUrl = `${base}/evidence/declarations/${row.releaseId}.json`;
+    const reportUrl = `${base}/evidence/${NETWORK_SLUG}/${row.reportFile}`;
+    const ciUrl = `${base}/evidence/${NETWORK_SLUG}/${row.ciFile}`;
+    const declarationUrl = `${base}/evidence/${NETWORK_SLUG}/declarations/${row.releaseId}.json`;
     const declared = row.declaration === "declared";
     const envelope = {
       release_id: row.releaseId,
       current_implementation_hash: sourceHash,
       candidate_implementation_hash: candidateHash,
       source_provenance: {
-        repository: process.env.RATCHET_SOURCE_REPOSITORY?.trim() || "workspace://ratchet",
-        commit: `local-snapshot-${sourceHash.slice(0, 16)}`,
+        repository: process.env.RATCHET_SOURCE_REPOSITORY?.trim() || "https://github.com/JWattjr/Ratchet",
+        commit: sourceCommit,
+        worktree: "clean before declaration generation",
         baseline_file: "replay/contracts/VaultV1.sol",
         candidate_file: "replay/contracts/VaultV2Declared.sol",
         transaction_corpus_hash: datasetHash,
@@ -118,7 +131,7 @@ async function main() {
     await writeFile(path, declarationBytes, "utf8");
     output.push({
       release_id: row.releaseId,
-      declaration_file: `frontend/public/evidence/declarations/${row.releaseId}.json`,
+      declaration_file: `frontend/public/evidence/${NETWORK_SLUG}/declarations/${row.releaseId}.json`,
       declaration_url: declarationUrl,
       declaration_hash: sha256(declarationBytes),
       declaration_bytes: declarationBytes.length,

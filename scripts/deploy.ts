@@ -2,9 +2,14 @@ import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import {
   CONTRACT_PATH,
+  CHAIN_ID,
   DEPLOYMENT_PATH,
   EXPLORER_URL,
+  NETWORK,
+  NETWORK_LABEL,
+  NETWORK_SLUG,
   PENDING_PATH,
+  RPC_URL,
   ROOT,
   RUNNER_HASH,
   asRecord,
@@ -27,8 +32,8 @@ import {
 } from "./studio.js";
 
 const deploymentMirror = resolve(ROOT, "frontend", "lib", "deployment.json");
-const schemaPath = resolve(ROOT, "deploy", "studio-next-schema.json");
-const receiptPath = resolve(ROOT, "artifacts", "studio-next-deploy-receipt.json");
+const schemaPath = resolve(ROOT, "deploy", `${NETWORK_SLUG}-schema.json`);
+const receiptPath = resolve(ROOT, "artifacts", `${NETWORK_SLUG}-deploy-receipt.json`);
 
 async function main() {
   const codeBytes = await readFile(CONTRACT_PATH);
@@ -39,7 +44,7 @@ async function main() {
   await writeJson(schemaPath, schema);
   const account = await deployerAccount();
   const chainId = BigInt(String(await (await import("./studio.js")).rpc("eth_chainId")));
-  if (chainId !== 61_997n) throw new Error(`Connected Studio chain id ${chainId}; expected 61997.`);
+  if (chainId !== BigInt(CHAIN_ID)) throw new Error(`Connected ${NETWORK_LABEL} chain id ${chainId}; expected ${CHAIN_ID}.`);
   await ensureFunded(account.address);
 
   let hash: string | undefined;
@@ -79,9 +84,9 @@ async function main() {
   const owner = String(ownerRaw);
   const stats = asRecord(statsRaw, "get_stats");
   const deployment = {
-    network: "studioDevnet",
-    chainId: 61997,
-    rpc: "https://studio-dev.genlayer.com/api",
+    network: NETWORK,
+    chainId: CHAIN_ID,
+    rpc: RPC_URL,
     explorer: EXPLORER_URL,
     contract: address,
     owner,
@@ -93,7 +98,7 @@ async function main() {
     runner: RUNNER_HASH,
     runnerHeader: runner,
     sourceSha256: sha256(codeBytes),
-    abiSchema: "deploy/studio-next-schema.json",
+    abiSchema: `deploy/${NETWORK_SLUG}-schema.json`,
     initialStats: stats,
     receiptStatus: receiptStatus(record as never),
     deployer: account.address,
@@ -111,7 +116,7 @@ async function main() {
     runner: deployment.runner,
   });
   await writeJson(PENDING_PATH, { kind: "deploy", hash, code_hash: sha256(codeBytes), state: "FINALIZED", address });
-  console.log(`Ratchet ${version} deployed at ${address} on Studio Next (chain 61997).`);
+  console.log(`Ratchet ${version} deployed at ${address} on ${NETWORK_LABEL} (chain ${CHAIN_ID}).`);
   console.log(`Deployment transaction: ${explorerTx(hash)}`);
   console.log("Deployer private key remains in the ignored .keys directory and was not printed.");
 }

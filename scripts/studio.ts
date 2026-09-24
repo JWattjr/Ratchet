@@ -2,17 +2,25 @@ import { createHash } from "node:crypto";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { createAccount, createClient, generatePrivateKey } from "genlayer-js";
-import { studioDevnet } from "genlayer-js/chains";
+import { studioDevnet, studionet } from "genlayer-js/chains";
 import { TransactionHashVariant, executionResultNumberToName, transactionsStatusNumberToName } from "genlayer-js/types";
 import { createTransactionKit, type FeeSuggestions, type SubmitInput } from "@genlayer/transaction-kit";
 
 export const ROOT = process.cwd();
 export const CONTRACT_PATH = resolve(ROOT, "contracts", "ratchet.py");
-export const DEPLOYMENT_PATH = resolve(ROOT, "deploy", "ratchet-deployment.json");
-export const PROOF_PATH = resolve(ROOT, "deploy", "studio-next-proof.json");
-export const PENDING_PATH = resolve(ROOT, ".keys", "pending-transaction.json");
+const requestedNetwork = process.env.RATCHET_NETWORK?.trim() || "studioDevnet";
+if (requestedNetwork !== "studioDevnet" && requestedNetwork !== "studionet") {
+  throw new Error("RATCHET_NETWORK must be studioDevnet or studionet.");
+}
+export const NETWORK = requestedNetwork;
+export const NETWORK_SLUG = NETWORK === "studionet" ? "studionet" : "studio-next";
+export const NETWORK_LABEL = NETWORK === "studionet" ? "Studionet" : "Studio Next";
+export const DEPLOYMENT_PATH = resolve(ROOT, "deploy", NETWORK === "studionet" ? "ratchet-studionet-deployment.json" : "ratchet-deployment.json");
+export const PROOF_PATH = resolve(ROOT, "deploy", `${NETWORK_SLUG}-proof.json`);
+export const PENDING_PATH = resolve(ROOT, ".keys", `pending-${NETWORK_SLUG}-transaction.json`);
 export const DEPLOYER_KEY_PATH = resolve(ROOT, ".keys", "deployer.key");
-export const chain = studioDevnet;
+export const chain = NETWORK === "studionet" ? studionet : studioDevnet;
+export const CHAIN_ID = chain.id;
 export const RPC_URL = chain.rpcUrls.default.http[0];
 export const EXPLORER_URL = chain.blockExplorers?.default?.url?.replace(/\/$/, "") ?? "https://explorer-studio-dev.genlayer.com";
 export const RUNNER_HASH = "5jycge4q8k23462jtb0b9fyey1s9qz928sz2nbrd9mg4sxqg2qng";
@@ -76,7 +84,7 @@ export async function deployerAccount() {
     } catch {
       key = generatePrivateKey();
       await writeFile(DEPLOYER_KEY_PATH, key, { mode: 0o600, flag: "wx" });
-      console.log("Created a fresh Studio Next development signer under ignored .keys/. Its private key is not printed.");
+      console.log(`Created a fresh ${NETWORK_LABEL} development signer under ignored .keys/. Its private key is not printed.`);
     }
   }
   return createAccount(key as `0x${string}`);
@@ -101,8 +109,8 @@ export async function ensureFunded(address: string): Promise<void> {
   if (balance >= 10n ** 18n) return;
   await rpc("sim_fundAccount", [address, (10n ** 20n).toString()]);
   const funded = BigInt(String(await rpc("eth_getBalance", [address, "latest"])));
-  if (funded < 10n ** 18n) throw new Error("The Studio Next development faucet did not fund the deployer.");
-  console.log("Funded the development signer from Studio Next's test faucet.");
+  if (funded < 10n ** 18n) throw new Error(`The ${NETWORK_LABEL} development faucet did not fund the deployer.`);
+  console.log(`Funded the development signer from ${NETWORK_LABEL}'s test faucet.`);
 }
 
 const estimatingProvider = { request: async (): Promise<never> => { throw new Error("Fee estimation uses public chain reads only."); } };
@@ -115,7 +123,7 @@ export async function quote(tx: SubmitInput) {
   } catch { /* Use the chain's live default quote until finalized receipts are profiled. */ }
   const kit = createTransactionKit({ chain, provider: estimatingProvider, suggestions });
   const result = await kit.estimate({ preset: "standard" }, tx);
-  if (result.verification.status === "mismatch") throw new Error("Studio Next fee policy changed during estimation; run the command again for a fresh quote.");
+  if (result.verification.status === "mismatch") throw new Error(`${NETWORK_LABEL} fee policy changed during estimation; run the command again for a fresh quote.`);
   return result;
 }
 

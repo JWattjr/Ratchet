@@ -1,3 +1,5 @@
+import { CHAIN_ID, EXPLORER_URL, NETWORK_LABEL, RPC_URL } from "./network";
+
 export type InjectedProvider = {
   request: (args: { method: string; params?: unknown[] }) => Promise<unknown>;
   on?: (event: string, listener: (...args: unknown[]) => void) => void;
@@ -24,10 +26,10 @@ export async function connectWallet(provider: InjectedProvider): Promise<string>
 }
 
 export const STUDIO_CHAIN = {
-  id: 61997,
-  name: "GenLayer Studio Next",
-  rpc: "https://studio-dev.genlayer.com/api",
-  explorer: "https://explorer-studio-dev.genlayer.com",
+  id: CHAIN_ID,
+  name: `GenLayer ${NETWORK_LABEL}`,
+  rpc: RPC_URL,
+  explorer: EXPLORER_URL,
   currency: { name: "GEN", symbol: "GEN", decimals: 18 },
 } as const;
 
@@ -82,7 +84,7 @@ export function readableError(error: unknown): string {
     if (Number(record.code) === 4001) return "The request was declined in your wallet.";
     const reason = [record.details, record.cause?.message, record.message].filter((part): part is string => typeof part === "string").join(" ");
     if (/rate limit exceeded|too many requests|retry_after_seconds/i.test(reason)) {
-      return "Studio Next has reached its RPC request limit. Wait for the limit to reset, then refresh the live read.";
+      return `${NETWORK_LABEL} has reached its RPC request limit. Wait for the limit to reset, then refresh the live read.`;
     }
     if (typeof record.shortMessage === "string" && record.shortMessage) return record.shortMessage;
     if (typeof record.message === "string" && record.message) return record.message.split("\n")[0].slice(0, 280);

@@ -4,6 +4,10 @@ import { resolve } from "node:path";
 import type { SubmitInput } from "@genlayer/transaction-kit";
 import {
   DEPLOYMENT_PATH,
+  CHAIN_ID,
+  NETWORK,
+  NETWORK_LABEL,
+  NETWORK_SLUG,
   EXPLORER_URL,
   PENDING_PATH,
   PROOF_PATH,
@@ -30,7 +34,7 @@ import {
 } from "./studio.js";
 
 const artifactPath = resolve(ROOT, "deploy", "demo-artifacts.json");
-const seedReceiptDir = resolve(ROOT, "artifacts", "studio-next-seed");
+const seedReceiptDir = resolve(ROOT, "artifacts", `${NETWORK_SLUG}-seed`);
 const finalStates: Record<string, string> = { ADVANCE: "ADVANCED", HOLD: "HELD", ROLLBACK: "ROLLED_BACK" };
 
 type ActionProof = { action: string; hash: string; explorer_url: string; lifecycle: string; execution: string; consensus: string; receipt_file: string; receipt_sha256: string };
@@ -57,7 +61,7 @@ async function submitAction(account: Awaited<ReturnType<typeof deployerAccount>>
     requireSuccessfulReceipt(receipt as never, `${actionKey}`);
   } catch (error) {
     const failedReceipt = resolve(seedReceiptDir, `${actionKey}.failed-${finalHash.slice(2, 10)}.json`);
-    const receiptFile = `artifacts/studio-next-seed/${actionKey}.failed-${finalHash.slice(2, 10)}.json`;
+    const receiptFile = `artifacts/${NETWORK_SLUG}-seed/${actionKey}.failed-${finalHash.slice(2, 10)}.json`;
     await writeJson(failedReceipt, receipt);
     await writeJson(PENDING_PATH, { kind: "write", action_key: `${actionKey}-failed-${finalHash.slice(2, 10)}`, hash: finalHash, state: "FAILED", receipt_file: receiptFile });
     throw error;
@@ -65,7 +69,7 @@ async function submitAction(account: Awaited<ReturnType<typeof deployerAccount>>
   await writeJson(actionPath, receipt);
   await writeJson(PENDING_PATH, { kind: "write", action_key: actionKey, hash: finalHash, state: "FINALIZED" });
   const bytes = await readFile(actionPath);
-  return { action: actionKey, hash: finalHash, explorer_url: explorerTx(finalHash), lifecycle: receiptStatus(receipt as never), execution: executionStatus(receipt as never), consensus: consensusStatus(receipt as never), receipt_file: `artifacts/studio-next-seed/${actionKey}.json`, receipt_sha256: createHash("sha256").update(bytes).digest("hex") };
+  return { action: actionKey, hash: finalHash, explorer_url: explorerTx(finalHash), lifecycle: receiptStatus(receipt as never), execution: executionStatus(receipt as never), consensus: consensusStatus(receipt as never), receipt_file: `artifacts/${NETWORK_SLUG}-seed/${actionKey}.json`, receipt_sha256: createHash("sha256").update(bytes).digest("hex") };
 }
 
 async function savedActionProof(address: string, actionKey: string): Promise<ActionProof | undefined> {
@@ -90,7 +94,7 @@ async function savedActionProof(address: string, actionKey: string): Promise<Act
     lifecycle: receiptStatus(receipt as never),
     execution: executionStatus(receipt as never),
     consensus: consensusStatus(receipt as never),
-    receipt_file: `artifacts/studio-next-seed/${actionKey}.json`,
+    receipt_file: `artifacts/${NETWORK_SLUG}-seed/${actionKey}.json`,
     receipt_sha256: createHash("sha256").update(bytes).digest("hex"),
   };
 }
@@ -230,8 +234,8 @@ async function main() {
 
   const proof = {
     schema_version: "1",
-    network: "studioDevnet",
-    chain_id: 61997,
+    network: NETWORK,
+    chain_id: CHAIN_ID,
     contract: address,
     deploy_transaction: deployment.deployTransaction,
     deploy_explorer_url: deployment.deployExplorer,
@@ -244,7 +248,7 @@ async function main() {
     verified_at: new Date().toISOString(),
   };
   await writeJson(PROOF_PATH, proof);
-  console.log(`Saved on-chain transaction and adjudication proof to ${PROOF_PATH}.`);
+  console.log(`Saved ${NETWORK_LABEL} transaction and adjudication proof to ${PROOF_PATH}.`);
   if (unexpectedVerdict) throw new Error("The network's actual validator verdict differed from at least one demo label; proof preserves the actual outcomes.");
 }
 

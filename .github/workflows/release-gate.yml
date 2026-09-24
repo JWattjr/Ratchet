@@ -1,0 +1,33 @@
+name: Ratchet Studionet release gate
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_id:
+        description: Exact on-chain release identifier
+        required: true
+        type: string
+      declaration_hash:
+        description: Expected canonical declaration SHA-256 (64 hex characters)
+        required: true
+        type: string
+
+jobs:
+  authorize:
+    name: Verify finalized ADVANCE before external promotion
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Read and verify live Ratchet state
+        run: npm run release:gate
+        env:
+          RATCHET_NETWORK: studionet
+          RELEASE_ID: ${{ inputs.release_id }}
+          EXPECTED_DECLARATION_HASH: ${{ inputs.declaration_hash }}

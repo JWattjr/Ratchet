@@ -1,7 +1,7 @@
 import { createClient } from "genlayer-js";
 import { TransactionHashVariant } from "genlayer-js/types";
 import { createTransactionKit, type FeeSuggestions, type PolicyQuote, type SubmitInput } from "@genlayer/transaction-kit";
-import { chain, CHAIN_ID, CONTRACT_ADDRESS, EXPLORER_URL, RPC_URL } from "./network";
+import { chain, CHAIN_ID, CONTRACT_ADDRESS, EXPLORER_URL, NETWORK_LABEL, RPC_URL } from "./network";
 import { guardedProvider, type InjectedProvider } from "./wallet";
 
 export type ReleaseState = "DRAFT" | "SEALED" | "HELD" | "ADVANCED" | "ROLLED_BACK" | "CANCELLED" | string;
@@ -62,26 +62,79 @@ export type DashboardSnapshot = {
   chainId?: string;
   readAt: number;
 };
+export type SavedProofRelease = {
+  release_id: string;
+  state: string;
+  verdict: string;
+  evidence_status: string;
+  declaration_hash: string;
+  replay_report_hash: string;
+  ci_report_hash: string;
+  bond: Record<string, unknown>;
+  adjudication_transaction: string;
+  adjudication_explorer_url: string;
+};
+export type SavedProofSummary = {
+  schema_version: "1";
+  proof_kind: "verified-archival-snapshot";
+  verified_at: string;
+  source_commit: string;
+  network: string;
+  chain_id: number;
+  contract: string;
+  explorer: string;
+  deployment_transaction: string;
+  github_ci_runs: string;
+  releases: SavedProofRelease[];
+};
 
 let reader: ReturnType<typeof createClient> | null = null;
+const readCache = new Map<string, { cachedAt: number; value?: unknown; pending?: Promise<unknown> }>();
+const READ_CACHE_MS = 15_000;
 function readClient() {
   reader ??= createClient({ chain });
   return reader;
 }
 
+export async function readSavedProofSummary(): Promise<SavedProofSummary | null> {
+  try {
+    const response = await fetch("/proof/verified-summary.json", { cache: "no-store", credentials: "omit" });
+    if (!response.ok) return null;
+    const summary = await response.json() as SavedProofSummary;
+    if (summary.schema_version !== "1" || summary.proof_kind !== "verified-archival-snapshot" || !Array.isArray(summary.releases)) return null;
+    return summary;
+  } catch {
+    return null;
+  }
+}
+
 function requireContractAddress(): `0x${string}` {
-  if (!CONTRACT_ADDRESS) throw new Error("No Ratchet contract address is configured for Studio Next.");
+  if (!CONTRACT_ADDRESS) throw new Error(`No Ratchet contract address is configured for ${NETWORK_LABEL}.`);
   return CONTRACT_ADDRESS as `0x${string}`;
 }
 
-async function view(functionName: string, args: (string | number)[] = []): Promise<unknown> {
+async function view(functionName: string, args: (string | number)[] = [], force = false): Promise<unknown> {
   const address = requireContractAddress();
-  return readClient().readContract({
+  const key = JSON.stringify([CHAIN_ID, address.toLowerCase(), functionName, args]);
+  const cached = readCache.get(key);
+  if (!force && cached && Date.now() - cached.cachedAt < READ_CACHE_MS) {
+    return cached.pending ?? cached.value;
+  }
+  const pending = readClient().readContract({
     address,
     functionName,
     args,
     transactionHashVariant: TransactionHashVariant.LATEST_FINAL,
   });
+  readCache.set(key, { cachedAt: Date.now(), pending });
+  try {
+    const value = await pending;
+    readCache.set(key, { cachedAt: Date.now(), value });
+    return value;
+  } catch (error) {
+    readCache.delete(key);
+    throw error;
+  }
 }
 
 function record<T>(value: unknown, label: string): T {
@@ -90,10 +143,10 @@ function record<T>(value: unknown, label: string): T {
     try {
       decoded = JSON.parse(decoded);
     } catch {
-      throw new Error(`Studio Next returned malformed ${label} JSON.`);
+      throw new Error(`${NETWORK_LABEL} returned malformed ${label} JSON.`);
     }
   }
-  if (!decoded || typeof decoded !== "object") throw new Error(`Studio Next returned an invalid ${label}.`);
+  if (!decoded || typeof decoded !== "object") throw new Error(`${NETWORK_LABEL} returned an invalid ${label}.`);
   return decoded as T;
 }
 
@@ -114,15 +167,15 @@ export async function probeNetwork(): Promise<{ ok: boolean; chainId?: string }>
   }
 }
 
-export async function readDashboard(): Promise<DashboardSnapshot> {
+export async function readDashboard(force = false): Promise<DashboardSnapshot> {
   if (!CONTRACT_ADDRESS) {
     return { version: "unconfigured", stats: {}, releaseIds: [], networkOk: false, readAt: Date.now() };
   }
-  const network = await probeNetwork();
-  const [version, statsValue, idsValue] = await Promise.all([
-    view("get_contract_version"),
-    view("get_stats"),
-    view("get_release_ids", [0, 50]),
+  const [network, version, statsValue, idsValue] = await Promise.all([
+    probeNetwork(),
+    view("get_contract_version", [], force),
+    view("get_stats", [], force),
+    view("get_release_ids", [0, 50], force),
   ]);
   const releaseIds = Array.isArray(idsValue) ? idsValue.filter((id): id is string => typeof id === "string") : [];
   return {
@@ -135,29 +188,29 @@ export async function readDashboard(): Promise<DashboardSnapshot> {
   };
 }
 
-export async function readRelease(releaseId: string): Promise<Release> {
-  return record<Release>(await view("get_release", [releaseId]), "release");
+export async function readRelease(releaseId: string, force = false): Promise<Release> {
+  return record<Release>(await view("get_release", [releaseId], force), "release");
 }
 
-export async function readReceipt(releaseId: string): Promise<Receipt | null> {
+export async function readReceipt(releaseId: string, force = false): Promise<Receipt | null> {
   try {
-    return record<Receipt>(await view("get_receipt", [releaseId]), "receipt");
+    return record<Receipt>(await view("get_receipt", [releaseId], force), "receipt");
   } catch (error) {
     if (String(error).includes("NO_RECEIPT") || String(error).includes("NOT_FOUND")) return null;
     throw error;
   }
 }
 
-export async function readAttempts(releaseId: string, count: number): Promise<Attempt[]> {
+export async function readAttempts(releaseId: string, count: number, force = false): Promise<Attempt[]> {
   const attempts: Attempt[] = [];
   for (let index = 0; index < count; index++) {
-    attempts.push(record<Attempt>(await view("get_release_attempt", [releaseId, index]), "attempt"));
+    attempts.push(record<Attempt>(await view("get_release_attempt", [releaseId, index], force), "attempt"));
   }
   return attempts;
 }
 
-export async function readHistory(releaseId: string): Promise<HistoryEvent[]> {
-  const result = await view("get_release_history", [releaseId, 0, 50]);
+export async function readHistory(releaseId: string, force = false): Promise<HistoryEvent[]> {
+  const result = await view("get_release_history", [releaseId, 0, 50], force);
   if (!Array.isArray(result)) return [];
   return result.map((item) => record<HistoryEvent>(item, "history event"));
 }
@@ -189,7 +242,7 @@ export async function sendWrite(
   });
   const quote = await kit.estimate({ preset: "standard" }, tx);
   if (quote.verification.status === "mismatch") {
-    throw new Error("Studio Next fee policy changed during the quote. Request a fresh quote and submit again.");
+    throw new Error(`${NETWORK_LABEL} fee policy changed during the quote. Request a fresh quote and submit again.`);
   }
   onQuote(quote);
   const { genlayerTxId } = await kit.submit(quote, tx);

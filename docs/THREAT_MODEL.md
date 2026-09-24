@@ -17,7 +17,7 @@
 - A leader may selectively interpret evidence; validators may disagree or a quorum may fail to form.
 - Repeated adjudication, unauthorized evidence revisions, or a fake frontend success state may mislead users if the contract/client boundary is not checked.
 - RPC providers, wallet state, or clients may be stale or report a transaction before finality.
-- A Studio Next reset may remove a deployment or seeded records while stale local proof files remain.
+- A network reset may remove a deployment or seeded records while stale local proof files remain.
 - A reviewer may infer that an `ADVANCE` is a real proxy upgrade or that the demo bond represents token collateral.
 
 ## Controls
@@ -29,8 +29,9 @@
 - The custom comparative validator requires matching normalized results across leader and validator review. Malformed output or disagreement fails validation and cannot be stored as an authoritative verdict.
 - `ADVANCE`, `HOLD`, and `ROLLBACK` consequences are fixed by the stored policy. Retry count and terminal states are contract-enforced.
 - On-chain release and receipt reads are the UI authority. `verify:proof` compares saved artifacts to live transaction execution, contract state, and pinned hosted bytes after deployment resets.
-- Wallet writes assert Studio Next chain ID, quote current fee policy, reject a quote mismatch, and wait for finalized status. Deployment keys never enter frontend source, are ignored locally, and are not printed.
-- Public evidence and proof files distinguish local execution receipts from Studio Next transaction receipts. Reports disclose representative coverage and the absence of an independent hosted CI run.
+- Wallet writes assert the configured network's chain ID, quote current fee policy, reject a quote mismatch, and wait for finalized status. Deployment keys never enter frontend source, are ignored locally, and are not printed.
+- Public evidence and proof files distinguish local execution receipts from network-specific transaction receipts. Reports disclose representative coverage. Hosted CI regenerates and hash-checks the replay artifacts, but does not claim an independent security audit.
+- A network-scoped release gate verifies a requested Studionet declaration hash against the live release and finalized `ADVANCE` receipt; a caller must still connect that authorization to its own promotion system.
 
 ## Residual risks
 
@@ -38,7 +39,7 @@
 - A report can be consistently wrong if the replay harness, corpus, compiler, or invariant checker is compromised. The report does not prove source correspondence beyond its own provenance and hash fields.
 - An attacker with release-owner control can choose a misleading declaration; the system makes the sealed claim visible and compares evidence against it but does not authenticate an organization or prove source ownership.
 - Leader manipulation may still expose correlated interpretation weaknesses; consensus agreement is an adjudication result, not an objective proof of semantic truth.
-- Studio Next resets can invalidate deployed addresses and old proofs; records must be regenerated and reverified before an app advertises the deployment as current.
+- Network resets can invalidate deployed addresses and old proofs; records must be regenerated and reverified before an app advertises the deployment as current.
 - Coverage is limited to named corpus transactions and stated invariants; it is not a formal proof, audit, or exhaustive test.
 - HTTPS and SHA-256 provide transport identity and content integrity relative to the committed digest, not long-term host availability.
 - The demo contract has no real collateral, dispute appeal, timeout unlock, or EVM upgrade integration. A HOLD locks the demo ledger bond until an allowed revision or separate administrative design is made.

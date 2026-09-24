@@ -1,6 +1,10 @@
 import { mkdir, readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import {
+  CHAIN_ID,
+  NETWORK,
+  NETWORK_LABEL,
+  NETWORK_SLUG,
   PROOF_PATH,
   ROOT,
   asRecord,
@@ -10,7 +14,7 @@ import {
   writeJson,
 } from "./studio.js";
 
-const deployProfilePath = resolve(ROOT, "deploy", "ratchet-fee-profile.json");
+const deployProfilePath = resolve(ROOT, "deploy", `${NETWORK_SLUG}-fee-profile.json`);
 const publicProfilePath = resolve(ROOT, "frontend", "public", "fee-profile.json");
 const headroomNumerator = 5n;
 const headroomDenominator = 4n;
@@ -60,8 +64,8 @@ function withHeadroom(values: Record<string, bigint>): Record<string, string> {
 
 async function main() {
   const proof = await readJsonFile(PROOF_PATH);
-  if (proof.network !== "studioDevnet" || proof.chain_id !== 61997 || !Array.isArray(proof.releases) || proof.releases.length !== 3) {
-    throw new Error("A verified three-release Studio Next proof is required before profiling fees.");
+  if (proof.network !== NETWORK || Number(proof.chain_id) !== Number(CHAIN_ID) || !Array.isArray(proof.releases) || proof.releases.length !== 3) {
+    throw new Error(`A verified three-release ${NETWORK_LABEL} proof is required before profiling fees.`);
   }
   const client = readClient();
   const samples: Record<string, unknown>[] = [];
@@ -90,17 +94,17 @@ async function main() {
   const methods = { adjudicate: withHeadroom(maxima) };
   const profile = {
     version: 1,
-    network: "studioDevnet",
-    chainId: 61997,
+    network: NETWORK,
+    chainId: CHAIN_ID,
     measuredAt: new Date().toISOString(),
     headroom: 1.25,
-    source: "Three successful finalized Studio Next adjudication receipts from deploy/studio-next-proof.json. This is measured usage, not a fee guarantee.",
+    source: `Three successful finalized ${NETWORK_LABEL} adjudication receipts from deploy/${NETWORK_SLUG}-proof.json. This is measured usage, not a fee guarantee.`,
     methods,
     scenarios: samples,
   };
   await writeJson(deployProfilePath, profile);
   await writeJson(publicProfilePath, profile);
-  console.log(`Wrote a measured adjudicate fee profile from ${samples.length} finalized Studio Next receipts to ${deployProfilePath}.`);
+  console.log(`Wrote a measured adjudicate fee profile from ${samples.length} finalized ${NETWORK_LABEL} receipts to ${deployProfilePath}.`);
 }
 
 main().catch((error: unknown) => {

@@ -7,6 +7,7 @@ import {
   readDashboard,
   readHistory,
   readReceipt,
+  readSavedProofSummary,
   readRelease,
   sendWrite,
   sha256,
@@ -15,8 +16,9 @@ import {
   type HistoryEvent,
   type Receipt,
   type Release,
+  type SavedProofSummary,
 } from "../lib/ratchet";
-import { CHAIN_ID, CONTRACT_ADDRESS, EXPLORER_URL, RPC_URL, explorerAddress } from "../lib/network";
+import { CHAIN_ID, CONTRACT_ADDRESS, EXPLORER_URL, NETWORK_LABEL, RPC_URL, explorerAddress } from "../lib/network";
 import { connectWallet, ensureStudioChain, getInjectedProvider, readableError, type InjectedProvider } from "../lib/wallet";
 
 type Stop = "declaration" | "replay" | "comparison" | "consensus" | "action";
@@ -145,6 +147,7 @@ export default function RatchetBench() {
   const [dashboard, setDashboard] = useState<DashboardSnapshot | null>(null);
   const [dashboardLoading, setDashboardLoading] = useState(Boolean(CONTRACT_ADDRESS));
   const [dashboardError, setDashboardError] = useState("");
+  const [savedProof, setSavedProof] = useState<SavedProofSummary | null>(null);
   const [selectedId, setSelectedId] = useState("");
   const [release, setRelease] = useState<Release | null>(null);
   const [attempts, setAttempts] = useState<Attempt[]>([]);
@@ -175,10 +178,10 @@ export default function RatchetBench() {
   const [revisionCiUrl, setRevisionCiUrl] = useState("");
   const [revisionCiHash, setRevisionCiHash] = useState("");
 
-  const refreshDashboard = useCallback(async (quiet = false) => {
+  const refreshDashboard = useCallback(async (quiet = false, force = false) => {
     if (!quiet) setDashboardLoading(true);
     try {
-      const next = await readDashboard();
+      const next = await readDashboard(force);
       setDashboard(next);
       setDashboardError("");
       setSelectedId((current) => current || next.releaseIds.at(-1) || "");
@@ -189,7 +192,7 @@ export default function RatchetBench() {
     }
   }, []);
 
-  const refreshRelease = useCallback(async (id: string, quiet = false) => {
+  const refreshRelease = useCallback(async (id: string, quiet = false, force = false) => {
     if (!id || !CONTRACT_ADDRESS) {
       setRelease(null);
       setAttempts([]);
@@ -201,11 +204,11 @@ export default function RatchetBench() {
     if (!quiet) setDetailLoading(true);
     setArtifacts(null);
     try {
-      const next = await readRelease(id);
+      const next = await readRelease(id, force);
       const [nextAttempts, nextHistory, nextReceipt] = await Promise.all([
-        readAttempts(id, Math.min(4, Number(next.attempt_count) || 0)),
-        readHistory(id),
-        readReceipt(id),
+        readAttempts(id, Math.min(4, Number(next.attempt_count) || 0), force),
+        readHistory(id, force),
+        readReceipt(id, force),
       ]);
       setRelease(next);
       setAttempts(nextAttempts);
@@ -228,6 +231,12 @@ export default function RatchetBench() {
     const initial = window.setTimeout(() => void refreshDashboard(), 0);
     return () => window.clearTimeout(initial);
   }, [refreshDashboard]);
+
+  useEffect(() => {
+    let active = true;
+    void readSavedProofSummary().then((proof) => { if (active) setSavedProof(proof); });
+    return () => { active = false; };
+  }, []);
 
   useEffect(() => {
     if (selectedId) {
@@ -303,7 +312,7 @@ export default function RatchetBench() {
       await ensureStudioChain(provider);
       setWalletAddress(account);
       setWalletProvider(provider);
-      setActionMessage("Wallet connected to Studio Next.");
+      setActionMessage(`Wallet connected to ${NETWORK_LABEL}.`);
     } catch (error) {
       setActionError(readableError(error));
     } finally {
@@ -313,25 +322,25 @@ export default function RatchetBench() {
 
   async function act(method: string, args: unknown[], label: string): Promise<boolean> {
     if (!walletProvider || !walletAddress) {
-      setActionError("Connect a wallet on Studio Next to submit this transaction.");
+      setActionError(`Connect a wallet on ${NETWORK_LABEL} to submit this transaction.`);
       return false;
     }
     setActionBusy(true);
     setActionError("");
-    setActionMessage(`Quoting ${label.toLowerCase()} on Studio Next…`);
+    setActionMessage(`Quoting ${label.toLowerCase()} on ${NETWORK_LABEL}…`);
     setFeeQuote(null);
     try {
       const sent = await sendWrite(walletProvider, walletAddress, method, args, (quote) => {
         setFeeQuote(quote.breakdown);
-        setActionMessage(`Submitted ${label.toLowerCase()}. Waiting for a finalized Studio Next receipt…`);
+        setActionMessage(`Submitted ${label.toLowerCase()}. Waiting for a finalized ${NETWORK_LABEL} receipt…`);
       });
       setLastTxHash(sent.txId);
       if (!sent.finalized) throw new Error(`Transaction ${sent.txId} did not reach finality.`);
       setActionMessage(sent.successful
-        ? `${label} finalized. Contract state refreshed from Studio Next.`
+        ? `${label} finalized. Contract state refreshed from ${NETWORK_LABEL}.`
         : `${label} finalized with a failed contract execution. The release state was not assumed to change.`);
-      await refreshRelease(selectedId, true);
-      await refreshDashboard(true);
+      await refreshRelease(selectedId, true, true);
+      await refreshDashboard(true, true);
       return sent.successful;
     } catch (error) {
       setActionError(readableError(error));
@@ -344,7 +353,7 @@ export default function RatchetBench() {
 
   async function createRelease() {
     if (!walletProvider || !walletAddress) {
-      setCreateError("Connect a wallet on Studio Next before creating a release.");
+      setCreateError(`Connect a wallet on ${NETWORK_LABEL} before creating a release.`);
       return;
     }
     setCreateBusy(true);
@@ -431,13 +440,13 @@ export default function RatchetBench() {
             <div className="connection-stamp" aria-live="polite">
               <div className="connection-head">
                 <span className={`connection-indicator ${dashboard?.networkOk ? "connected" : dashboardLoading ? "checking" : CONTRACT_ADDRESS ? "disconnected" : "checking"}`} />
-                <span>Studio Next</span>
-                <button className="quiet-icon-button" aria-label="Refresh live status" onClick={() => void refreshDashboard()} disabled={dashboardLoading}>
+                <span>{NETWORK_LABEL}</span>
+                <button className="quiet-icon-button" aria-label="Refresh live status" onClick={() => void refreshDashboard(false, true)} disabled={dashboardLoading}>
                   <RefreshMark />
                 </button>
               </div>
               <div className="connection-copy">
-                {dashboardLoading && !dashboard ? "Checking the configured RPC…" : !CONTRACT_ADDRESS ? "Contract not configured · live reads unavailable" : dashboard?.networkOk ? `Live RPC · chain ${chainLabel(dashboard.chainId)}` : "RPC unavailable · Studio Next could not be reached"}
+                {dashboardLoading && !dashboard ? "Checking the configured RPC…" : !CONTRACT_ADDRESS ? "Contract not configured · live reads unavailable" : dashboard?.networkOk ? `Live RPC · chain ${chainLabel(dashboard.chainId)}` : `RPC unavailable · ${NETWORK_LABEL} could not be reached`}
               </div>
               <div className={`address-copy ${CONTRACT_ADDRESS ? "configured" : "missing"}`}>
                 <span className="address-label">CONTRACT</span>
@@ -465,7 +474,14 @@ export default function RatchetBench() {
               </div>
             </div>
 
-            {dashboardError ? <div className="inline-alert error" role="status">Could not read Studio Next: {dashboardError}</div> : null}
+            {dashboard?.releaseIds.length ? <div className="demo-shortcuts" aria-label="Seeded release scenarios">
+              <span className="field-label">OPEN A LIVE EXAMPLE</span>
+              {(["RATCHET-ADVANCE", "RATCHET-HOLD", "RATCHET-ROLLBACK"] as const)
+                .filter((id) => dashboard.releaseIds.includes(id))
+                .map((id) => <button className="demo-shortcut" key={id} onClick={() => { setSelectedId(id); setActiveStop("declaration"); }} aria-pressed={selectedId === id}>{id}</button>)}
+            </div> : null}
+
+            {dashboardError ? <div className="inline-alert error" role="status">Could not read {NETWORK_LABEL}: {dashboardError}</div> : null}
             {detailError ? <div className="inline-alert error" role="status">Could not read {selectedId}: {detailError}</div> : null}
             {actionError ? <div className="inline-alert error" role="alert">{actionError}</div> : null}
             {actionMessage ? <div className="inline-alert info" role="status">{actionMessage}</div> : null}
@@ -514,7 +530,7 @@ export default function RatchetBench() {
                       <div className="action-dock-copy">
                         <span className="section-index">CONTRACT CONTROL</span>
                         <strong>{release.state === "DRAFT" ? "Freeze the declaration when it is ready." : release.state === "SEALED" ? "Send this sealed attempt for independent review." : release.state === "HELD" ? "Add a bounded evidence revision to continue." : "This release has reached a terminal state."}</strong>
-                        <span>On-chain actions require a wallet on chain 61997.</span>
+                        <span>On-chain actions require a wallet on chain {CHAIN_ID}.</span>
                       </div>
                       <div className="action-buttons">
                         {release.state === "DRAFT" ? <>
@@ -556,9 +572,9 @@ export default function RatchetBench() {
                       <div className="inspection-panel" id="evidence-inspection" role="tabpanel" aria-label={`${firstTrack.label} evidence`}>
                         <div className="inspection-title">
                           <div><h4>{firstTrack.label}</h4></div>
-                          <button className="quiet-link" onClick={() => void refreshRelease(selectedId)}>Refresh live read <RefreshMark /></button>
+                          <button className="quiet-link" onClick={() => void refreshRelease(selectedId, false, true)}>Refresh live read <RefreshMark /></button>
                         </div>
-                        {detailLoading ? <div className="inspection-empty"><span className="small-spinner" />Reading the sealed record from Studio Next…</div> : null}
+                        {detailLoading ? <div className="inspection-empty"><span className="small-spinner" />Reading the sealed record from {NETWORK_LABEL}…</div> : null}
                         {!detailLoading && activeStop === "declaration" ? <div className="inspection-grid">
                           <div className="inspection-note"><span className="field-label">PROVENANCE</span><strong>{String((declaration.source_provenance as Record<string, unknown> | undefined)?.repository ?? "No source repository declared")}</strong><span>{String((declaration.source_provenance as Record<string, unknown> | undefined)?.commit ?? "Commit not available")}</span></div>
                           <div className="inspection-note"><span className="field-label">POLICY VERSION</span><strong>{String(policy.policy_version ?? "—")}</strong><span>{String(policy.retry_limit ?? 0)} evidence revision(s) · {String(policy.bond_amount ?? 0)} demo units</span></div>
@@ -616,10 +632,19 @@ export default function RatchetBench() {
                 ) : (
                   <div className="no-release-state">
                     <div className="no-release-mark"><GearMark /></div>
-                    <div><strong>{dashboardLoading ? "Reading the release index" : !CONTRACT_ADDRESS ? "Connect Ratchet to Studio Next" : "No releases are recorded yet"}</strong>
-                      <p>{!CONTRACT_ADDRESS ? "The interface does not substitute sample records for chain state. Set NEXT_PUBLIC_RATCHET_ADDRESS to the deployed Studio Next contract to enable live review." : dashboard?.networkOk ? "Create a release declaration to begin a live review. First publish its declaration, replay report, and CI receipt at public HTTPS addresses." : "The configured RPC is unavailable. Try again when Studio Next can answer a live read."}</p>
-                      {!CONTRACT_ADDRESS ? <code>chain 61997 · {RPC_URL}</code> : null}
+                    <div><strong>{dashboardLoading ? "Reading the release index" : !CONTRACT_ADDRESS ? `Connect Ratchet to ${NETWORK_LABEL}` : "No releases are recorded yet"}</strong>
+                      <p>{!CONTRACT_ADDRESS ? `The interface does not substitute sample records for chain state. Configure the deployed ${NETWORK_LABEL} contract to enable live review.` : dashboard?.networkOk ? "Create a release declaration to begin a live review. First publish its declaration, replay report, and CI receipt at public HTTPS addresses." : `The configured RPC is unavailable. Try again when ${NETWORK_LABEL} can answer a live read.`}</p>
+                      {!CONTRACT_ADDRESS ? <code>chain {CHAIN_ID} · {RPC_URL}</code> : null}
                       {dashboard?.releaseIds.length ? null : <button className="primary-button" onClick={openCreate} disabled={!CONTRACT_ADDRESS || !dashboard?.networkOk}>Prepare first release</button>}
+                      {savedProof && (dashboardError || !dashboard?.networkOk) ? <div className="archived-proof" aria-label="Saved verified proof">
+                        <div className="archived-proof-heading"><strong>Saved proof · verified {new Date(savedProof.verified_at).toLocaleString()}</strong><span>Archived evidence, not live chain state</span></div>
+                        <p>Contract <code>{shortHash(savedProof.contract)}</code> · chain {savedProof.chain_id} · source commit <code>{savedProof.source_commit.slice(0, 12)}</code></p>
+                        <div className="archived-proof-releases">{savedProof.releases.map((item) => <article key={item.release_id}>
+                          <strong className={`verdict-${item.verdict.toLowerCase()}`}>{item.verdict}</strong><span>{item.release_id} · {item.state}</span>
+                          <a href={item.adjudication_explorer_url} target="_blank" rel="noreferrer">Open finalized receipt</a>
+                        </article>)}</div>
+                        <a className="quiet-link" href={savedProof.github_ci_runs} target="_blank" rel="noreferrer">Review hosted replay checks</a>
+                      </div> : null}
                     </div>
                   </div>
                 )}
@@ -650,9 +675,10 @@ export default function RatchetBench() {
               <article><span className="method-number">3</span><strong>Ratchet records the outcome</strong><p>Consensus selects ADVANCE, HOLD, or ROLLBACK; the contract applies the frozen state and demo-bond rule.</p></article>
             </div>
             <p className="method-boundary">Ratchet does not execute candidate EVM bytecode, perform a proxy upgrade, or run a real EVM rollback. Demo bond units are not assets. Local replay evidence is synthetic and representative, not exhaustive or an independent security audit.</p>
+            <a className="hosted-ci-link" href="https://github.com/JWattjr/Ratchet/actions/workflows/ci.yml" target="_blank" rel="noreferrer">Open hosted replay verification and downloadable commit attestation</a>
           </section>
 
-          <footer className="footer"><a className="footer-brand" href="#top"><GearMark /> ratchet</a><span>Studio Next · chain 61997 · evidence remains inspectable without a wallet</span><a href="https://docs.genlayer.com" target="_blank" rel="noreferrer">GenLayer documentation</a></footer>
+          <footer className="footer"><a className="footer-brand" href="#top"><GearMark /> ratchet</a><span>{NETWORK_LABEL} · chain {CHAIN_ID} · evidence remains inspectable without a wallet</span><a href="https://docs.genlayer.com" target="_blank" rel="noreferrer">GenLayer documentation</a></footer>
         </section>
       </main>
 

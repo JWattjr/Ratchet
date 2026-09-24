@@ -1,9 +1,12 @@
-# Direct tests are in-memory. Studio Next is the only live target.
+# Direct tests are in-memory. Live targets are explicit so proofs cannot cross networks.
 networks:
   default: localnet
   localnet:
     url: "http://127.0.0.1:4000/api"
-  studio_devnet: {}
+  studio_devnet:
+    url: "https://studio-dev.genlayer.com/api"
+  studionet:
+    url: "https://studio.genlayer.com/api"
 paths:
   contracts: "contracts"
   artifacts: "test-artifacts"

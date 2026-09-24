@@ -690,6 +690,29 @@ button, input, textarea, select { accent-color: var(--blue); }
 .history-heading strong::before, .no-release-state strong::before, .dialog-header h2::before { border-radius: var(--radius-sm); }
 .stop-button.selected .stop-node:focus-visible { outline: 2px dashed var(--blue-deep); outline-offset: 3px; }
 
+.demo-shortcuts { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 12px 24px 0; }
+.demo-shortcuts > .field-label { margin-right: 5px; }
+.demo-shortcut { min-height: 44px; padding: 7px 10px; border: 1px dashed var(--line-strong); border-radius: var(--radius-control); background: var(--paper-light); color: var(--blue-deep); font: var(--type-action) var(--hand); }
+.demo-shortcut[aria-pressed="true"] { outline: 2px dashed var(--blue-deep); outline-offset: 2px; background: var(--blue-pale); }
+.archived-proof { width: min(100%, 820px); margin-top: 22px; padding: 15px; border: 1px dashed var(--amber); border-radius: var(--radius-control); background: var(--amber-pale); }
+.archived-proof-heading { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 14px; }
+.archived-proof-heading strong { font: var(--type-action) var(--hand); }
+.archived-proof-heading > span { color: var(--amber); font: var(--type-label) var(--sans); }
+.archived-proof > p { margin: 7px 0 10px; font: var(--type-label) var(--sans); }
+.archived-proof > p code { font: var(--type-reference) var(--mono); }
+.archived-proof-releases { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-bottom: 10px; }
+.archived-proof-releases article { display: grid; gap: 4px; min-width: 0; padding: 8px; border-bottom: 1px solid var(--line-strong); }
+.archived-proof-releases article > strong { font: var(--type-title) var(--hand); }
+.archived-proof-releases article > span { overflow-wrap: anywhere; font: var(--type-reference) var(--mono); }
+.archived-proof-releases a { color: var(--blue-deep); font: var(--type-label) var(--sans); }
+.hosted-ci-link { display: inline-flex; align-items: center; min-height: 44px; margin-top: 8px; color: var(--blue-deep); font: var(--type-action) var(--hand); }
+
+@media (max-width: 600px) {
+  .demo-shortcuts { padding-right: 16px; padding-left: 16px; }
+  .demo-shortcuts > .field-label { flex-basis: 100%; }
+  .archived-proof-releases { grid-template-columns: 1fr; }
+}
+
 @media (max-width: 800px) {
   .specimen-layout { gap: 0; }
   .specimen-side { border-top: 0; }
