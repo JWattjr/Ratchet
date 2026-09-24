@@ -78,8 +78,12 @@ export function guardedProvider(provider: InjectedProvider, account: string): In
 
 export function readableError(error: unknown): string {
   if (error && typeof error === "object") {
-    const record = error as { code?: unknown; shortMessage?: unknown; message?: unknown };
+    const record = error as { code?: unknown; shortMessage?: unknown; message?: unknown; details?: unknown; cause?: { message?: unknown } };
     if (Number(record.code) === 4001) return "The request was declined in your wallet.";
+    const reason = [record.details, record.cause?.message, record.message].filter((part): part is string => typeof part === "string").join(" ");
+    if (/rate limit exceeded|too many requests|retry_after_seconds/i.test(reason)) {
+      return "Studio Next has reached its RPC request limit. Wait for the limit to reset, then refresh the live read.";
+    }
     if (typeof record.shortMessage === "string" && record.shortMessage) return record.shortMessage;
     if (typeof record.message === "string" && record.message) return record.message.split("\n")[0].slice(0, 280);
   }

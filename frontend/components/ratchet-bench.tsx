@@ -226,21 +226,13 @@ export default function RatchetBench() {
 
   useEffect(() => {
     const initial = window.setTimeout(() => void refreshDashboard(), 0);
-    const interval = window.setInterval(() => void refreshDashboard(true), 30_000);
-    return () => {
-      window.clearTimeout(initial);
-      window.clearInterval(interval);
-    };
+    return () => window.clearTimeout(initial);
   }, [refreshDashboard]);
 
   useEffect(() => {
     if (selectedId) {
       const initial = window.setTimeout(() => void refreshRelease(selectedId), 0);
-      const interval = window.setInterval(() => void refreshRelease(selectedId, true), 30_000);
-      return () => {
-        window.clearTimeout(initial);
-        window.clearInterval(interval);
-      };
+      return () => window.clearTimeout(initial);
     }
   }, [selectedId, refreshRelease]);
 
