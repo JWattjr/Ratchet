@@ -1,0 +1,507 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-24T00:53:36Z",
+  "title": "Design System: Ratchet",
+  "extensions": {
+    "colorMeta": {
+      "ink": {
+        "role": "neutral",
+        "displayName": "Deep Slate Ink",
+        "canonical": "#18364b",
+        "tonalRamp": [
+          "oklch(15% 0.052 241.4)",
+          "oklch(25% 0.052 241.4)",
+          "oklch(35% 0.052 241.4)",
+          "oklch(45% 0.052 241.4)",
+          "oklch(55% 0.052 241.4)",
+          "oklch(65% 0.052 241.4)",
+          "oklch(75% 0.052 241.4)",
+          "oklch(95% 0.052 241.4)"
+        ]
+      },
+      "ink-strong": {
+        "role": "neutral",
+        "displayName": "Workface Ink",
+        "canonical": "#102a3c",
+        "tonalRamp": [
+          "oklch(15% 0.046 241.4)",
+          "oklch(25% 0.046 241.4)",
+          "oklch(35% 0.046 241.4)",
+          "oklch(45% 0.046 241.4)",
+          "oklch(55% 0.046 241.4)",
+          "oklch(65% 0.046 241.4)",
+          "oklch(75% 0.046 241.4)",
+          "oklch(95% 0.046 241.4)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted Blue Slate",
+        "canonical": "#597182",
+        "tonalRamp": [
+          "oklch(15% 0.039 239.3)",
+          "oklch(25% 0.039 239.3)",
+          "oklch(35% 0.039 239.3)",
+          "oklch(45% 0.039 239.3)",
+          "oklch(55% 0.039 239.3)",
+          "oklch(65% 0.039 239.3)",
+          "oklch(75% 0.039 239.3)",
+          "oklch(95% 0.039 239.3)"
+        ]
+      },
+      "subtle": {
+        "role": "neutral",
+        "displayName": "Fine Label Slate",
+        "canonical": "#52697b",
+        "tonalRamp": [
+          "oklch(15% 0.040 242.1)",
+          "oklch(25% 0.040 242.1)",
+          "oklch(35% 0.040 242.1)",
+          "oklch(45% 0.040 242.1)",
+          "oklch(55% 0.040 242.1)",
+          "oklch(65% 0.040 242.1)",
+          "oklch(75% 0.040 242.1)",
+          "oklch(95% 0.040 242.1)"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Cool Paper",
+        "canonical": "#f4f8fa",
+        "tonalRamp": [
+          "oklch(15% 0.005 228.8)",
+          "oklch(25% 0.005 228.8)",
+          "oklch(35% 0.005 228.8)",
+          "oklch(45% 0.005 228.8)",
+          "oklch(55% 0.005 228.8)",
+          "oklch(65% 0.005 228.8)",
+          "oklch(75% 0.005 228.8)",
+          "oklch(95% 0.005 228.8)"
+        ]
+      },
+      "white": {
+        "role": "neutral",
+        "displayName": "Plate White",
+        "canonical": "#fff",
+        "tonalRamp": [
+          "oklch(15% 0.000 89.9)",
+          "oklch(25% 0.000 89.9)",
+          "oklch(35% 0.000 89.9)",
+          "oklch(45% 0.000 89.9)",
+          "oklch(55% 0.000 89.9)",
+          "oklch(65% 0.000 89.9)",
+          "oklch(75% 0.000 89.9)",
+          "oklch(95% 0.000 89.9)"
+        ]
+      },
+      "bench": {
+        "role": "neutral",
+        "displayName": "Calibration Blue",
+        "canonical": "#eaf3f7",
+        "tonalRamp": [
+          "oklch(15% 0.011 226.0)",
+          "oklch(25% 0.011 226.0)",
+          "oklch(35% 0.011 226.0)",
+          "oklch(45% 0.011 226.0)",
+          "oklch(55% 0.011 226.0)",
+          "oklch(65% 0.011 226.0)",
+          "oklch(75% 0.011 226.0)",
+          "oklch(95% 0.011 226.0)"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Registration Line",
+        "canonical": "#cfdee6",
+        "tonalRamp": [
+          "oklch(15% 0.020 230.7)",
+          "oklch(25% 0.020 230.7)",
+          "oklch(35% 0.020 230.7)",
+          "oklch(45% 0.020 230.7)",
+          "oklch(55% 0.020 230.7)",
+          "oklch(65% 0.020 230.7)",
+          "oklch(75% 0.020 230.7)",
+          "oklch(95% 0.020 230.7)"
+        ]
+      },
+      "line-strong": {
+        "role": "neutral",
+        "displayName": "Strong Registration Line",
+        "canonical": "#afc4cf",
+        "tonalRamp": [
+          "oklch(15% 0.028 230.4)",
+          "oklch(25% 0.028 230.4)",
+          "oklch(35% 0.028 230.4)",
+          "oklch(45% 0.028 230.4)",
+          "oklch(55% 0.028 230.4)",
+          "oklch(65% 0.028 230.4)",
+          "oklch(75% 0.028 230.4)",
+          "oklch(95% 0.028 230.4)"
+        ]
+      },
+      "sky": {
+        "role": "neutral",
+        "displayName": "Sky Blue",
+        "canonical": "#d9eaf3",
+        "tonalRamp": [
+          "oklch(15% 0.022 230.6)",
+          "oklch(25% 0.022 230.6)",
+          "oklch(35% 0.022 230.6)",
+          "oklch(45% 0.022 230.6)",
+          "oklch(55% 0.022 230.6)",
+          "oklch(65% 0.022 230.6)",
+          "oklch(75% 0.022 230.6)",
+          "oklch(95% 0.022 230.6)"
+        ]
+      },
+      "blue": {
+        "role": "primary",
+        "displayName": "Calibration Periwinkle",
+        "canonical": "#536fc1",
+        "tonalRamp": [
+          "oklch(15% 0.131 267.8)",
+          "oklch(25% 0.131 267.8)",
+          "oklch(35% 0.131 267.8)",
+          "oklch(45% 0.131 267.8)",
+          "oklch(55% 0.131 267.8)",
+          "oklch(65% 0.131 267.8)",
+          "oklch(75% 0.131 267.8)",
+          "oklch(95% 0.131 267.8)"
+        ]
+      },
+      "blue-deep": {
+        "role": "primary",
+        "displayName": "Deep Periwinkle",
+        "canonical": "#4057a6",
+        "tonalRamp": [
+          "oklch(15% 0.130 268.9)",
+          "oklch(25% 0.130 268.9)",
+          "oklch(35% 0.130 268.9)",
+          "oklch(45% 0.130 268.9)",
+          "oklch(55% 0.130 268.9)",
+          "oklch(65% 0.130 268.9)",
+          "oklch(75% 0.130 268.9)",
+          "oklch(95% 0.130 268.9)"
+        ]
+      },
+      "mint": {
+        "role": "secondary",
+        "displayName": "Outcome Mint",
+        "canonical": "#28735f",
+        "tonalRamp": [
+          "oklch(15% 0.080 172.2)",
+          "oklch(25% 0.080 172.2)",
+          "oklch(35% 0.080 172.2)",
+          "oklch(45% 0.080 172.2)",
+          "oklch(55% 0.080 172.2)",
+          "oklch(65% 0.080 172.2)",
+          "oklch(75% 0.080 172.2)",
+          "oklch(95% 0.080 172.2)"
+        ]
+      },
+      "mint-pale": {
+        "role": "secondary",
+        "displayName": "Pale Outcome Mint",
+        "canonical": "#e1f3ec",
+        "tonalRamp": [
+          "oklch(15% 0.021 170.6)",
+          "oklch(25% 0.021 170.6)",
+          "oklch(35% 0.021 170.6)",
+          "oklch(45% 0.021 170.6)",
+          "oklch(55% 0.021 170.6)",
+          "oklch(65% 0.021 170.6)",
+          "oklch(75% 0.021 170.6)",
+          "oklch(95% 0.021 170.6)"
+        ]
+      },
+      "amber": {
+        "role": "tertiary",
+        "displayName": "Hold Amber",
+        "canonical": "#91620d",
+        "tonalRamp": [
+          "oklch(15% 0.108 74.8)",
+          "oklch(25% 0.108 74.8)",
+          "oklch(35% 0.108 74.8)",
+          "oklch(45% 0.108 74.8)",
+          "oklch(55% 0.108 74.8)",
+          "oklch(65% 0.108 74.8)",
+          "oklch(75% 0.108 74.8)",
+          "oklch(95% 0.108 74.8)"
+        ]
+      },
+      "amber-pale": {
+        "role": "tertiary",
+        "displayName": "Pale Hold Amber",
+        "canonical": "#f8efdc",
+        "tonalRamp": [
+          "oklch(15% 0.027 85.7)",
+          "oklch(25% 0.027 85.7)",
+          "oklch(35% 0.027 85.7)",
+          "oklch(45% 0.027 85.7)",
+          "oklch(55% 0.027 85.7)",
+          "oklch(65% 0.027 85.7)",
+          "oklch(75% 0.027 85.7)",
+          "oklch(95% 0.027 85.7)"
+        ]
+      },
+      "coral": {
+        "role": "tertiary",
+        "displayName": "Rollback Coral",
+        "canonical": "#a94b43",
+        "tonalRamp": [
+          "oklch(15% 0.126 27.0)",
+          "oklch(25% 0.126 27.0)",
+          "oklch(35% 0.126 27.0)",
+          "oklch(45% 0.126 27.0)",
+          "oklch(55% 0.126 27.0)",
+          "oklch(65% 0.126 27.0)",
+          "oklch(75% 0.126 27.0)",
+          "oklch(95% 0.126 27.0)"
+        ]
+      },
+      "coral-pale": {
+        "role": "tertiary",
+        "displayName": "Pale Rollback Coral",
+        "canonical": "#f8e8e6",
+        "tonalRamp": [
+          "oklch(15% 0.018 26.1)",
+          "oklch(25% 0.018 26.1)",
+          "oklch(35% 0.018 26.1)",
+          "oklch(45% 0.018 26.1)",
+          "oklch(55% 0.018 26.1)",
+          "oklch(65% 0.018 26.1)",
+          "oklch(75% 0.018 26.1)",
+          "oklch(95% 0.018 26.1)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The responsive opening release promise."
+      },
+      "headline": {
+        "displayName": "Release headline",
+        "purpose": "Selected release names and primary evidence headings."
+      },
+      "title": {
+        "displayName": "Instrument title",
+        "purpose": "Plate and instrument headings."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Default interface copy."
+      },
+      "label": {
+        "displayName": "Field label",
+        "purpose": "Section indices, field captions, and compact uppercase labels."
+      },
+      "action": {
+        "displayName": "Action label",
+        "purpose": "Compact button text."
+      },
+      "navigation": {
+        "displayName": "Navigation link",
+        "purpose": "Primary top bar links."
+      },
+      "reference": {
+        "displayName": "Technical reference",
+        "purpose": "Hashes, IDs, addresses, and transaction references."
+      }
+    },
+    "shadows": [
+      {
+        "name": "workbench-ambient",
+        "value": "0 14px 34px rgb(31 63 81 / 6%)",
+        "purpose": "The soft ambient lift beneath the release bay."
+      },
+      {
+        "name": "connection-live-halo",
+        "value": "0 0 0 3px #e1f3ec",
+        "purpose": "The pale mint ring around the live connection marker."
+      },
+      {
+        "name": "connection-error-halo",
+        "value": "0 0 0 3px var(--coral-pale)",
+        "purpose": "The pale coral ring around a disconnected connection marker."
+      },
+      {
+        "name": "connection-checking-halo",
+        "value": "0 0 0 3px #faf0d8",
+        "purpose": "The pale amber ring around a checking connection marker."
+      },
+      {
+        "name": "primary-button-edge",
+        "value": "0 2px 0 #384d98",
+        "purpose": "A shallow, firm edge beneath a primary action."
+      },
+      {
+        "name": "hold-button-edge",
+        "value": "0 2px 0 #7e560c",
+        "purpose": "The state-colored lower edge on a HOLD action."
+      },
+      {
+        "name": "shuttle-plate",
+        "value": "0 2px 4px rgb(57 75 125 / 11%)",
+        "purpose": "A small lift on the moving inspection shuttle."
+      },
+      {
+        "name": "selected-stop-halo",
+        "value": "0 0 0 3px white",
+        "purpose": "Separates the selected rail node from the track."
+      },
+      {
+        "name": "dialog-depth",
+        "value": "0 22px 80px rgb(10 31 44 / 25%)",
+        "purpose": "Separates the open create dialog from the dimmed bench."
+      }
+    ],
+    "motion": [
+      {
+        "name": "quick-state-transition",
+        "value": ".15s ease",
+        "purpose": "Button, link, and selected-node feedback."
+      },
+      {
+        "name": "evidence-shuttle-travel",
+        "value": ".22s ease",
+        "purpose": "Short travel between the five evidence stages."
+      },
+      {
+        "name": "loading-spinner",
+        "value": ".8s linear infinite",
+        "purpose": "Small live-read loading indicator."
+      },
+      {
+        "name": "reduced-motion-override",
+        "value": ".01ms",
+        "purpose": "Global transition and animation duration when reduced motion is requested."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "max-1050",
+        "value": "1050px"
+      },
+      {
+        "name": "max-800",
+        "value": "800px"
+      },
+      {
+        "name": "max-600",
+        "value": "600px"
+      },
+      {
+        "name": "max-390",
+        "value": "390px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Navigation",
+      "kind": "nav",
+      "refersTo": "nav-primary",
+      "description": "Desktop links to the release bench, evidence path, and method; the links hide at 800px and below.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Main navigation\"><a href=\"#release\">Release bench</a><a href=\"#evidence\">Evidence path</a><a href=\"#method\">Method</a></nav>",
+      "css": ".ds-nav{display:flex;align-items:center;gap:27px;font-family:var(--sans)}.ds-nav a{color:var(--muted);font-size:13px;font-weight:600;text-decoration:none;transition:color .15s ease}.ds-nav a:hover{color:var(--blue-deep)}.ds-nav a:focus-visible{color:var(--blue-deep);outline:3px solid #596fc3;outline-offset:3px}@media(max-width:800px){.ds-nav{display:none}}"
+    },
+    {
+      "name": "Primary Action Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The periwinkle primary action, with hover, focus, disabled, and mobile touch states.",
+      "html": "<button type=\"button\" class=\"ds-primary-button\">Prepare first release</button>",
+      "css": ".ds-primary-button{min-height:40px;padding:0 14px;border:1px solid var(--blue-deep);border-radius:7px;background:var(--blue);color:#fff;box-shadow:0 2px 0 #384d98;display:inline-flex;align-items:center;justify-content:center;font:750 11px var(--sans);white-space:nowrap;cursor:pointer;transition:background .15s ease,transform .15s ease}.ds-primary-button:hover:not(:disabled){background:var(--blue-deep);transform:translateY(-1px)}.ds-primary-button:focus-visible{outline:3px solid #596fc3;outline-offset:3px}.ds-primary-button:disabled{opacity:.48;cursor:not-allowed;box-shadow:none}@media(max-width:600px){.ds-primary-button{min-height:44px}}"
+    },
+    {
+      "name": "Outline Action Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "A quiet bordered action for release preparation and secondary controls.",
+      "html": "<button type=\"button\" class=\"ds-outline-button\">Prepare release</button>",
+      "css": ".ds-outline-button{min-height:38px;padding:0 13px;border:1px solid var(--line-strong);border-radius:7px;background:transparent;color:var(--ink);font:700 11px var(--sans);white-space:nowrap;cursor:pointer}.ds-outline-button:hover:not(:disabled){border-color:var(--blue);color:var(--blue-deep)}.ds-outline-button:focus-visible{outline:3px solid #596fc3;outline-offset:3px}.ds-outline-button:disabled{opacity:.47;cursor:not-allowed}@media(max-width:600px){.ds-outline-button{min-height:44px;padding:0 9px;font-size:9px}}"
+    },
+    {
+      "name": "Release ID Field",
+      "kind": "input",
+      "refersTo": "input-release-id",
+      "description": "The compact text field used when preparing a live release record.",
+      "html": "<label class=\"ds-field\">Release ID<input type=\"text\" value=\"\" maxlength=\"48\" aria-label=\"Release ID\"></label>",
+      "css": ".ds-field{display:grid;gap:5px;color:var(--muted);font:700 10px var(--sans)}.ds-field input{min-height:38px;width:100%;padding:7px 10px;border:1px solid var(--line-strong);border-radius:6px;background:#fff;color:var(--ink-strong);font:11px var(--sans)}.ds-field input:focus-visible{outline:3px solid #596fc3;outline-offset:3px}@media(max-width:600px){.ds-field input{min-height:44px}}"
+    },
+    {
+      "name": "Release State Markers",
+      "kind": "chip",
+      "refersTo": "chip-advanced",
+      "description": "Text, square marker, border, and color distinguish the three verdict outcomes.",
+      "html": "<div class=\"ds-status-group\" aria-label=\"Release status examples\"><span class=\"ds-status ds-status-advanced\"><i></i>ADVANCED</span><span class=\"ds-status ds-status-held\"><i></i>HELD</span><span class=\"ds-status ds-status-rolled-back\"><i></i>ROLLED BACK</span></div>",
+      "css": ".ds-status-group{display:flex;flex-wrap:wrap;gap:7px;font-family:var(--sans)}.ds-status{min-height:27px;padding:0 10px;border:1px solid var(--line);border-radius:999px;background:var(--paper);color:var(--muted);display:inline-flex;align-items:center;gap:7px;font:800 9px var(--sans);letter-spacing:.08em;white-space:nowrap}.ds-status i{width:7px;height:7px;border-radius:2px;background:currentColor;display:inline-block}.ds-status-advanced{color:var(--mint);border-color:#b7dfd0;background:var(--mint-pale)}.ds-status-held{color:var(--amber);border-color:#ead9ad;background:var(--amber-pale)}.ds-status-rolled-back{color:var(--coral);border-color:#eac7c3;background:var(--coral-pale)}"
+    },
+    {
+      "name": "Empty Release Index Plate",
+      "kind": "card",
+      "refersTo": "release-bay-empty",
+      "description": "The honest live empty-index state shown when the contract has no release records.",
+      "html": "<section class=\"ds-release-bay\" aria-labelledby=\"ds-release-title\"><header class=\"ds-bay-head\"><h2 id=\"ds-release-title\">Release bench</h2><button type=\"button\" class=\"ds-outline-button\">Prepare release</button></header><div class=\"ds-empty-state\"><div class=\"ds-empty-mark\" aria-hidden=\"true\"><svg viewBox=\"0 0 40 40\"><path d=\"M17 3h6l1 4a14 14 0 0 1 3.2 1.3l3.5-2 4.2 4.2-2 3.5a14 14 0 0 1 1.3 3.2l4 1v6l-4 1a14 14 0 0 1-1.3 3.2l2 3.5-4.2 4.2-3.5-2A14 14 0 0 1 24 35l-1 4h-6l-1-4a14 14 0 0 1-3.2-1.3l-3.5 2-4.2-4.2 2-3.5A14 14 0 0 1 5.8 23l-4-1v-6l4-1a14 14 0 0 1 1.3-3.2l-2-3.5 4.2-4.2 3.5 2A14 14 0 0 1 16 7z\" transform=\"translate(0 -1)\" fill=\"currentColor\"/><circle cx=\"20\" cy=\"19\" r=\"8\" fill=\"var(--paper)\"/><circle cx=\"20\" cy=\"19\" r=\"3\" fill=\"currentColor\"/></svg></div><div class=\"ds-empty-copy\"><strong>No releases are recorded yet</strong><p>Create a release declaration to begin a live review. First publish its declaration, replay report, and CI receipt at public HTTPS addresses.</p><button type=\"button\" class=\"ds-empty-action\">Prepare first release</button></div></div></section>",
+      "css": ".ds-release-bay{background:var(--white);border:1px solid #d7e3e9;border-radius:14px;box-shadow:var(--shadow);overflow:hidden;font-family:var(--sans);color:var(--ink)}.ds-bay-head{min-height:72px;padding:18px 24px 16px;background:#fcfefe;border-bottom:1px solid var(--line);display:flex;align-items:flex-end;justify-content:space-between;gap:20px}.ds-bay-head h2{margin:3px 0 0;color:var(--ink-strong);font-size:20px;letter-spacing:-.035em;line-height:1.2}.ds-empty-state{min-height:510px;padding:28px;display:flex;align-items:center;gap:22px}.ds-empty-mark{width:78px;height:78px;flex:0 0 auto;border:1px solid #c4d5de;border-radius:22px;background:var(--bench);color:#728bc3;display:grid;place-items:center}.ds-empty-mark svg{width:43px;height:43px}.ds-empty-copy strong{color:var(--ink-strong);font-size:16px}.ds-empty-copy p{max-width:620px;margin:5px 0 9px;color:var(--muted);font-size:12px}.ds-empty-action{min-height:40px;padding:0 14px;border:1px solid var(--blue-deep);border-radius:7px;background:var(--blue);color:#fff;box-shadow:0 2px 0 #384d98;font:750 11px var(--sans);cursor:pointer;transition:background .15s ease,transform .15s ease}.ds-empty-action:hover{background:var(--blue-deep);transform:translateY(-1px)}.ds-empty-action:focus-visible{outline:3px solid #596fc3;outline-offset:3px}@media(max-width:600px){.ds-bay-head{padding:14px 13px 12px;align-items:flex-start}.ds-bay-head h2{font-size:18px}.ds-empty-state{min-height:330px;align-items:flex-start;flex-direction:column;gap:12px;padding:22px 16px}.ds-empty-mark{width:62px;height:62px;border-radius:18px}.ds-empty-mark svg{width:34px;height:34px}.ds-empty-action{min-height:44px}}"
+    },
+    {
+      "name": "Five-Stop Evidence Shuttle",
+      "kind": "custom",
+      "refersTo": "flight-recorder-stop",
+      "description": "Stage navigation rendered after a live release is selected; the rail carries no release data itself.",
+      "html": "<div class=\"ds-recorder\" role=\"tablist\" aria-label=\"Release evidence stages\"><span class=\"ds-track\" aria-hidden=\"true\"></span><span class=\"ds-progress\" aria-hidden=\"true\"></span><span class=\"ds-shuttle\" aria-hidden=\"true\"><span></span></span><button type=\"button\" class=\"ds-stop is-selected\" role=\"tab\" aria-selected=\"true\"><span class=\"ds-node\">1</span><strong>Declaration</strong></button><button type=\"button\" class=\"ds-stop\" role=\"tab\" aria-selected=\"false\"><span class=\"ds-node\">2</span><strong>Replay</strong></button><button type=\"button\" class=\"ds-stop\" role=\"tab\" aria-selected=\"false\"><span class=\"ds-node\">3</span><strong>Comparison</strong></button><button type=\"button\" class=\"ds-stop\" role=\"tab\" aria-selected=\"false\"><span class=\"ds-node\">4</span><strong>Validators</strong></button><button type=\"button\" class=\"ds-stop\" role=\"tab\" aria-selected=\"false\"><span class=\"ds-node\">5</span><strong>Contract action</strong></button></div>",
+      "css": ".ds-recorder{height:48px;margin:16px 7px 13px;position:relative;display:grid;grid-template-columns:repeat(5,1fr);font-family:var(--sans)}.ds-track,.ds-progress{position:absolute;top:12px;left:0;right:0;height:1px;background:#c8d8e0}.ds-progress{background:#7893cb;transform:scaleX(0);transform-origin:left center;transition:transform .22s ease}.ds-shuttle{position:absolute;top:1px;left:0;width:25%;height:24px;transform:translateX(-50%);pointer-events:none;transition:left .22s ease}.ds-shuttle:before{content:\"\";position:absolute;top:4px;left:calc(50% - 13px);width:26px;height:16px;border:1px solid #758bc4;border-radius:5px 5px 7px 7px;background:#edf0fb;box-shadow:0 2px 4px rgb(57 75 125 / 11%)}.ds-shuttle span{position:absolute;top:9px;left:calc(50% - 4px);width:8px;height:6px;border:1px solid #758bc4;border-radius:2px 2px 4px 4px;background:#fff}.ds-stop{min-width:0;min-height:44px;padding:0;border:0;background:transparent;position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:6px;color:var(--muted);cursor:pointer}.ds-node{width:25px;height:25px;margin-top:1px;border:1px solid #b8cbd4;border-radius:50%;background:#fff;display:grid;place-items:center;color:var(--muted);font:8px var(--mono);transition:border-color .15s ease,background .15s ease,color .15s ease}.ds-stop strong{font-size:9px;font-weight:650;white-space:nowrap}.ds-stop:hover strong,.ds-stop.is-selected{color:var(--blue-deep)}.ds-stop.is-selected .ds-node{border:2px solid var(--blue);background:#edf0fb;color:var(--blue-deep);box-shadow:0 0 0 3px white}.ds-stop.is-passed .ds-node{background:#e7f2ee;border-color:#b6d6c9;color:var(--mint)}.ds-stop:focus-visible{outline:3px solid #596fc3;outline-offset:3px}.ds-stop:focus-visible .ds-node{outline:none}@media(max-width:600px){.ds-recorder{height:58px;margin-left:0;margin-right:0}.ds-stop strong{max-width:65px;white-space:normal;font-size:8px;line-height:1.1;text-align:center}}@media(prefers-reduced-motion:reduce){.ds-progress,.ds-shuttle,.ds-node{transition-duration:.01ms}}"
+    },
+    {
+      "name": "Bench Alignment Instrument",
+      "kind": "custom",
+      "refersTo": "bench-instrument",
+      "description": "A compact concentric alignment mark used in the live contract reference rail.",
+      "html": "<div class=\"ds-instrument\" aria-hidden=\"true\"><div class=\"ds-ring\"><span class=\"ds-tick ds-tick-top\"></span><span class=\"ds-tick ds-tick-right\"></span><span class=\"ds-tick ds-tick-bottom\"></span><span class=\"ds-tick ds-tick-left\"></span><div class=\"ds-core\"><span class=\"ds-cross ds-cross-horizontal\"></span><span class=\"ds-cross ds-cross-vertical\"></span><span class=\"ds-core-dot\"></span></div></div><span class=\"ds-caption\">DECLARATION<br>ALIGNMENT</span></div>",
+      "css": ".ds-instrument{position:relative;width:148px;height:151px;display:grid;place-items:center;color:var(--subtle);font-family:var(--sans)}.ds-ring{width:124px;height:124px;border:1px solid #b9ccd6;border-radius:50%;display:grid;place-items:center;position:relative}.ds-ring:before{content:\"\";position:absolute;inset:8px;border:1px dashed #ccdae0;border-radius:50%}.ds-tick{position:absolute;width:1px;height:8px;background:#91a9b6}.ds-tick-top{top:-1px;left:50%}.ds-tick-right{right:0;top:50%;transform:rotate(90deg)}.ds-tick-bottom{bottom:-1px;left:50%}.ds-tick-left{left:0;top:50%;transform:rotate(90deg)}.ds-core{width:69px;height:69px;border:1px solid #c2c8e6;border-radius:50%;background:#e9eefb;display:grid;place-items:center;position:relative}.ds-core:before,.ds-core:after{content:\"\";position:absolute;width:10px;height:10px;border:1px solid #9da7d1;border-radius:50%;background:#fff;left:29px}.ds-core:before{top:7px}.ds-core:after{bottom:7px}.ds-cross{position:absolute;display:block;background:#929cc7}.ds-cross-horizontal{width:44px;height:1px}.ds-cross-vertical{width:1px;height:44px}.ds-core-dot{z-index:1;width:11px;height:11px;border:2px solid white;border-radius:50%;background:#6681c4}.ds-caption{position:absolute;right:-1px;bottom:0;padding:3px 5px;background:#f9fcfd;color:var(--subtle);font:750 7px/1.35 var(--sans);letter-spacing:.11em;text-align:left}@media(max-width:800px){.ds-instrument{width:104px;height:100px}.ds-ring{width:83px;height:83px}.ds-core{width:49px;height:49px}.ds-core:before,.ds-core:after{left:20px;width:8px;height:8px}.ds-core:before{top:4px}.ds-core:after{bottom:4px}.ds-cross-horizontal{width:30px}.ds-cross-vertical{height:30px}.ds-caption{right:-7px;bottom:-1px;font-size:6px}}@media(max-width:600px){.ds-instrument{width:77px;height:83px}.ds-ring{width:70px;height:70px}.ds-core{width:40px;height:40px}.ds-core:before,.ds-core:after{left:15px}.ds-core:before{top:2px}.ds-core:after{bottom:2px}.ds-cross-horizontal{width:24px}.ds-cross-vertical{height:24px}.ds-core-dot{width:9px;height:9px}.ds-caption{right:-15px;bottom:-3px}}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Ratchet Calibration Bench",
+    "overview": "Ratchet turns release review into a friendly calibration bench: a cool, pale-blue working surface holds a frozen declaration beside observed replay evidence and the contract's recorded outcome. Deep ink and thin registration rules keep dense details easy to align. Nunito Sans Variable carries the interface in an approachable engineered voice; IBM Plex Mono is reserved for hashes, IDs, addresses, and other exact references. Both fonts are bundled locally through Fontsource.\n\nPeriwinkle marks controls and active inspection, while mint, amber, and coral identify ADVANCE, HOLD, and ROLLBACK. Rounded instrument plates contain the evidence, and one small five-stop shuttle supports stage-by-stage reading. Live connection state and the configured contract address stay visible beside the work surface. The final reviewed capture shows Studio Next live on chain 61997 with its deployed address linked to the explorer, and an empty live release index; the empty state remains explicit instead of substituting sample releases.",
+    "keyCharacteristics": [
+      "Cool calibration surface with deep, readable technical text.",
+      "Fine registered rules and gently rounded plates organize evidence.",
+      "State color is paired with a written label and a shape.",
+      "Friendly engineered sans for prose; mono only for precise references.",
+      "A restrained five-stop shuttle supports inspection without taking focus from evidence."
+    ],
+    "rules": [
+      {
+        "name": "The Named State Rule",
+        "body": "Every status keeps its text label and distinct shape alongside its color; color alone never carries the outcome.",
+        "section": "colors"
+      },
+      {
+        "name": "The Technical Mono Rule",
+        "body": "Use IBM Plex Mono for exact identifiers and references; keep explanatory labels and prose in Nunito Sans.",
+        "section": "typography"
+      },
+      {
+        "name": "The Registered Plane Rule",
+        "body": "Use borders and aligned rules to define the work surface; reserve shadows for the release bay, tactile action edge, selected marker, connection-state halo, and modal overlay.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do keep declared intent, observed execution, consensus, and contract action in a registered sequence.",
+      "Do pair each outcome with its written label and shape as well as its state color.",
+      "Do use IBM Plex Mono for hashes, IDs, addresses, and transaction references.",
+      "Do keep the live connection and deployed address visible, and let the release index report its actual empty state.",
+      "Do keep evidence legible at mobile widths and preserve keyboard selection when motion is reduced."
+    ],
+    "donts": [
+      "Don't add local sample releases or present fixture data as chain state.",
+      "Don't use black neon, glass, gradient decoration, generic dashboard card grids, large editorial serifs, fake terminals, or alarm animation.",
+      "Don't make ROLLBACK playful or let decorative objects compete with the verdict and evidence.",
+      "Don't put ordinary explanatory copy in the mono face or make state meaning depend on color or movement."
+    ]
+  }
+}

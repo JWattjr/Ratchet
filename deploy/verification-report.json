@@ -1,0 +1,111 @@
+{
+  "schema_version": "1",
+  "verified_at": "2026-09-24T10:40:10.005Z",
+  "network": "studioDevnet",
+  "chain_id": 61997,
+  "contract": "0xB8d709F996B06C1a3990C7D8b6A3A1b520a9Fd20",
+  "explorer": "https://explorer-studio-dev.genlayer.com",
+  "verified_transactions": [
+    {
+      "action": "deploy",
+      "hash": "0xd1de61450feba7ce62c6a2823240dbd241d137e3e6c9bdaf3912b967796f7368",
+      "explorer_url": "https://explorer-studio-dev.genlayer.com/tx/0xd1de61450feba7ce62c6a2823240dbd241d137e3e6c9bdaf3912b967796f7368",
+      "lifecycle": "FINALIZED",
+      "execution": "FINISHED_WITH_RETURN",
+      "consensus": "MAJORITY_AGREE"
+    },
+    {
+      "release_id": "RATCHET-ADVANCE",
+      "action": "RATCHET-ADVANCE-create",
+      "hash": "0xff92a5a7928b9fca2cafaf009e3331706030ee48f3eca3a7a5f4866f4a3da851",
+      "explorer_url": "https://explorer-studio-dev.genlayer.com/tx/0xff92a5a7928b9fca2cafaf009e3331706030ee48f3eca3a7a5f4866f4a3da851",
+      "lifecycle": "FINALIZED",
+      "execution": "FINISHED_WITH_RETURN",
+      "consensus": "MAJORITY_AGREE",
+      "local_receipt_sha256": "e41b26195e8fe17a70fe009bf78470bedd4c83c8e1d4090b67e40a24788af91c"
+    },
+    {
+      "release_id": "RATCHET-ADVANCE",
+      "action": "RATCHET-ADVANCE-seal",
+      "hash": "0xceaafc199724d4b73ced4f815fa6bf7d9fa0c10ad769cede573323b0105ce8ab",
+      "explorer_url": "https://explorer-studio-dev.genlayer.com/tx/0xceaafc199724d4b73ced4f815fa6bf7d9fa0c10ad769cede573323b0105ce8ab",
+      "lifecycle": "FINALIZED",
+      "execution": "FINISHED_WITH_RETURN",
+      "consensus": "MAJORITY_AGREE",
+      "local_receipt_sha256": "7463018208d699bfbb19a8e0cfb48f98fec80a45dd2abcbbaed68996c6bec97e"
+    },
+    {
+      "release_id": "RATCHET-ADVANCE",
+      "action": "RATCHET-ADVANCE-adjudicate",
+      "hash": "0xe3b866b97f709de677a353707a06f110feeab85828771fe5109c066f663439ba",
+      "explorer_url": "https://explorer-studio-dev.genlayer.com/tx/0xe3b866b97f709de677a353707a06f110feeab85828771fe5109c066f663439ba",
+      "lifecycle": "FINALIZED",
+      "execution": "FINISHED_WITH_RETURN",
+      "consensus": "MAJORITY_AGREE",
+      "local_receipt_sha256": "07d2c5ae7dfa999fd68baf71a90e863c14c496b7da04ca0303f180aeb0bae5c5"
+    },
+    {
+      "release_id": "RATCHET-HOLD",
+      "action": "RATCHET-HOLD-create",
+      "hash": "0x8375bc43bb223155b9f7e86365eaa02682e7452b971ea8de750c4a9e1dde17bc",
+      "explorer_url": "https://explorer-studio-dev.genlayer.com/tx/0x8375bc43bb223155b9f7e86365eaa02682e7452b971ea8de750c4a9e1dde17bc",
+      "lifecycle": "FINALIZED",
+      "execution": "FINISHED_WITH_RETURN",
+      "consensus": "MAJORITY_AGREE",
+      "local_receipt_sha256": "4e322528942a5b6aef42b54e5ff23ea076614e2081bc714fe3e9a82ce7456bff"
+    },
+    {
+      "release_id": "RATCHET-HOLD",
+      "action": "RATCHET-HOLD-seal",
+      "hash": "0x5a4450ade1983a60033fa49581872b53ffc5cd3ee34920d87c625120e3be2a76",
+      "explorer_url": "https://explorer-studio-dev.genlayer.com/tx/0x5a4450ade1983a60033fa49581872b53ffc5cd3ee34920d87c625120e3be2a76",
+      "lifecycle": "FINALIZED",
+      "execution": "FINISHED_WITH_RETURN",
+      "consensus": "MAJORITY_AGREE",
+      "local_receipt_sha256": "c786b1dd1b3171c09e2f66272facd8f46f0239ac82d52a6998576d2c018b31f6"
+    },
+    {
+      "release_id": "RATCHET-HOLD",
+      "action": "RATCHET-HOLD-adjudicate",
+      "hash": "0x6d286b502cc451343b8fa87943c7182910d6c74e64350ec521d1a2a7b04b7c73",
+      "explorer_url": "https://explorer-studio-dev.genlayer.com/tx/0x6d286b502cc451343b8fa87943c7182910d6c74e64350ec521d1a2a7b04b7c73",
+      "lifecycle": "FINALIZED",
+      "execution": "FINISHED_WITH_RETURN",
+      "consensus": "MAJORITY_AGREE",
+      "local_receipt_sha256": "980bbf78e0e4cc611c2aa88d0426c1585f6ab8e41c2353031267ef3eaa5111bd"
+    },
+    {
+      "release_id": "RATCHET-ROLLBACK",
+      "action": "RATCHET-ROLLBACK-create",
+      "hash": "0x449de00723bdf4b8fa48ae9b63c5f23828d9f293b00dcf7ea45ff9b90309ba2e",
+      "explorer_url": "https://explorer-studio-dev.genlayer.com/tx/0x449de00723bdf4b8fa48ae9b63c5f23828d9f293b00dcf7ea45ff9b90309ba2e",
+      "lifecycle": "FINALIZED",
+      "execution": "FINISHED_WITH_RETURN",
+      "consensus": "MAJORITY_AGREE",
+      "local_receipt_sha256": "1ab4b1ad0cc35a7a6fafa470782a5eec433ddfe1285379e534cf3ba1b267b809"
+    },
+    {
+      "release_id": "RATCHET-ROLLBACK",
+      "action": "RATCHET-ROLLBACK-seal",
+      "hash": "0x78ce99e6efb85ac303371eff9530352944dc5f7925f9735f64271c4897655009",
+      "explorer_url": "https://explorer-studio-dev.genlayer.com/tx/0x78ce99e6efb85ac303371eff9530352944dc5f7925f9735f64271c4897655009",
+      "lifecycle": "FINALIZED",
+      "execution": "FINISHED_WITH_RETURN",
+      "consensus": "MAJORITY_AGREE",
+      "local_receipt_sha256": "19f67ff1fddde661cd3979956897cdd2b1e9b329f40d2a03a00419c851983986"
+    },
+    {
+      "release_id": "RATCHET-ROLLBACK",
+      "action": "RATCHET-ROLLBACK-adjudicate",
+      "hash": "0x465dda94d11e36f1e6b70dcd6facee80c68ebf342bcc4a578f97a9a64804ce4c",
+      "explorer_url": "https://explorer-studio-dev.genlayer.com/tx/0x465dda94d11e36f1e6b70dcd6facee80c68ebf342bcc4a578f97a9a64804ce4c",
+      "lifecycle": "FINALIZED",
+      "execution": "FINISHED_WITH_RETURN",
+      "consensus": "MAJORITY_AGREE",
+      "local_receipt_sha256": "f887c7b4ca15c3df68386adf9a532c156fe91e9a68969eb71b194ab66c97b26b"
+    }
+  ],
+  "verified_release_count": 3,
+  "hosted_evidence_hashes_verified": true,
+  "live_contract_receipts_match": true
+}

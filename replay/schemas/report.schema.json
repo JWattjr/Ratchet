@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://ratchet.example/schemas/replay-report-v1.json",
+  "title": "Ratchet local EVM replay report",
+  "type": "object",
+  "required": ["schema_version", "run_id", "generated_at", "source_date_epoch", "scenario_id", "build", "baseline", "candidate", "corpus", "transactions", "storage_diffs", "state_diffs", "permission_diffs", "external_call_diffs", "capability_diffs", "invariants", "coverage", "final_state", "artifact_sources"],
+  "properties": {
+    "schema_version": { "const": "1" },
+    "run_id": { "type": "string", "pattern": "^[0-9a-f]{24}$" },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "source_date_epoch": { "type": "integer", "minimum": 0 },
+    "scenario_id": { "enum": ["honest-advance", "incomplete-replay", "undeclared-capability", "invariant-break"] },
+    "build": {
+      "type": "object",
+      "required": ["executor", "hardhat_version", "compiler_version", "optimizer", "chain_id"],
+      "properties": {
+        "executor": { "const": "Hardhat local EVM" },
+        "hardhat_version": { "type": "string", "minLength": 1 },
+        "compiler_version": { "type": "string", "minLength": 1 },
+        "optimizer": { "type": "object", "required": ["enabled", "runs"], "properties": { "enabled": { "type": "boolean" }, "runs": { "type": "integer", "minimum": 1 } } },
+        "chain_id": { "const": 31337 }
+      }
+    },
+    "baseline": { "$ref": "#/definitions/implementation" },
+    "candidate": { "$ref": "#/definitions/implementation" },
+    "corpus": { "type": "object", "required": ["dataset_id", "dataset_hash", "transaction_count"], "properties": { "dataset_id": { "type": "string", "minLength": 1 }, "dataset_hash": { "$ref": "#/definitions/hash" }, "transaction_count": { "type": "integer", "minimum": 0 } } },
+    "transactions": { "type": "array", "items": { "type": "object", "required": ["case_id", "baseline", "candidate"], "properties": { "case_id": { "$ref": "#/definitions/caseId" }, "baseline": { "$ref": "#/definitions/execution" }, "candidate": { "$ref": "#/definitions/execution" } } } },
+    "storage_diffs": { "type": "array", "items": { "type": "object", "required": ["id", "declaration_id", "field", "baseline", "candidate"], "properties": { "id": { "type": "string" }, "declaration_id": { "const": "DECL-STORAGE" }, "field": { "type": "string" }, "baseline": { "oneOf": [{ "type": "null" }, { "$ref": "#/definitions/storageEntry" }] }, "candidate": { "oneOf": [{ "type": "null" }, { "$ref": "#/definitions/storageEntry" }] } } } },
+    "state_diffs": { "$ref": "#/definitions/diffArray" },
+    "permission_diffs": { "type": "array", "items": { "type": "object", "required": ["id", "capability", "baseline_allowed", "candidate_allowed", "changed"], "properties": { "id": { "type": "string" }, "capability": { "type": "string" }, "baseline_allowed": { "type": "boolean" }, "candidate_allowed": { "type": "boolean" }, "changed": { "type": "boolean" } } } },
+    "external_call_diffs": { "type": "array", "items": { "type": "object", "required": ["baseline", "candidate", "changed"], "properties": { "baseline": { "type": "array" }, "candidate": { "type": "array" }, "changed": { "type": "boolean" } } } },
+    "capability_diffs": { "type": "array", "items": { "type": "object", "required": ["id", "declaration_id", "observed", "baseline_observed", "added"], "properties": { "id": { "type": "string" }, "declaration_id": { "type": "string" }, "observed": { "type": "boolean" }, "baseline_observed": { "type": "boolean" }, "added": { "type": "boolean" } } } },
+    "invariants": { "type": "array", "minItems": 3, "items": { "type": "object", "required": ["id", "status", "observed"], "properties": { "id": { "type": "string" }, "status": { "enum": ["PASS", "FAIL"] }, "observed": { "type": "object" } } } },
+    "coverage": { "type": "object", "required": ["required_case_ids", "executed_case_ids", "missing_case_ids"], "properties": { "required_case_ids": { "type": "array", "items": { "$ref": "#/definitions/caseId" } }, "executed_case_ids": { "type": "array", "items": { "$ref": "#/definitions/caseId" } }, "missing_case_ids": { "type": "array", "items": { "$ref": "#/definitions/caseId" } } } },
+    "final_state": { "type": "object", "required": ["baseline", "candidate"], "properties": { "baseline": { "$ref": "#/definitions/state" }, "candidate": { "$ref": "#/definitions/state" } } },
+    "artifact_sources": { "type": "object", "required": ["corpus", "baseline_solidity", "candidate_solidity", "transaction_corpus_hash"], "properties": { "corpus": { "type": "string" }, "baseline_solidity": { "type": "string" }, "candidate_solidity": { "type": "string" }, "transaction_corpus_hash": { "$ref": "#/definitions/hash" } } }
+  },
+  "definitions": {
+    "hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "hash32": { "type": "string", "pattern": "^0x[0-9a-fA-F]{64}$" },
+    "caseId": { "type": "string", "pattern": "^[A-Z0-9][A-Z0-9_-]{1,63}$" },
+    "implementation": { "type": "object", "required": ["implementation", "source_hash", "bytecode_hash", "storage_layout_hash", "deployment"], "properties": { "implementation": { "type": "string" }, "source_hash": { "$ref": "#/definitions/hash" }, "bytecode_hash": { "$ref": "#/definitions/hash32" }, "storage_layout_hash": { "$ref": "#/definitions/hash" }, "deployment": { "type": "object", "required": ["transaction_hash", "block_hash", "block_number", "status", "gas_used", "bytecode_hash"], "properties": { "transaction_hash": { "$ref": "#/definitions/hash32" }, "block_hash": { "$ref": "#/definitions/hash32" }, "block_number": { "type": "integer", "minimum": 0 }, "status": { "enum": ["SUCCESS", "FAILED"] }, "gas_used": { "type": "string", "pattern": "^[0-9]+$" }, "bytecode_hash": { "$ref": "#/definitions/hash32" } } } } },
+    "storageEntry": { "type": "object", "required": ["label", "slot", "offset", "type", "encoding", "number_of_bytes"], "properties": { "label": { "type": "string" }, "slot": { "type": "string", "pattern": "^[0-9]+$" }, "offset": { "type": "integer", "minimum": 0 }, "type": { "type": "string" }, "encoding": { "type": "string" }, "number_of_bytes": { "type": "string", "pattern": "^[0-9]+$" } } },
+    "diffArray": { "type": "array", "items": { "type": "object", "required": ["id", "baseline", "candidate", "changed"], "properties": { "id": { "type": "string" }, "baseline": {}, "candidate": {}, "changed": { "type": "boolean" } } } },
+    "receipt": { "type": "object", "required": ["transaction_hash", "block_number", "block_hash", "transaction_index", "status", "gas_used", "gas_price", "logs", "block_timestamp"], "properties": { "transaction_hash": { "$ref": "#/definitions/hash32" }, "block_number": { "type": "integer", "minimum": 0 }, "block_hash": { "$ref": "#/definitions/hash32" }, "transaction_index": { "type": "integer", "minimum": 0 }, "status": { "enum": ["SUCCESS", "FAILED"] }, "gas_used": { "type": "string", "pattern": "^[0-9]+$" }, "gas_price": { "type": "string", "pattern": "^[0-9]+$" }, "logs": { "type": "array" }, "block_timestamp": { "type": "integer", "minimum": 0 } } },
+    "state": { "type": "object", "required": ["total_deposits", "balances", "contract_balance", "paused"], "properties": { "total_deposits": { "type": "string", "pattern": "^[0-9]+$" }, "balances": { "type": "object" }, "contract_balance": { "type": "string", "pattern": "^[0-9]+$" }, "paused": { "type": ["boolean", "null"] } } },
+    "execution": { "type": "object", "required": ["case_id", "method", "sender", "args", "calldata", "value", "receipt", "output"], "properties": { "case_id": { "$ref": "#/definitions/caseId" }, "method": { "type": "string" }, "sender": { "type": "string" }, "args": { "type": "array" }, "calldata": { "type": "string", "pattern": "^0x[0-9a-fA-F]*$" }, "value": { "type": "string", "pattern": "^[0-9]+$" }, "receipt": { "$ref": "#/definitions/receipt" }, "output": { "type": "object", "required": ["success", "revert_reason", "state_before", "state_after", "events"], "properties": { "success": { "type": "boolean" }, "revert_reason": { "type": "string" }, "state_before": { "$ref": "#/definitions/state" }, "state_after": { "$ref": "#/definitions/state" }, "events": { "type": "array", "items": { "type": "string" } } } } } }
+  }
+}

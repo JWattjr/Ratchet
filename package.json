@@ -1,0 +1,44 @@
+{
+  "name": "ratchet",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "workspaces": ["frontend"],
+  "scripts": {
+    "setup:python": "node scripts/setup-python.mjs",
+    "replay:compile": "hardhat compile",
+    "replay:generate": "node scripts/run-replay.mjs",
+    "replay:verify": "node scripts/run-replay.mjs --verify",
+    "contract:lint": "node scripts/python.mjs -m genvm_linter.cli check contracts/ratchet.py",
+    "contract:schema": "node scripts/python.mjs -m genvm_linter.cli schema contracts/ratchet.py --output deploy/ratchet.abi.json",
+    "test:direct": "node scripts/python.mjs -m pytest -s -p no:cacheprovider tests/direct -q",
+    "test:integration": "node scripts/python.mjs -m pytest -s -p no:cacheprovider tests/integration -q --network studio_devnet",
+    "test:replay": "node --test tests/replay/*.test.mjs",
+    "prepare:demo": "tsx scripts/prepare-demo.ts",
+    "lint": "npm run lint --workspace frontend",
+    "typecheck": "npm run typecheck --workspace frontend && tsc --noEmit -p scripts/tsconfig.json",
+    "build": "npm run build --workspace frontend",
+    "check": "npm run replay:compile && npm run replay:verify && npm run contract:lint && npm run contract:schema && npm run test:direct && npm run test:replay && npm run lint && npm run typecheck && npm run build && npm run test:ui && npm run test:responsive",
+    "deploy": "tsx scripts/deploy.ts",
+    "seed:demo": "tsx scripts/seed-demo.ts",
+    "verify:proof": "tsx scripts/verify-proof.ts",
+    "restore:proof-receipts": "tsx scripts/restore-proof-receipts.ts",
+    "profile:fees": "tsx scripts/generate-fee-profile.ts",
+    "test:ui": "npm run test:ui --workspace frontend",
+    "test:responsive": "npm run test:responsive --workspace frontend",
+    "reset:demo": "npm run replay:generate && npm run replay:verify && npm run prepare:demo && npm run deploy && npm run seed:demo && npm run verify:proof && npm run profile:fees && npm run build"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-ethers": "3.1.3",
+    "dotenv": "17.2.3",
+    "ethers": "6.17.0",
+    "genlayer": "0.40.0-rc.3",
+    "hardhat": "2.29.1",
+    "solc": "0.8.30",
+    "tsx": "4.20.6",
+    "typescript": "5.9.3"
+  }
+}

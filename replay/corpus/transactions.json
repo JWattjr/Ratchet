@@ -1,0 +1,23 @@
+{
+  "schema_version": "1",
+  "dataset_id": "ratchet-vault-review-corpus-v1",
+  "required_case_ids": [
+    "ADMIN-WITHDRAW-ALICE-5",
+    "DEPOSIT-ALICE-100",
+    "DEPOSIT-BOB-40",
+    "PAUSE-OFF",
+    "PAUSE-ON",
+    "WITHDRAW-ALICE-10-AFTER-PAUSE",
+    "WITHDRAW-ALICE-20"
+  ],
+  "transactions": [
+    {"case_id": "DEPOSIT-ALICE-100", "sender": "alice", "method": "deposit", "value": "100"},
+    {"case_id": "DEPOSIT-BOB-40", "sender": "bob", "method": "deposit", "value": "40"},
+    {"case_id": "WITHDRAW-ALICE-20", "sender": "alice", "method": "withdraw", "args": ["20"]},
+    {"case_id": "PAUSE-ON", "sender": "owner", "method": "setPaused", "args": [true], "probe": true},
+    {"case_id": "ADMIN-WITHDRAW-ALICE-5", "sender": "owner", "method": "emergencyWithdraw", "args": ["alice", "recipient", "5"], "probe": true},
+    {"case_id": "WITHDRAW-ALICE-10-AFTER-PAUSE", "sender": "alice", "method": "withdraw", "args": ["10"]},
+    {"case_id": "PAUSE-OFF", "sender": "owner", "method": "setPaused", "args": [false], "probe": true}
+  ]
+}
+

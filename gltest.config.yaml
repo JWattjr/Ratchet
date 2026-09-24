@@ -1,0 +1,10 @@
+# Direct tests are in-memory. Studio Next is the only live target.
+networks:
+  default: localnet
+  localnet:
+    url: "http://127.0.0.1:4000/api"
+  studio_devnet: {}
+paths:
+  contracts: "contracts"
+  artifacts: "test-artifacts"
+environment: .env

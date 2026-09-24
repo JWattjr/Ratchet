@@ -1,0 +1,28 @@
+{
+  "network": "studioDevnet",
+  "chainId": 61997,
+  "rpc": "https://studio-dev.genlayer.com/api",
+  "explorer": "https://explorer-studio-dev.genlayer.com",
+  "contract": "0xB8d709F996B06C1a3990C7D8b6A3A1b520a9Fd20",
+  "owner": "0x0f0179e068ba6c7629d28e2c1bf73d0a13f9f685",
+  "deployTransaction": "0xd1de61450feba7ce62c6a2823240dbd241d137e3e6c9bdaf3912b967796f7368",
+  "deployExplorer": "https://explorer-studio-dev.genlayer.com/tx/0xd1de61450feba7ce62c6a2823240dbd241d137e3e6c9bdaf3912b967796f7368",
+  "addressExplorer": "https://explorer-studio-dev.genlayer.com/address/0xB8d709F996B06C1a3990C7D8b6A3A1b520a9Fd20",
+  "deployedAt": "2026-09-24T10:09:15.002Z",
+  "contractVersion": "ratchet/1.0.9",
+  "runner": "5jycge4q8k23462jtb0b9fyey1s9qz928sz2nbrd9mg4sxqg2qng",
+  "runnerHeader": "# { \"Depends\": \"py-genlayer:5jycge4q8k23462jtb0b9fyey1s9qz928sz2nbrd9mg4sxqg2qng\" }",
+  "sourceSha256": "631f74d35995acc1cea581d37bc82fbf3b3ecadf88d17e43615ac6cf698b50d2",
+  "abiSchema": "deploy/studio-next-schema.json",
+  "initialStats": {
+    "advanced": 0,
+    "cancelled": 0,
+    "draft": 0,
+    "held": 0,
+    "rolled_back": 0,
+    "sealed": 0,
+    "total_releases": 0
+  },
+  "receiptStatus": "FINALIZED",
+  "deployer": "0x0f0179E068ba6C7629d28e2c1Bf73D0A13f9f685"
+}

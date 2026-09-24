@@ -1,0 +1,79 @@
+{
+  "version": 1,
+  "network": "studioDevnet",
+  "chainId": 61997,
+  "measuredAt": "2026-09-24T10:41:58.764Z",
+  "headroom": 1.25,
+  "source": "Three successful finalized Studio Next adjudication receipts from deploy/studio-next-proof.json. This is measured usage, not a fee guarantee.",
+  "methods": {
+    "adjudicate": {
+      "leaderTimeunitsAllocation": "157",
+      "validatorTimeunitsAllocation": "313",
+      "executionBudgetPerRound": "198631562500000",
+      "totalMessageFees": "0",
+      "rotationsPerRound": "0"
+    }
+  },
+  "scenarios": [
+    {
+      "release_id": "RATCHET-ADVANCE",
+      "verdict": "ADVANCE",
+      "transaction": "0xe3b866b97f709de677a353707a06f110feeab85828771fe5109c066f663439ba",
+      "explorer_url": "https://explorer-studio-dev.genlayer.com/tx/0xe3b866b97f709de677a353707a06f110feeab85828771fe5109c066f663439ba",
+      "observed": {
+        "leaderTimeunitsAllocation": "125",
+        "validatorTimeunitsAllocation": "250",
+        "executionBudgetPerRound": "158378500000000",
+        "totalMessageFees": "0",
+        "rotationsPerRound": "0"
+      },
+      "profiled": {
+        "leaderTimeunitsAllocation": "157",
+        "validatorTimeunitsAllocation": "313",
+        "executionBudgetPerRound": "197973125000000",
+        "totalMessageFees": "0",
+        "rotationsPerRound": "0"
+      }
+    },
+    {
+      "release_id": "RATCHET-HOLD",
+      "verdict": "HOLD",
+      "transaction": "0x6d286b502cc451343b8fa87943c7182910d6c74e64350ec521d1a2a7b04b7c73",
+      "explorer_url": "https://explorer-studio-dev.genlayer.com/tx/0x6d286b502cc451343b8fa87943c7182910d6c74e64350ec521d1a2a7b04b7c73",
+      "observed": {
+        "leaderTimeunitsAllocation": "125",
+        "validatorTimeunitsAllocation": "250",
+        "executionBudgetPerRound": "158580500000000",
+        "totalMessageFees": "0",
+        "rotationsPerRound": "0"
+      },
+      "profiled": {
+        "leaderTimeunitsAllocation": "157",
+        "validatorTimeunitsAllocation": "313",
+        "executionBudgetPerRound": "198225625000000",
+        "totalMessageFees": "0",
+        "rotationsPerRound": "0"
+      }
+    },
+    {
+      "release_id": "RATCHET-ROLLBACK",
+      "verdict": "ROLLBACK",
+      "transaction": "0x465dda94d11e36f1e6b70dcd6facee80c68ebf342bcc4a578f97a9a64804ce4c",
+      "explorer_url": "https://explorer-studio-dev.genlayer.com/tx/0x465dda94d11e36f1e6b70dcd6facee80c68ebf342bcc4a578f97a9a64804ce4c",
+      "observed": {
+        "leaderTimeunitsAllocation": "125",
+        "validatorTimeunitsAllocation": "250",
+        "executionBudgetPerRound": "158905250000000",
+        "totalMessageFees": "0",
+        "rotationsPerRound": "0"
+      },
+      "profiled": {
+        "leaderTimeunitsAllocation": "157",
+        "validatorTimeunitsAllocation": "313",
+        "executionBudgetPerRound": "198631562500000",
+        "totalMessageFees": "0",
+        "rotationsPerRound": "0"
+      }
+    }
+  ]
+}

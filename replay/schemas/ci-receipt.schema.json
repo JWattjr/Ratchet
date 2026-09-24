@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://ratchet.example/schemas/ci-receipt-v1.json",
+  "title": "Ratchet local replay CI receipt",
+  "type": "object",
+  "required": ["schema_version", "generated_at", "executor", "independent_ci_run", "report_file", "report_hash", "corpus_hash", "required_case_ids", "executed_case_ids", "missing_case_ids", "transaction_count", "note"],
+  "properties": {
+    "schema_version": { "const": "1" },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "executor": { "const": "local-hardhat" },
+    "independent_ci_run": { "type": "null" },
+    "report_file": { "type": "string", "pattern": "^[a-z-]+\\.json$" },
+    "report_hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "corpus_hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "required_case_ids": { "type": "array", "items": { "type": "string" } },
+    "executed_case_ids": { "type": "array", "items": { "type": "string" } },
+    "missing_case_ids": { "type": "array", "items": { "type": "string" } },
+    "transaction_count": { "type": "integer", "minimum": 0 },
+    "note": { "type": "string", "minLength": 1 }
+  }
+}

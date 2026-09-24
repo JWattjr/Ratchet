@@ -1,0 +1,1671 @@
+{
+  "hash": "0x1aeba8e14622a064c72a648564e8530f72515aad2b82215d2c8d841488620f29",
+  "from_address": "0x0f0179E068ba6C7629d28e2c1Bf73D0A13f9f685",
+  "to_address": "0xe0d101AB1C3B4A76F0Fa5c0184cf36Fe5313DB0e",
+  "data": {
+    "calldata": {
+      "readable": "{}"
+    },
+    "fee_value": "175000000000112794",
+    "salt_nonce": 0,
+    "user_value": 0,
+    "valid_until": 1790221071,
+    "fee_accounting": {
+      "sender": "0x0f0179E068ba6C7629d28e2c1Bf73D0A13f9f685",
+      "source": "submission",
+      "status": "settled",
+      "refunds": [
+        {
+          "amount": "174921065000111971",
+          "reason": "finalized",
+          "message": 0,
+          "primary": "174921065000111971",
+          "appealBond": 0
+        }
+      ],
+      "top_ups": [
+        {
+          "amount": "175000000000112794",
+          "sender": "0x0f0179E068ba6C7629d28e2c1Bf73D0A13f9f685",
+          "messageFees": 0,
+          "primaryAmount": "175000000000112794",
+          "feesDistribution": {
+            "rotations": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "appealRounds": 3,
+            "totalMessageFees": 0,
+            "executionConsumed": 0,
+            "receiptFeeMaxGasPrice": 300000000,
+            "storageFeeMaxGasPrice": 300000000,
+            "maxPriceGenPerTimeUnit": 2,
+            "executionBudgetPerRound": "25000000000000000",
+            "leaderTimeunitsAllocation": 100,
+            "validatorTimeunitsAllocation": 200
+          }
+        }
+      ],
+      "version": 2,
+      "user_value": 0,
+      "contributions": [
+        {
+          "amount": "175000000000112794",
+          "message": 0,
+          "overlay": 16919,
+          "primary": "175000000000095875",
+          "depositor": "0x0f0179E068ba6C7629d28e2c1Bf73D0A13f9f685"
+        }
+      ],
+      "locked_prices": {
+        "genPerTimeUnit": 1,
+        "receiptGasPrice": 250000000,
+        "storageUnitPrice": 250000000
+      },
+      "paid_fee_value": "175000000000112794",
+      "total_refunded": "174921065000111971",
+      "policy_snapshot": {
+        "intrinsic_gas": 21000,
+        "extra_exec_gas": 210000,
+        "gen_per_time_unit": 1,
+        "receipt_gas_price": 250000000,
+        "storage_unit_price": 250000000,
+        "bootloader_overhead": 60000,
+        "max_messages_per_tx": 0,
+        "gas_per_changed_slot": 1000,
+        "max_commit_timeunits": 600,
+        "max_eq_outputs_bytes": 0,
+        "min_commit_timeunits": 30,
+        "calldata_gas_per_byte": 16,
+        "max_propose_timeunits": 600,
+        "min_propose_timeunits": 30,
+        "receipt_wrapper_bytes": 1024,
+        "time_unit_overlay_bps": 1500,
+        "max_allocated_messages": 20,
+        "min_external_gas_limit": 0,
+        "fixed_message_reveal_gas": 100000,
+        "fixed_propose_receipt_gas": 210000,
+        "max_allocation_tree_depth": 5,
+        "default_external_gas_limit": 500000,
+        "max_submitted_messages_bytes": 0,
+        "enforce_v06_submission_config": 1
+      },
+      "fees_distribution": {
+        "rotations": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "appealRounds": 3,
+        "totalMessageFees": 0,
+        "executionConsumed": 0,
+        "receiptFeeMaxGasPrice": 300000000,
+        "storageFeeMaxGasPrice": 300000000,
+        "maxPriceGenPerTimeUnit": 2,
+        "executionBudgetPerRound": "25000000000000000",
+        "leaderTimeunitsAllocation": 100,
+        "validatorTimeunitsAllocation": 200
+      },
+      "primary_fee_spent": 78935000000823,
+      "settlement_reason": "finalized",
+      "settlement_rounds": [
+        {
+          "rule": "normal",
+          "round": 0,
+          "outcome": "Accepted",
+          "rotations": 0,
+          "timeUnitAmount": 700
+        }
+      ],
+      "actual_final_round": 0,
+      "appeal_bonds_total": 0,
+      "message_fee_budget": 0,
+      "primary_fee_budget": "175000000000112794",
+      "required_fee_value": "175000000000112794",
+      "appeal_profit_spent": 0,
+      "funding_overlay_bps": 1500,
+      "appeal_funding_total": 0,
+      "execution_fee_report": {
+        "messageFees": {
+          "budget": 0,
+          "remaining": 0,
+          "meteringDelta": 0,
+          "declaredConsumed": 0,
+          "declaredRefunded": 0,
+          "genvmMeteredConsumed": 0
+        },
+        "genvmBuckets": {
+          "layout": "genvm-v0.3",
+          "buckets": [
+            {
+              "name": "execution",
+              "unit": "fee",
+              "index": 0,
+              "consumed": 79159000000000
+            },
+            {
+              "name": "message",
+              "unit": "fee",
+              "index": 1,
+              "consumed": 0
+            },
+            {
+              "name": "nondeterministicOutputBytes",
+              "unit": "bytes",
+              "index": 2,
+              "consumed": 64
+            },
+            {
+              "name": "submittedMessageBytes",
+              "unit": "bytes",
+              "index": 3,
+              "consumed": 0
+            },
+            {
+              "name": "submittedMessageCount",
+              "unit": "count",
+              "index": 4,
+              "consumed": 0
+            }
+          ],
+          "message": 0,
+          "execution": 79159000000000,
+          "totalExecution": 79159000000000,
+          "totalWithMessage": 79159000000000,
+          "submittedMessageBytes": 0,
+          "submittedMessageCount": 0,
+          "executionBudgetOverrun": 0,
+          "executionBudgetExceeded": false,
+          "executionBudgetPerRound": "25000000000000000",
+          "executionBudgetRemaining": "24920841000000000",
+          "nondeterministicOutputBytes": 64
+        },
+        "proposalReceipt": {
+          "fee": 78628000000000,
+          "estimatedGas": 314512,
+          "receiptBytes": 1032,
+          "eqBlocksOutputsLength": 8
+        },
+        "receiptGasPrice": 250000000,
+        "executionMetering": {
+          "chargeableExecutionFee": 78935000000000,
+          "genvmReportedExecution": 79159000000000,
+          "genvmDeltaFromChargeable": 224000000000
+        },
+        "totalEstimatedFee": 78628000000000,
+        "chargeableExecution": {
+          "layout": "consensus-chargeable",
+          "buckets": [
+            {
+              "name": "receipt",
+              "unit": "fee",
+              "index": 0,
+              "consumed": 78628000000000
+            },
+            {
+              "name": "storage",
+              "unit": "fee",
+              "index": 1,
+              "consumed": 307000000000
+            }
+          ],
+          "receipt": 78628000000000,
+          "storage": 307000000000,
+          "totalExecution": 78935000000000,
+          "totalWithMessage": 78935000000000,
+          "executionBudgetOverrun": 0,
+          "executionBudgetExceeded": false,
+          "executionBudgetPerRound": "25000000000000000",
+          "executionBudgetRemaining": "24921065000000000"
+        },
+        "historicalReceiptFees": {
+          "attempts": [
+            {
+              "round": 0,
+              "attempt": 0,
+              "receiptFee": 78628000000000,
+              "leaderTimeout": false,
+              "receiptGasPrice": 250000000,
+              "deterministicViolation": false
+            }
+          ],
+          "totalExecution": 78935000000000,
+          "finalStorageFee": 307000000000,
+          "receiptFeeTotal": 78628000000000
+        },
+        "totalStudioMeteredFee": 78852000000000
+      },
+      "message_fee_consumed": 0,
+      "message_fee_refunded": 0,
+      "primary_fee_refunded": "174921065000111971",
+      "primary_fee_required": "175000000000112794",
+      "selection_pool_count": 16,
+      "message_phase_emitted": {
+        "accepted": true,
+        "finalized": true
+      },
+      "execution_budget_total": "175000000000000000",
+      "execution_fee_consumed": 78935000000000,
+      "fee_refund_settlements": [
+        {
+          "amount": "174921065000095175",
+          "source": "primary-fifo",
+          "recipient": "0x0f0179E068ba6C7629d28e2c1Bf73D0A13f9f685"
+        },
+        {
+          "amount": 16796,
+          "source": "overlay-fifo",
+          "recipient": "0x0f0179E068ba6C7629d28e2c1Bf73D0A13f9f685"
+        }
+      ],
+      "recommended_fee_preset": {
+        "source": "simulation",
+        "feeValue": 664935600112794,
+        "observed": {
+          "executionFee": 78935000000000,
+          "messageFeeBudget": 0,
+          "totalEstimatedFee": 78628000000000,
+          "declaredMessageFees": 0,
+          "totalStudioMeteredFee": 78852000000000,
+          "genvmExecutionRequired": 79159000000000,
+          "externalMessageReserved": 0
+        },
+        "paddingBps": 12000,
+        "distribution": {
+          "rotations": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "appealRounds": 3,
+          "totalMessageFees": 0,
+          "executionConsumed": 0,
+          "receiptFeeMaxGasPrice": 300000000,
+          "storageFeeMaxGasPrice": 300000000,
+          "maxPriceGenPerTimeUnit": 2,
+          "executionBudgetPerRound": 94990800000000,
+          "leaderTimeunitsAllocation": 100,
+          "validatorTimeunitsAllocation": 200
+        },
+        "messageBudgetMode": "current",
+        "numOfInitialValidators": 5
+      },
+      "appeal_profit_requested": 0,
+      "genvm_fee_bucket_report": {
+        "layout": "genvm-v0.3",
+        "buckets": [
+          {
+            "name": "execution",
+            "unit": "fee",
+            "index": 0,
+            "consumed": 79159000000000
+          },
+          {
+            "name": "message",
+            "unit": "fee",
+            "index": 1,
+            "consumed": 0
+          },
+          {
+            "name": "nondeterministicOutputBytes",
+            "unit": "bytes",
+            "index": 2,
+            "consumed": 64
+          },
+          {
+            "name": "submittedMessageBytes",
+            "unit": "bytes",
+            "index": 3,
+            "consumed": 0
+          },
+          {
+            "name": "submittedMessageCount",
+            "unit": "count",
+            "index": 4,
+            "consumed": 0
+          }
+        ],
+        "message": 0,
+        "execution": 79159000000000,
+        "totalExecution": 79159000000000,
+        "totalWithMessage": 79159000000000,
+        "submittedMessageBytes": 0,
+        "submittedMessageCount": 0,
+        "executionBudgetOverrun": 0,
+        "executionBudgetExceeded": false,
+        "executionBudgetPerRound": "25000000000000000",
+        "executionBudgetRemaining": "24920841000000000",
+        "nondeterministicOutputBytes": 64
+      },
+      "time_unit_overlay_spent": 123,
+      "untracked_contributions": 0,
+      "activation_prices_locked": true,
+      "selection_pool_addresses": [
+        "0x1da3a7de8ea65a318bf88eb63d3dc55295dd257e",
+        "0x6760cdec573cf38568c59872ee48b6fed41f8a4c",
+        "0xa0435f618c1f27b254998018aea8da5c77187852",
+        "0xcbc79f96b7a275b23ee64d80a98325107f6e1b77",
+        "0xf13c3dfe38c8e206c33f750c24a1b043b63cb810",
+        "0x8d32eb5d0207f7e230c45e7bf0d14b2ed5da3028",
+        "0xcef1baa172d0b4d99dcc505b36332f26d1088025",
+        "0x5cdf4bddeeda0e32ed596b94f69acc0fbb57f264",
+        "0x05d8afc66b515038712537f99caaea73d16f0007",
+        "0xeecec5d1e07ee40f5cb85af922178dc01278013c",
+        "0xa793d9dc0ed9edc1f9f732bb68b5d3afa934f52d",
+        "0x5a4230b920b18c4afd3a28f99eae669b7f2cdc1e",
+        "0x8142e5d1b04f84c3cd995c25aae31b31f8e0379e",
+        "0xcf5fd792df0dc9d297af75c82b4a0011e8fa1a4a",
+        "0xe52ddb85587585930b1e5f1fe88fef21cca49829",
+        "0xe4e106086f167d75e2270fa5f3680f6ac598d179"
+      ],
+      "time_unit_overlay_budget": 16919,
+      "active_message_generation": {
+        "acceptanceDispatched": true,
+        "acceptanceDispatchRequired": true
+      },
+      "appeal_bonds_payout_total": 0,
+      "storage_fee_dust_refunded": 0,
+      "genvm_fee_consumed_buckets": {
+        "message_fee": 0,
+        "nondet_outputs": 64,
+        "execution_data_gas": 79159000000000,
+        "submitted_messages": 0,
+        "submitted_messages_count": 0
+      },
+      "genvm_message_fee_consumed": 0,
+      "message_consumption_events": [
+        {
+          "consumed": 0,
+          "remaining": 0,
+          "internalConsumed": 0,
+          "externalReimbursed": 0
+        }
+      ],
+      "appeal_bond_sender_refunded": 0,
+      "storage_fee_recipient_count": 5,
+      "time_unit_overlay_requested": 123,
+      "external_message_fee_settled": 0,
+      "external_message_fee_reserved": 0,
+      "historical_execution_attempts": [
+        {
+          "round": 0,
+          "attempt": 0,
+          "receiptFee": 78628000000000,
+          "leaderTimeout": false,
+          "receiptGasPrice": 250000000,
+          "deterministicViolation": false
+        }
+      ],
+      "appeal_charge_surplus_refunded": 0,
+      "execution_fee_consumed_buckets": [
+        78628000000000,
+        307000000000
+      ],
+      "external_message_fee_remainder": 0,
+      "message_allocations_restricted": false,
+      "external_message_fee_reimbursed": 0,
+      "message_fees_recorded_at_reveal": true,
+      "time_unit_overlay_settlement_bps": 1500
+    },
+    "contract_address": "0xe0d101AB1C3B4A76F0Fa5c0184cf36Fe5313DB0e",
+    "fees_distribution": {
+      "rotations": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "appealRounds": 3,
+      "totalMessageFees": 0,
+      "executionConsumed": 0,
+      "receiptFeeMaxGasPrice": 300000000,
+      "storageFeeMaxGasPrice": 300000000,
+      "maxPriceGenPerTimeUnit": 2,
+      "executionBudgetPerRound": "25000000000000000",
+      "leaderTimeunitsAllocation": 100,
+      "validatorTimeunitsAllocation": 200
+    },
+    "message_allocations_count": 0
+  },
+  "status": 7,
+  "txExecutionResult": 1,
+  "txExecutionResultName": "FINISHED_WITH_RETURN",
+  "fees": {
+    "deposit": "175000000000112794",
+    "userValue": "0",
+    "distribution": {
+      "leaderTimeunitsAllocation": "100",
+      "validatorTimeunitsAllocation": "200",
+      "appealRounds": "3",
+      "executionBudgetPerRound": "25000000000000000",
+      "totalMessageFees": "0",
+      "rotations": [
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "maxPriceGenPerTimeUnit": "2",
+      "storageFeeMaxGasPrice": "300000000",
+      "receiptFeeMaxGasPrice": "300000000"
+    },
+    "locked": {
+      "genPerTimeUnit": "1",
+      "storageUnitPrice": "250000000",
+      "receiptGasPrice": "250000000"
+    },
+    "consumed": {
+      "executionConsumed": "78935000000000",
+      "storageFeeUsed": "307000000000",
+      "messageFeesConsumed": "0",
+      "messageFeesBudgetTotal": "0",
+      "leaderTimeunitsUsed": "1",
+      "validatorTimeunitsUsed": "3",
+      "perRound": [
+        {
+          "round": 0,
+          "consensusRound": "Accepted",
+          "leaderTimeunits": "1",
+          "validatorTimeunits": "3",
+          "maxValidatorTimeunits": "1"
+        }
+      ]
+    }
+  },
+  "result": 1,
+  "consensus_data": {
+    "votes": {
+      "0x8D32eb5D0207f7E230C45e7BF0D14B2ED5DA3028": "agree",
+      "0xA793D9dc0ED9edC1f9F732bB68b5D3AFA934F52D": "idle",
+      "0xE4E106086F167D75E2270fa5f3680f6ac598d179": "idle",
+      "0xE52dDB85587585930b1E5f1Fe88fef21CcA49829": "agree",
+      "0xcEf1Baa172d0b4D99Dcc505B36332F26D1088025": "agree"
+    },
+    "leader_receipt": [
+      {
+        "execution_result": "SUCCESS",
+        "genvm_result": {
+          "stderr": "",
+          "stdout": "",
+          "raw_error": null,
+          "error_code": null,
+          "error_description": null,
+          "data_fees_consumed": {
+            "message_fee": 0,
+            "nondet_outputs": 64,
+            "execution_data_gas": 79159000000000,
+            "submitted_messages": 0,
+            "submitted_messages_count": 0
+          },
+          "data_fees_remaining": {
+            "message_fee": 0,
+            "nondet_outputs": "115792089237316195423570985008687907853269984665640564039457584007913129639871",
+            "execution_data_gas": "24920841000000000",
+            "submitted_messages": "115792089237316195423570985008687907853269984665640564039457584007913129639935",
+            "submitted_messages_count": 20
+          },
+          "fee_policy_snapshot": {
+            "intrinsic_gas": 21000,
+            "extra_exec_gas": 210000,
+            "gen_per_time_unit": 1,
+            "receipt_gas_price": 250000000,
+            "storage_unit_price": 250000000,
+            "bootloader_overhead": 60000,
+            "max_messages_per_tx": 0,
+            "gas_per_changed_slot": 1000,
+            "max_commit_timeunits": 600,
+            "max_eq_outputs_bytes": 0,
+            "min_commit_timeunits": 30,
+            "calldata_gas_per_byte": 16,
+            "max_propose_timeunits": 600,
+            "min_propose_timeunits": 30,
+            "receipt_wrapper_bytes": 1024,
+            "time_unit_overlay_bps": 1500,
+            "max_allocated_messages": 20,
+            "min_external_gas_limit": 0,
+            "fixed_message_reveal_gas": 100000,
+            "fixed_propose_receipt_gas": 210000,
+            "max_allocation_tree_depth": 5,
+            "default_external_gas_limit": 500000,
+            "max_submitted_messages_bytes": 0,
+            "enforce_v06_submission_config": 1
+          },
+          "data_fee_bucket_totals": {
+            "message_fee": 0,
+            "nondet_outputs": "115792089237316195423570985008687907853269984665640564039457584007913129639935",
+            "execution_data_gas": "25000000000000000",
+            "submitted_messages": "115792089237316195423570985008687907853269984665640564039457584007913129639935",
+            "submitted_messages_count": 20
+          }
+        },
+        "mode": "leader",
+        "vote": null,
+        "node_config": {
+          "stake": 100,
+          "address": "0xA793D9dc0ED9edC1f9F732bB68b5D3AFA934F52D",
+          "primary_model": {
+            "model": "policy:dev-grok",
+            "config": {
+              "policy_ir": [
+                "policy",
+                [
+                  "and",
+                  [
+                    "meets_req"
+                  ],
+                  [
+                    "not",
+                    [
+                      "is",
+                      "disabled"
+                    ]
+                  ],
+                  [
+                    "cmp",
+                    "success_rate",
+                    "ge",
+                    0.2
+                  ],
+                  [
+                    "or",
+                    [
+                      "family_eq",
+                      "grok-4.3"
+                    ],
+                    [
+                      "family_eq",
+                      "gpt-5.4"
+                    ],
+                    [
+                      "family_eq",
+                      "gemini-3-flash-preview"
+                    ]
+                  ]
+                ],
+                [
+                  "add",
+                  [
+                    "scale",
+                    100,
+                    [
+                      "gate",
+                      [
+                        "family_eq",
+                        "grok-4.3"
+                      ],
+                      [
+                        "lit",
+                        1
+                      ]
+                    ]
+                  ],
+                  [
+                    "scale",
+                    10,
+                    [
+                      "gate",
+                      [
+                        "family_eq",
+                        "gpt-5.4"
+                      ],
+                      [
+                        "lit",
+                        1
+                      ]
+                    ]
+                  ],
+                  [
+                    "scale",
+                    1,
+                    [
+                      "gate",
+                      [
+                        "family_eq",
+                        "gemini-3-flash-preview"
+                      ],
+                      [
+                        "lit",
+                        1
+                      ]
+                    ]
+                  ],
+                  [
+                    "scale",
+                    0.25,
+                    [
+                      "neg",
+                      [
+                        "normalize",
+                        [
+                          "field",
+                          "price_in"
+                        ]
+                      ]
+                    ]
+                  ],
+                  [
+                    "scale",
+                    0.45,
+                    [
+                      "neg",
+                      [
+                        "normalize",
+                        [
+                          "field",
+                          "price_out"
+                        ]
+                      ]
+                    ]
+                  ],
+                  [
+                    "scale",
+                    0.2,
+                    [
+                      "field",
+                      "success_rate"
+                    ]
+                  ],
+                  [
+                    "scale",
+                    0.1,
+                    [
+                      "neg",
+                      [
+                        "normalize",
+                        [
+                          "field",
+                          "latency_ms"
+                        ]
+                      ]
+                    ]
+                  ]
+                ],
+                [
+                  "argmax"
+                ],
+                [
+                  "id"
+                ],
+                [
+                  "always",
+                  {
+                    "action": "next_candidate"
+                  }
+                ]
+              ],
+              "timeout_ms": 22000,
+              "first_token_timeout_ms": 7000
+            },
+            "plugin": "openai-compatible",
+            "provider": "llm-router",
+            "plugin_config": {
+              "api_url": "https://router.ygr.ai",
+              "api_key_env_var": "LLM_ROUTER_API_KEY"
+            },
+            "fallback_validator": "0xE4E106086F167D75E2270fa5f3680f6ac598d179"
+          },
+          "secondary_model": {
+            "model": "google/gemini-3-flash-preview",
+            "config": {
+              "models": [
+                "google/gemini-3-flash-preview",
+                "openai/gpt-5.4",
+                "anthropic/claude-sonnet-4.6"
+              ]
+            },
+            "plugin": "openai-compatible",
+            "address": "0xE4E106086F167D75E2270fa5f3680f6ac598d179",
+            "provider": "openrouter",
+            "plugin_config": {
+              "api_url": "https://openrouter.ai/api",
+              "api_key_env_var": "OPENROUTERAPIKEY"
+            }
+          }
+        },
+        "calldata": {
+          "readable": "{}"
+        },
+        "eq_outputs": {},
+        "result": {
+          "status": "return",
+          "payload": {
+            "readable": "null"
+          }
+        }
+      },
+      {
+        "execution_result": "ERROR",
+        "genvm_result": {
+          "stderr": "Validator execution cancelled after quorum",
+          "stdout": "",
+          "raw_error": {
+            "fatal": false,
+            "causes": [
+              "VALIDATOR_QUORUM_REACHED"
+            ]
+          },
+          "error_code": "CONSENSUS_VALIDATOR_QUORUM_REACHED"
+        },
+        "mode": "validator",
+        "vote": "idle",
+        "node_config": {
+          "id": 194,
+          "model": "policy:dev-grok",
+          "stake": 100,
+          "config": {
+            "policy_ir": [
+              "policy",
+              [
+                "and",
+                [
+                  "meets_req"
+                ],
+                [
+                  "not",
+                  [
+                    "is",
+                    "disabled"
+                  ]
+                ],
+                [
+                  "cmp",
+                  "success_rate",
+                  "ge",
+                  0.2
+                ],
+                [
+                  "or",
+                  [
+                    "family_eq",
+                    "grok-4.3"
+                  ],
+                  [
+                    "family_eq",
+                    "gpt-5.4"
+                  ],
+                  [
+                    "family_eq",
+                    "gemini-3-flash-preview"
+                  ]
+                ]
+              ],
+              [
+                "add",
+                [
+                  "scale",
+                  100,
+                  [
+                    "gate",
+                    [
+                      "family_eq",
+                      "grok-4.3"
+                    ],
+                    [
+                      "lit",
+                      1
+                    ]
+                  ]
+                ],
+                [
+                  "scale",
+                  10,
+                  [
+                    "gate",
+                    [
+                      "family_eq",
+                      "gpt-5.4"
+                    ],
+                    [
+                      "lit",
+                      1
+                    ]
+                  ]
+                ],
+                [
+                  "scale",
+                  1,
+                  [
+                    "gate",
+                    [
+                      "family_eq",
+                      "gemini-3-flash-preview"
+                    ],
+                    [
+                      "lit",
+                      1
+                    ]
+                  ]
+                ],
+                [
+                  "scale",
+                  0.25,
+                  [
+                    "neg",
+                    [
+                      "normalize",
+                      [
+                        "field",
+                        "price_in"
+                      ]
+                    ]
+                  ]
+                ],
+                [
+                  "scale",
+                  0.45,
+                  [
+                    "neg",
+                    [
+                      "normalize",
+                      [
+                        "field",
+                        "price_out"
+                      ]
+                    ]
+                  ]
+                ],
+                [
+                  "scale",
+                  0.2,
+                  [
+                    "field",
+                    "success_rate"
+                  ]
+                ],
+                [
+                  "scale",
+                  0.1,
+                  [
+                    "neg",
+                    [
+                      "normalize",
+                      [
+                        "field",
+                        "latency_ms"
+                      ]
+                    ]
+                  ]
+                ]
+              ],
+              [
+                "argmax"
+              ],
+              [
+                "id"
+              ],
+              [
+                "always",
+                {
+                  "action": "next_candidate"
+                }
+              ]
+            ],
+            "timeout_ms": 22000,
+            "first_token_timeout_ms": 7000
+          },
+          "plugin": "openai-compatible",
+          "address": "0xA793D9dc0ED9edC1f9F732bB68b5D3AFA934F52D",
+          "provider": "llm-router",
+          "plugin_config": {
+            "api_url": "https://router.ygr.ai",
+            "api_key_env_var": "LLM_ROUTER_API_KEY"
+          },
+          "fallback_validator": "0xE4E106086F167D75E2270fa5f3680f6ac598d179"
+        },
+        "result": {
+          "status": "contract_error",
+          "payload": "idle"
+        }
+      }
+    ],
+    "validators": [
+      {
+        "execution_result": "SUCCESS",
+        "genvm_result": {
+          "stderr": "",
+          "stdout": "",
+          "raw_error": null,
+          "error_code": null,
+          "error_description": null,
+          "data_fees_consumed": {
+            "message_fee": 0,
+            "nondet_outputs": 64,
+            "execution_data_gas": 79159000000000,
+            "submitted_messages": 0,
+            "submitted_messages_count": 0
+          },
+          "data_fees_remaining": {
+            "message_fee": 0,
+            "nondet_outputs": "115792089237316195423570985008687907853269984665640564039457584007913129639871",
+            "execution_data_gas": "24920841000000000",
+            "submitted_messages": "115792089237316195423570985008687907853269984665640564039457584007913129639935",
+            "submitted_messages_count": 20
+          },
+          "data_fee_bucket_totals": {
+            "message_fee": 0,
+            "nondet_outputs": "115792089237316195423570985008687907853269984665640564039457584007913129639935",
+            "execution_data_gas": "25000000000000000",
+            "submitted_messages": "115792089237316195423570985008687907853269984665640564039457584007913129639935",
+            "submitted_messages_count": 20
+          }
+        },
+        "mode": "validator",
+        "vote": "agree",
+        "node_config": {
+          "stake": 100,
+          "address": "0xcEf1Baa172d0b4D99Dcc505B36332F26D1088025",
+          "primary_model": {
+            "model": "policy:dev-sonnet",
+            "config": {
+              "policy_ir": [
+                "policy",
+                [
+                  "and",
+                  [
+                    "meets_req"
+                  ],
+                  [
+                    "not",
+                    [
+                      "is",
+                      "disabled"
+                    ]
+                  ],
+                  [
+                    "cmp",
+                    "success_rate",
+                    "ge",
+                    0.2
+                  ],
+                  [
+                    "or",
+                    [
+                      "family_eq",
+                      "claude-sonnet-4-6"
+                    ],
+                    [
+                      "family_eq",
+                      "gpt-5.4"
+                    ],
+                    [
+                      "family_eq",
+                      "gemini-3-flash-preview"
+                    ]
+                  ]
+                ],
+                [
+                  "add",
+                  [
+                    "scale",
+                    100,
+                    [
+                      "gate",
+                      [
+                        "family_eq",
+                        "claude-sonnet-4-6"
+                      ],
+                      [
+                        "lit",
+                        1
+                      ]
+                    ]
+                  ],
+                  [
+                    "scale",
+                    10,
+                    [
+                      "gate",
+                      [
+                        "family_eq",
+                        "gpt-5.4"
+                      ],
+                      [
+                        "lit",
+                        1
+                      ]
+                    ]
+                  ],
+                  [
+                    "scale",
+                    1,
+                    [
+                      "gate",
+                      [
+                        "family_eq",
+                        "gemini-3-flash-preview"
+                      ],
+                      [
+                        "lit",
+                        1
+                      ]
+                    ]
+                  ],
+                  [
+                    "scale",
+                    0.25,
+                    [
+                      "neg",
+                      [
+                        "normalize",
+                        [
+                          "field",
+                          "price_in"
+                        ]
+                      ]
+                    ]
+                  ],
+                  [
+                    "scale",
+                    0.45,
+                    [
+                      "neg",
+                      [
+                        "normalize",
+                        [
+                          "field",
+                          "price_out"
+                        ]
+                      ]
+                    ]
+                  ],
+                  [
+                    "scale",
+                    0.2,
+                    [
+                      "field",
+                      "success_rate"
+                    ]
+                  ],
+                  [
+                    "scale",
+                    0.1,
+                    [
+                      "neg",
+                      [
+                        "normalize",
+                        [
+                          "field",
+                          "latency_ms"
+                        ]
+                      ]
+                    ]
+                  ]
+                ],
+                [
+                  "argmax"
+                ],
+                [
+                  "id"
+                ],
+                [
+                  "always",
+                  {
+                    "action": "next_candidate"
+                  }
+                ]
+              ],
+              "timeout_ms": 22000,
+              "first_token_timeout_ms": 7000
+            },
+            "plugin": "openai-compatible",
+            "provider": "llm-router",
+            "plugin_config": {
+              "api_url": "https://router.ygr.ai",
+              "api_key_env_var": "LLM_ROUTER_API_KEY"
+            },
+            "fallback_validator": "0x8142E5D1b04f84c3cD995C25AAe31B31F8e0379E"
+          },
+          "secondary_model": {
+            "model": "openai/gpt-5.4",
+            "config": {
+              "models": [
+                "openai/gpt-5.4",
+                "anthropic/claude-sonnet-4.6",
+                "google/gemini-3-flash-preview"
+              ]
+            },
+            "plugin": "openai-compatible",
+            "address": "0x8142E5D1b04f84c3cD995C25AAe31B31F8e0379E",
+            "provider": "openrouter",
+            "plugin_config": {
+              "api_url": "https://openrouter.ai/api",
+              "api_key_env_var": "OPENROUTERAPIKEY"
+            }
+          }
+        }
+      },
+      {
+        "execution_result": "ERROR",
+        "genvm_result": {
+          "stderr": "Validator execution cancelled after quorum",
+          "stdout": "",
+          "raw_error": {
+            "fatal": false,
+            "causes": [
+              "VALIDATOR_QUORUM_REACHED"
+            ]
+          },
+          "error_code": "CONSENSUS_VALIDATOR_QUORUM_REACHED"
+        },
+        "mode": "validator",
+        "vote": "idle",
+        "node_config": {
+          "id": 199,
+          "model": "google/gemini-3-flash-preview",
+          "stake": 100,
+          "config": {
+            "models": [
+              "google/gemini-3-flash-preview",
+              "openai/gpt-5.4",
+              "anthropic/claude-sonnet-4.6"
+            ]
+          },
+          "plugin": "openai-compatible",
+          "address": "0xE4E106086F167D75E2270fa5f3680f6ac598d179",
+          "provider": "openrouter",
+          "plugin_config": {
+            "api_url": "https://openrouter.ai/api",
+            "api_key_env_var": "OPENROUTERAPIKEY"
+          },
+          "fallback_validator": "0x5A4230B920b18c4AFD3A28F99Eae669B7F2cdC1e"
+        }
+      },
+      {
+        "execution_result": "SUCCESS",
+        "genvm_result": {
+          "stderr": "",
+          "stdout": "",
+          "raw_error": null,
+          "error_code": null,
+          "error_description": null,
+          "data_fees_consumed": {
+            "message_fee": 0,
+            "nondet_outputs": 64,
+            "execution_data_gas": 79159000000000,
+            "submitted_messages": 0,
+            "submitted_messages_count": 0
+          },
+          "data_fees_remaining": {
+            "message_fee": 0,
+            "nondet_outputs": "115792089237316195423570985008687907853269984665640564039457584007913129639871",
+            "execution_data_gas": "24920841000000000",
+            "submitted_messages": "115792089237316195423570985008687907853269984665640564039457584007913129639935",
+            "submitted_messages_count": 20
+          },
+          "data_fee_bucket_totals": {
+            "message_fee": 0,
+            "nondet_outputs": "115792089237316195423570985008687907853269984665640564039457584007913129639935",
+            "execution_data_gas": "25000000000000000",
+            "submitted_messages": "115792089237316195423570985008687907853269984665640564039457584007913129639935",
+            "submitted_messages_count": 20
+          }
+        },
+        "mode": "validator",
+        "vote": "agree",
+        "node_config": {
+          "stake": 100,
+          "address": "0x8D32eb5D0207f7E230C45e7BF0D14B2ED5DA3028",
+          "primary_model": {
+            "model": "policy:dev-sonnet",
+            "config": {
+              "policy_ir": [
+                "policy",
+                [
+                  "and",
+                  [
+                    "meets_req"
+                  ],
+                  [
+                    "not",
+                    [
+                      "is",
+                      "disabled"
+                    ]
+                  ],
+                  [
+                    "cmp",
+                    "success_rate",
+                    "ge",
+                    0.2
+                  ],
+                  [
+                    "or",
+                    [
+                      "family_eq",
+                      "claude-sonnet-4-6"
+                    ],
+                    [
+                      "family_eq",
+                      "gpt-5.4"
+                    ],
+                    [
+                      "family_eq",
+                      "gemini-3-flash-preview"
+                    ]
+                  ]
+                ],
+                [
+                  "add",
+                  [
+                    "scale",
+                    100,
+                    [
+                      "gate",
+                      [
+                        "family_eq",
+                        "claude-sonnet-4-6"
+                      ],
+                      [
+                        "lit",
+                        1
+                      ]
+                    ]
+                  ],
+                  [
+                    "scale",
+                    10,
+                    [
+                      "gate",
+                      [
+                        "family_eq",
+                        "gpt-5.4"
+                      ],
+                      [
+                        "lit",
+                        1
+                      ]
+                    ]
+                  ],
+                  [
+                    "scale",
+                    1,
+                    [
+                      "gate",
+                      [
+                        "family_eq",
+                        "gemini-3-flash-preview"
+                      ],
+                      [
+                        "lit",
+                        1
+                      ]
+                    ]
+                  ],
+                  [
+                    "scale",
+                    0.25,
+                    [
+                      "neg",
+                      [
+                        "normalize",
+                        [
+                          "field",
+                          "price_in"
+                        ]
+                      ]
+                    ]
+                  ],
+                  [
+                    "scale",
+                    0.45,
+                    [
+                      "neg",
+                      [
+                        "normalize",
+                        [
+                          "field",
+                          "price_out"
+                        ]
+                      ]
+                    ]
+                  ],
+                  [
+                    "scale",
+                    0.2,
+                    [
+                      "field",
+                      "success_rate"
+                    ]
+                  ],
+                  [
+                    "scale",
+                    0.1,
+                    [
+                      "neg",
+                      [
+                        "normalize",
+                        [
+                          "field",
+                          "latency_ms"
+                        ]
+                      ]
+                    ]
+                  ]
+                ],
+                [
+                  "argmax"
+                ],
+                [
+                  "id"
+                ],
+                [
+                  "always",
+                  {
+                    "action": "next_candidate"
+                  }
+                ]
+              ],
+              "timeout_ms": 22000,
+              "first_token_timeout_ms": 7000
+            },
+            "plugin": "openai-compatible",
+            "provider": "llm-router",
+            "plugin_config": {
+              "api_url": "https://router.ygr.ai",
+              "api_key_env_var": "LLM_ROUTER_API_KEY"
+            },
+            "fallback_validator": "0xcF5Fd792Df0Dc9d297af75c82B4A0011e8FA1A4A"
+          },
+          "secondary_model": {
+            "model": "openai/gpt-5.4",
+            "config": {
+              "models": [
+                "openai/gpt-5.4",
+                "anthropic/claude-sonnet-4.6",
+                "google/gemini-3-flash-preview"
+              ]
+            },
+            "plugin": "openai-compatible",
+            "address": "0xcF5Fd792Df0Dc9d297af75c82B4A0011e8FA1A4A",
+            "provider": "openrouter",
+            "plugin_config": {
+              "api_url": "https://openrouter.ai/api",
+              "api_key_env_var": "OPENROUTERAPIKEY"
+            }
+          }
+        }
+      },
+      {
+        "execution_result": "SUCCESS",
+        "genvm_result": {
+          "stderr": "",
+          "stdout": "",
+          "raw_error": null,
+          "error_code": null,
+          "error_description": null,
+          "data_fees_consumed": {
+            "message_fee": 0,
+            "nondet_outputs": 64,
+            "execution_data_gas": 79159000000000,
+            "submitted_messages": 0,
+            "submitted_messages_count": 0
+          },
+          "data_fees_remaining": {
+            "message_fee": 0,
+            "nondet_outputs": "115792089237316195423570985008687907853269984665640564039457584007913129639871",
+            "execution_data_gas": "24920841000000000",
+            "submitted_messages": "115792089237316195423570985008687907853269984665640564039457584007913129639935",
+            "submitted_messages_count": 20
+          },
+          "data_fee_bucket_totals": {
+            "message_fee": 0,
+            "nondet_outputs": "115792089237316195423570985008687907853269984665640564039457584007913129639935",
+            "execution_data_gas": "25000000000000000",
+            "submitted_messages": "115792089237316195423570985008687907853269984665640564039457584007913129639935",
+            "submitted_messages_count": 20
+          }
+        },
+        "mode": "validator",
+        "vote": "agree",
+        "node_config": {
+          "stake": 100,
+          "address": "0xE52dDB85587585930b1E5f1Fe88fef21CcA49829",
+          "primary_model": {
+            "model": "anthropic/claude-sonnet-4.6",
+            "config": {
+              "models": [
+                "anthropic/claude-sonnet-4.6",
+                "openai/gpt-5.4",
+                "google/gemini-3-flash-preview"
+              ]
+            },
+            "plugin": "openai-compatible",
+            "provider": "openrouter",
+            "plugin_config": {
+              "api_url": "https://openrouter.ai/api",
+              "api_key_env_var": "OPENROUTERAPIKEY"
+            },
+            "fallback_validator": "0x8D32eb5D0207f7E230C45e7BF0D14B2ED5DA3028"
+          },
+          "secondary_model": {
+            "model": "policy:dev-sonnet",
+            "config": {
+              "policy_ir": [
+                "policy",
+                [
+                  "and",
+                  [
+                    "meets_req"
+                  ],
+                  [
+                    "not",
+                    [
+                      "is",
+                      "disabled"
+                    ]
+                  ],
+                  [
+                    "cmp",
+                    "success_rate",
+                    "ge",
+                    0.2
+                  ],
+                  [
+                    "or",
+                    [
+                      "family_eq",
+                      "claude-sonnet-4-6"
+                    ],
+                    [
+                      "family_eq",
+                      "gpt-5.4"
+                    ],
+                    [
+                      "family_eq",
+                      "gemini-3-flash-preview"
+                    ]
+                  ]
+                ],
+                [
+                  "add",
+                  [
+                    "scale",
+                    100,
+                    [
+                      "gate",
+                      [
+                        "family_eq",
+                        "claude-sonnet-4-6"
+                      ],
+                      [
+                        "lit",
+                        1
+                      ]
+                    ]
+                  ],
+                  [
+                    "scale",
+                    10,
+                    [
+                      "gate",
+                      [
+                        "family_eq",
+                        "gpt-5.4"
+                      ],
+                      [
+                        "lit",
+                        1
+                      ]
+                    ]
+                  ],
+                  [
+                    "scale",
+                    1,
+                    [
+                      "gate",
+                      [
+                        "family_eq",
+                        "gemini-3-flash-preview"
+                      ],
+                      [
+                        "lit",
+                        1
+                      ]
+                    ]
+                  ],
+                  [
+                    "scale",
+                    0.25,
+                    [
+                      "neg",
+                      [
+                        "normalize",
+                        [
+                          "field",
+                          "price_in"
+                        ]
+                      ]
+                    ]
+                  ],
+                  [
+                    "scale",
+                    0.45,
+                    [
+                      "neg",
+                      [
+                        "normalize",
+                        [
+                          "field",
+                          "price_out"
+                        ]
+                      ]
+                    ]
+                  ],
+                  [
+                    "scale",
+                    0.2,
+                    [
+                      "field",
+                      "success_rate"
+                    ]
+                  ],
+                  [
+                    "scale",
+                    0.1,
+                    [
+                      "neg",
+                      [
+                        "normalize",
+                        [
+                          "field",
+                          "latency_ms"
+                        ]
+                      ]
+                    ]
+                  ]
+                ],
+                [
+                  "argmax"
+                ],
+                [
+                  "id"
+                ],
+                [
+                  "always",
+                  {
+                    "action": "next_candidate"
+                  }
+                ]
+              ],
+              "timeout_ms": 22000,
+              "first_token_timeout_ms": 7000
+            },
+            "plugin": "openai-compatible",
+            "address": "0x8D32eb5D0207f7E230C45e7BF0D14B2ED5DA3028",
+            "provider": "llm-router",
+            "plugin_config": {
+              "api_url": "https://router.ygr.ai",
+              "api_key_env_var": "LLM_ROUTER_API_KEY"
+            }
+          }
+        }
+      }
+    ]
+  },
+  "gaslimit": 44,
+  "nonce": 44,
+  "created_at": "2026-09-24T02:38:00.226793+00:00",
+  "leader_only": false,
+  "execution_mode": "NORMAL",
+  "origin_address": "0x0f0179E068ba6C7629d28e2c1Bf73D0A13f9f685",
+  "triggered_on": null,
+  "appeal_validators_timeout": false,
+  "sim_config": {
+    "signed_rollup_transaction": "0xf99c512c80830f424094b7278a61aa25c888815afc32ad3cc52ff24fe57588026db992a3b3389ab99be435a251fb00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000f0179e068ba6c7629d28e2c1bf73d0a13f9f685000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000050000000000000000000000000000000000000000000000000000000000000003000000000000000000000000000000000000000000000000000000006ab49b0f00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000014000000000000000000000000000000000000000000000000000000000000003200000000000000000000000000000000000000000000000000000000000009ba0000000000000000000000000000000000000000000000000000000000000006400000000000000000000000000000000000000000000000000000000000000c800000000000000000000000000000000000000000000000000000000000000030000000000000000000000000000000000000000000000000058d15e1762800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000014000000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000011e1a3000000000000000000000000000000000000000000000000000000000011e1a300000000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000009856f99853b9984e23207b2022446570656e6473223a202270792d67656e6c617965723a356a796367653471386b32333436326a746230623966796579317339717a393238737a326e627264396d67347378716732716e6722207d0a222222526174636865742072656c6561736520676f7665726e616e63652e0a0a4349206578656375746573207468652045564d207265706c61792e205468697320496e74656c6c6967656e7420436f6e747261637420696e646570656e64656e746c79207265747269657665730a686173682d70696e6e6564206465636c61726174696f6e20616e64207265706c6179206172746966616374732c20726561636865732076616c696461746f7220636f6e73656e737573206f6e0a74686569722072656c6174696f6e736869702c207468656e206170706c696573207468652066726f7a656e2072656c6561736520616e642064656d6f6e7374726174696f6e2d626f6e640a72756c65732e204974206e657665722065786563757465732063616e6469646174652045564d2062797465636f6465206f7220612070726f787920757067726164652e0a2222220a0a696d706f727420686173686c69620a696d706f7274206a736f6e0a696d706f72742072650a0a696d706f72742067656e6c6179657220617320676c0a66726f6d2067656e6c617965722e747970657320696d706f727420416464726573732c20753235360a66726f6d2067656e6c617965722e73746f7261676520696d706f72742044796e41727261792c20547265654d61700a0a0a56455253494f4e203d2022726174636865742f312e302e35220a504f4c4943595f56455253494f4e203d2022726174636865742d706f6c6963792f31220a0a4452414654203d20224452414654220a5345414c4544203d20225345414c4544220a48454c44203d202248454c44220a414456414e434544203d2022414456414e434544220a524f4c4c45445f4241434b203d2022524f4c4c45445f4241434b220a43414e43454c4c4544203d202243414e43454c4c4544220a5445524d494e414c5f535441544553203d2028414456414e4345442c20524f4c4c45445f4241434b2c2043414e43454c4c4544290a0a414456414e4345203d2022414456414e4345220a484f4c44203d2022484f4c44220a524f4c4c4241434b203d2022524f4c4c4241434b220a5645524449435453203d2028414456414e43452c20484f4c442c20524f4c4c4241434b290a434f4d504c455445203d2022434f4d504c455445220a494e434f4d504c455445203d2022494e434f4d504c455445220a434f4e545241444943544f5259203d2022434f4e545241444943544f5259220a45564944454e43455f5354415455534553203d2028434f4d504c4554452c20494e434f4d504c4554452c20434f4e545241444943544f5259290a0a4445434c41524154494f4e5f494453203d20280a20202020224445434c2d534f55524345222c0a20202020224445434c2d53544f52414745222c0a20202020224445434c2d5045524d495353494f4e53222c0a20202020224445434c2d45585445524e414c2d43414c4c53222c0a20202020224445434c2d4341504142494c4954494553222c0a20202020224445434c2d4d4947524154494f4e222c0a20202020224445434c2d524f4c4c4241434b222c0a20202020224445434c2d434f52505553222c0a290a494e56415249414e545f494453203d20280a2020202022494e562d42414c414e43452d434f4e534552564154494f4e222c0a2020202022494e562d4e4f2d554e4445434c415245442d41444d494e222c0a2020202022494e562d5749544844524157414c2d424f554e44222c0a290a45564944454e43455f494453203d204445434c41524154494f4e5f494453202b202822434f5645524147452d52455155495245442d434f52505553222c290a0a4552524f525f4558504543544544203d20225b425553494e4553535d220a4552524f525f45585445524e414c203d20225b45585445524e414c5f3458585d220a4552524f525f5452414e5349454e54203d20225b5452414e5349454e545f3558585d220a4552524f525f5452414e5349454e545f4c4c4d203d20225b5452414e5349454e545f4c4c4d5d220a4552524f525f4c4c4d203d20225b4d414c464f524d45445f4c4c4d5d220a0a4d41585f52454c4541534553203d203230300a4d41585f52454c454153455f4944203d2034380a4d41585f4a534f4e5f4348415253203d2038305f3030300a4d41585f55524c203d203531320a4d41585f484953544f52595f50414745203d2035300a4d41585f415454454d505453203d20340a4d41585f424f4e445f554e495453203d20315f3030305f3030300a4d41585f45564944454e43455f4259544553203d203430305f3030300a4d41585f45564944454e43455f4348415253203d2032345f3030300a52454c454153455f49445f5245203d2072652e636f6d70696c652872225e5b412d5a302d395d5b412d5a302d392e5f2d5d7b312c34377d2422290a484153485f5245203d2072652e636f6d70696c652872225e5b302d39612d665d7b36347d2422290a55524c5f5245203d2072652e636f6d70696c652872225e68747470733a2f2f5b5e5c733c3e5d2b2422290a0a0a646566205f6661696c287072656669783a207374722c206d6573736167653a20737472293a0a20202020726169736520676c2e766d2e557365724572726f722866227b7072656669787d207b6d6573736167657d22290a0a0a646566205f63616e6f6e6963616c5f6a736f6e2876616c756529202d3e207374723a0a2020202072657475726e206a736f6e2e64756d70732876616c75652c20736f72745f6b6579733d547275652c20736570617261746f72733d28222c222c20223a22292c20656e737572655f61736369693d46616c7365290a0a0a646566205f7368613235365f746578742876616c75653a2073747229202d3e207374723a0a2020202072657475726e20686173686c69622e7368613235362876616c75652e656e636f646528227574662d382229292e68657864696765737428290a0a0a646566205f76616c69645f75726c2876616c75653a2073747229202d3e20626f6f6c3a0a2020202072657475726e206973696e7374616e63652876616c75652c207374722920616e64206c656e2876616c756529203c3d204d41585f55524c20616e642055524c5f52452e6d617463682876616c756529206973206e6f74204e6f6e650a0a0a646566205f76616c69645f686173682876616c75653a2073747229202d3e20626f6f6c3a0a2020202072657475726e206973696e7374616e63652876616c75652c207374722920616e6420484153485f52452e6d617463682876616c75652e6c6f776572282929206973206e6f74204e6f6e650a0a0a646566205f70617273655f6a736f6e2876616c75653a207374722c206c6162656c3a2073747229202d3e20646963743a0a202020206966206e6f74206973696e7374616e63652876616c75652c2073747229206f72206e6f742076616c75652e73747269702829206f72206c656e2876616c756529203e204d41585f4a534f4e5f43484152533a0a20202020202020205f6661696c284552524f525f45585045435445442c206622494e56414c49445f7b6c6162656c7d3a20626f756e646564204a534f4e20737472696e6720726571756972656422290a202020207472793a0a20202020202020206465636f646564203d206a736f6e2e6c6f6164732876616c7565290a2020202065786365707420457863657074696f6e3a0a20202020202020205f6661696c284552524f525f45585045435445442c206622494e56414c49445f7b6c6162656c7d3a206d616c666f726d6564204a534f4e22290a202020206966206e6f74206973696e7374616e6365286465636f6465642c2064696374293a0a20202020202020205f6661696c284552524f525f45585045435445442c206622494e56414c49445f7b6c6162656c7d3a204a534f4e206f626a65637420726571756972656422290a2020202072657475726e206465636f6465640a0a0a646566205f636c65616e5f69645f6c6973742876616c75652c20616c6c6f7765642c206c6162656c3a207374722c206d696e696d756d3a20696e74203d203029202d3e206c6973743a0a202020206966206e6f74206973696e7374616e63652876616c75652c206c69737429206f72206c656e2876616c756529203e206c656e28616c6c6f776564293a0a20202020202020205f6661696c284552524f525f45585045435445442c206622494e56414c49445f7b6c6162656c7d3a206578706563746564206120626f756e646564206c69737422290a20202020636c65616e6564203d205b5d0a20202020666f72206974656d20696e2076616c75653a0a20202020202020206966206e6f74206973696e7374616e6365286974656d2c2073747229206f72206974656d206e6f7420696e20616c6c6f776564206f72206974656d20696e20636c65616e65643a0a2020202020202020202020205f6661696c284552524f525f45585045435445442c206622494e56414c49445f7b6c6162656c7d3a20756e6b6e6f776e206f72207265706561746564206964656e74696669657222290a2020202020202020636c65616e65642e617070656e64286974656d290a202020206966206c656e28636c65616e656429203c206d696e696d756d3a0a20202020202020205f6661696c284552524f525f45585045435445442c206622494e56414c49445f7b6c6162656c7d3a207265717569726564206964656e74696669657273206d697373696e6722290a2020202072657475726e20736f7274656428636c65616e6564290a0a0a646566205f76616c69646174655f706f6c696379287261773a2073747229202d3e20646963743a0a20202020706f6c696379203d205f70617273655f6a736f6e287261772c2022504f4c49435922290a20202020696620706f6c6963792e6765742822706f6c6963795f76657273696f6e222920213d20504f4c4943595f56455253494f4e3a0a20202020202020205f6661696c284552524f525f45585045435445442c2022494e56414c49445f504f4c4943595f56455253494f4e22290a20202020696620706f6c6963792e67657428226465636c61726174696f6e5f696473222920213d206c697374284445434c41524154494f4e5f494453293a0a20202020202020205f6661696c284552524f525f45585045435445442c2022494e56414c49445f4445434c41524154494f4e5f504f4c4943595f49445322290a20202020696620706f6c6963792e6765742822696e76617269616e745f696473222920213d206c69737428494e56415249414e545f494453293a0a20202020202020205f6661696c284552524f525f45585045435445442c2022494e56414c49445f494e56415249414e545f504f4c4943595f49445322290a20202020696620706f6c6963792e676574282265766964656e63655f696473222920213d206c6973742845564944454e43455f494453293a0a20202020202020205f6661696c284552524f525f45585045435445442c2022494e56414c49445f45564944454e43455f504f4c4943595f49445322290a2020202072657175697265645f6361736573203d20706f6c6963792e676574282272657175697265645f636173655f69647322290a202020206966206e6f74206973696e7374616e63652872657175697265645f63617365732c206c69737429206f72206e6f74202831203c3d206c656e2872657175697265645f636173657329203c3d203234293a0a20202020202020205f6661696c284552524f525f45585045435445442c2022494e56414c49445f52455155495245445f434153455322290a20202020636c65616e5f6361736573203d205b5d0a20202020666f7220636173655f696420696e2072657175697265645f63617365733a0a20202020202020206966206e6f74206973696e7374616e636528636173655f69642c2073747229206f72206e6f742072652e6d617463682872225e5b412d5a302d395d5b412d5a302d395f2d5d7b312c36337d24222c20636173655f6964293a0a2020202020202020202020205f6661696c284552524f525f45585045435445442c2022494e56414c49445f52455155495245445f434153455f494422290a2020202020202020696620636173655f696420696e20636c65616e5f63617365733a0a2020202020202020202020205f6661696c284552524f525f45585045435445442c20224455504c49434154455f52455155495245445f434153455f494422290a2020202020202020636c65616e5f63617365732e617070656e6428636173655f6964290a20202020696620636c65616e5f636173657320213d20736f7274656428636c65616e5f6361736573293a0a20202020202020205f6661696c284552524f525f45585045435445442c202252455155495245445f434153455f4944535f4d5553545f42455f534f5254454422290a2020202072657472795f6c696d6974203d20706f6c6963792e676574282272657472795f6c696d697422290a20202020626f6e645f616d6f756e74203d20706f6c6963792e6765742822626f6e645f616d6f756e7422290a20202020616476616e63655f72657475726e5f706374203d20706f6c6963792e6765742822616476616e63655f72657475726e5f70637422290a20202020726f6c6c6261636b5f736c6173685f706374203d20706f6c6963792e6765742822726f6c6c6261636b5f736c6173685f70637422290a202020206966206973696e7374616e63652872657472795f6c696d69742c20626f6f6c29206f72206e6f74206973696e7374616e63652872657472795f6c696d69742c20696e7429206f72206e6f74202830203c3d2072657472795f6c696d6974203c3d204d41585f415454454d505453293a0a20202020202020205f6661696c284552524f525f45585045435445442c2022494e56414c49445f52455452595f4c494d495422290a202020206966206973696e7374616e636528626f6e645f616d6f756e742c20626f6f6c29206f72206e6f74206973696e7374616e636528626f6e645f616d6f756e742c20696e7429206f72206e6f74202831203c3d20626f6e645f616d6f756e74203c3d204d41585f424f4e445f554e495453293a0a20202020202020205f6661696c284552524f525f45585045435445442c2022494e56414c49445f424f4e445f414d4f554e5422290a20202020696620616476616e63655f72657475726e5f70637420213d203130303a0a20202020202020205f6661696c284552524f525f45585045435445442c2022414456414e43455f4d5553545f52455455524e5f46554c4c5f424f4e4422290a202020206966206973696e7374616e636528726f6c6c6261636b5f736c6173685f7063742c20626f6f6c29206f72206e6f74206973696e7374616e636528726f6c6c6261636b5f736c6173685f7063742c20696e7429206f72206e6f74202830203c3d20726f6c6c6261636b5f736c6173685f706374203c3d20313030293a0a20202020202020205f6661696c284552524f525f45585045435445442c2022494e56414c49445f524f4c4c4241434b5f534c4153485f50455243454e5422290a20202020696620706f6c6963792e676574282274696d656f75745f636f6e73657175656e6365222920213d20224c4f434b45445f4e4f5f4155544f5f455850495259223a0a20202020202020205f6661696c284552524f525f45585045435445442c2022554e535550504f525445445f54494d454f55545f434f4e53455155454e434522290a2020202072657475726e207b0a202020202020202022706f6c6963795f76657273696f6e223a20504f4c4943595f56455253494f4e2c0a2020202020202020226465636c61726174696f6e5f696473223a206c697374284445434c41524154494f4e5f494453292c0a202020202020202022696e76617269616e745f696473223a206c69737428494e56415249414e545f494453292c0a20202020202020202265766964656e63655f696473223a206c6973742845564944454e43455f494453292c0a20202020202020202272657175697265645f636173655f696473223a20636c65616e5f63617365732c0a20202020202020202272657472795f6c696d6974223a2072657472795f6c696d69742c0a202020202020202022626f6e645f616d6f756e74223a20626f6e645f616d6f756e742c0a202020202020202022616476616e63655f72657475726e5f706374223a20616476616e63655f72657475726e5f7063742c0a202020202020202022726f6c6c6261636b5f736c6173685f706374223a20726f6c6c6261636b5f736c6173685f7063742c0a20202020202020202274696d656f75745f636f6e73657175656e6365223a20224c4f434b45445f4e4f5f4155544f5f455850495259222c0a202020207d0a0a0a646566205f76616c69646174655f656e76656c6f7065287261773a207374722c20706f6c6963793a206469637429202d3e20646963743a0a20202020656e76656c6f7065203d205f70617273655f6a736f6e287261772c20224445434c41524154494f4e22290a202020207265717569726564203d20280a20202020202020202272656c656173655f6964222c0a20202020202020202263757272656e745f696d706c656d656e746174696f6e5f68617368222c0a20202020202020202263616e6469646174655f696d706c656d656e746174696f6e5f68617368222c0a202020202020202022736f757263655f70726f76656e616e6365222c0a2020202020202020226275696c645f70726f76656e616e6365222c0a2020202020202020226465636c617265645f73746f726167655f6368616e676573222c0a2020202020202020226465636c617265645f7065726d697373696f6e5f6368616e676573222c0a2020202020202020226465636c617265645f65787465726e616c5f63616c6c5f6368616e676573222c0a2020202020202020226465636c617265645f6361706162696c6974696573222c0a2020202020202020227361666574795f696e76617269616e7473222c0a2020202020202020226d6967726174696f6e5f70726f636564757265222c0a202020202020202022726f6c6c6261636b5f70726f636564757265222c0a2020202020202020227265706c61795f64617461736574222c0a202020202020202022706f6c6963795f76657273696f6e222c0a20202020202020202272657472795f6c696d6974222c0a202020202020202022626f6e64222c0a20202020290a20202020666f72206b657920696e2072657175697265643a0a20202020202020206966206b6579206e6f7420696e20656e76656c6f70653a0a2020202020202020202020205f6661696c284552524f525f45585045435445442c2066224d495353494e475f4445434c41524154494f4e5f4649454c443a7b6b65797d22290a202020206966206e6f74205f76616c69645f686173682873747228656e76656c6f70652e676574282263757272656e745f696d706c656d656e746174696f6e5f68617368222c20222229292e6c6f7765722829293a0a20202020202020205f6661696c284552524f525f45585045435445442c2022494e56414c49445f43555252454e545f494d504c454d454e544154494f4e5f4841534822290a202020206966206e6f74205f76616c69645f686173682873747228656e76656c6f70652e676574282263616e6469646174655f696d706c656d656e746174696f6e5f68617368222c20222229292e6c6f7765722829293a0a20202020202020205f6661696c284552524f525f45585045435445442c2022494e56414c49445f43414e4449444154455f494d504c454d454e544154494f4e5f4841534822290a20202020666f72206b657920696e202822736f757263655f70726f76656e616e6365222c20226275696c645f70726f76656e616e6365222c20227265706c61795f64617461736574222c2022626f6e6422293a0a20202020202020206966206e6f74206973696e7374616e636528656e76656c6f70652e676574286b6579292c2064696374293a0a2020202020202020202020205f6661696c284552524f525f45585045435445442c206622494e56414c49445f4445434c41524154494f4e5f4649454c443a7b6b65797d22290a20202020666f72206b657920696e20280a2020202020202020226465636c617265645f73746f726167655f6368616e676573222c0a2020202020202020226465636c617265645f7065726d697373696f6e5f6368616e676573222c0a2020202020202020226465636c617265645f65787465726e616c5f63616c6c5f6368616e676573222c0a2020202020202020226465636c617265645f6361706162696c6974696573222c0a20202020293a0a202020202020202076616c756573203d20656e76656c6f70652e676574286b6579290a20202020202020206966206e6f74206973696e7374616e63652876616c7565732c206c69737429206f72206c656e2876616c75657329203e2033323a0a2020202020202020202020205f6661696c284552524f525f45585045435445442c206622494e56414c49445f4445434c41524154494f4e5f4c4953543a7b6b65797d22290a2020202020202020666f72206974656d20696e2076616c7565733a0a2020202020202020202020206966206e6f74206973696e7374616e6365286974656d2c20287374722c20646963742929206f72206c656e285f63616e6f6e6963616c5f6a736f6e286974656d2929203e20315f3030303a0a202020202020202020202020202020205f6661696c284552524f525f45585045435445442c206622494e56414c49445f4445434c41524154494f4e5f4954454d3a7b6b65797d22290a20202020696e76617269616e745f696473203d205f636c65616e5f69645f6c69737428656e76656c6f70652e67657428227361666574795f696e76617269616e747322292c20494e56415249414e545f4944532c20225341464554595f494e56415249414e545322290a20202020696620696e76617269616e745f69647320213d20736f7274656428494e56415249414e545f494453293a0a20202020202020205f6661696c284552524f525f45585045435445442c2022414c4c5f52455155495245445f494e56415249414e54535f4d5553545f42455f4445434c4152454422290a20202020666f72206b657920696e2028226d6967726174696f6e5f70726f636564757265222c2022726f6c6c6261636b5f70726f63656475726522293a0a20202020202020206966206e6f74206973696e7374616e636528656e76656c6f70652e676574286b6579292c2073747229206f72206e6f7420656e76656c6f70655b6b65795d2e73747269702829206f72206c656e28656e76656c6f70655b6b65795d29203e20335f3030303a0a2020202020202020202020205f6661696c284552524f525f45585045435445442c206622494e56414c49445f4445434c41524154494f4e5f4649454c443a7b6b65797d22290a20202020696620656e76656c6f70652e6765742822706f6c6963795f76657273696f6e222920213d20706f6c6963795b22706f6c6963795f76657273696f6e225d3a0a20202020202020205f6661696c284552524f525f45585045435445442c20224445434c41524154494f4e5f504f4c4943595f56455253494f4e5f4d49534d4154434822290a20202020696620656e76656c6f70652e676574282272657472795f6c696d6974222920213d20706f6c6963795b2272657472795f6c696d6974225d3a0a20202020202020205f6661696c284552524f525f45585045435445442c20224445434c41524154494f4e5f52455452595f4c494d49545f4d49534d4154434822290a20202020626f6e64203d20656e76656c6f70655b22626f6e64225d0a20202020666f72206b65792c20706f6c6963795f6b657920696e20280a20202020202020202822616d6f756e74222c2022626f6e645f616d6f756e7422292c0a20202020202020202822616476616e63655f72657475726e5f706374222c2022616476616e63655f72657475726e5f70637422292c0a20202020202020202822726f6c6c6261636b5f736c6173685f706374222c2022726f6c6c6261636b5f736c6173685f70637422292c0a20202020293a0a2020202020202020696620626f6e642e676574286b65792920213d20706f6c6963795b706f6c6963795f6b65795d3a0a2020202020202020202020205f6661696c284552524f525f45585045435445442c2066224445434c41524154494f4e5f424f4e445f52554c455f4d49534d415443483a7b6b65797d22290a2020202064617461736574203d20656e76656c6f70655b227265706c61795f64617461736574225d0a202020206966206e6f74206973696e7374616e636528646174617365742e6765742822646174617365745f696422292c2073747229206f72206e6f7420646174617365745b22646174617365745f6964225d2e73747269702829206f72206c656e28646174617365745b22646174617365745f6964225d29203e203130303a0a20202020202020205f6661696c284552524f525f45585045435445442c2022494e56414c49445f5245504c41595f444154415345545f494422290a202020206966206e6f74205f76616c69645f686173682873747228646174617365742e6765742822646174617365745f68617368222c20222229292e6c6f7765722829293a0a20202020202020205f6661696c284552524f525f45585045435445442c2022494e56414c49445f5245504c41595f444154415345545f4841534822290a20202020696620646174617365742e676574282272657175697265645f636173655f696473222920213d20706f6c6963795b2272657175697265645f636173655f696473225d3a0a20202020202020205f6661696c284552524f525f45585045435445442c20224445434c41524154494f4e5f52455155495245445f43415345535f4d49534d4154434822290a202020206966206e6f74205f76616c69645f75726c28646174617365742e67657428227265706c61795f7265706f72745f75726c222929206f72206e6f74205f76616c69645f686173682873747228646174617365742e67657428227265706c61795f7265706f72745f68617368222c20222229292e6c6f7765722829293a0a20202020202020205f6661696c284552524f525f45585045435445442c2022494e56414c49445f5245504c41595f5245504f52545f5245464552454e434522290a202020206966206e6f74205f76616c69645f75726c28646174617365742e676574282263695f7265706f72745f75726c222929206f72206e6f74205f76616c69645f686173682873747228646174617365742e676574282263695f7265706f72745f68617368222c20222229292e6c6f7765722829293a0a20202020202020205f6661696c284552524f525f45585045435445442c2022494e56414c49445f43495f5245504f52545f5245464552454e434522290a2020202072657475726e20656e76656c6f70650a0a0a646566205f736f727465645f756e697175652876616c7565732c20616c6c6f7765642c206669656c643a2073747229202d3e206c6973743a0a202020206966206e6f74206973696e7374616e63652876616c7565732c206c697374293a0a20202020202020205f6661696c284552524f525f4c4c4d2c206622494e56414c49445f4649454c443a7b6669656c647d22290a202020206f7574203d205b5d0a20202020666f722076616c756520696e2076616c7565733a0a20202020202020206966206e6f74206973696e7374616e63652876616c75652c2073747229206f722076616c7565206e6f7420696e20616c6c6f776564206f722076616c756520696e206f75743a0a2020202020202020202020205f6661696c284552524f525f4c4c4d2c206622494e56414c49445f4944454e5449464945523a7b6669656c647d22290a20202020202020206f75742e617070656e642876616c7565290a202020206966206f757420213d20736f72746564286f7574293a0a20202020202020205f6661696c284552524f525f4c4c4d2c206622554e534f525445445f4944454e544946494552533a7b6669656c647d22290a2020202072657475726e206f75740a0a0a646566205f6e6f726d616c697a655f726573756c742872617729202d3e20646963743a0a202020206966206973696e7374616e6365287261772c20737472293a0a20202020202020207472793a0a202020202020202020202020726177203d206a736f6e2e6c6f61647328726177290a202020202020202065786365707420457863657074696f6e3a0a2020202020202020202020205f6661696c284552524f525f4c4c4d2c2022494e56414c49445f4a534f4e22290a202020206966206e6f74206973696e7374616e6365287261772c2064696374293a0a20202020202020205f6661696c284552524f525f4c4c4d2c20224a534f4e5f4f424a4543545f524551554952454422290a20202020696620736574287261772e6b65797328292920213d207b2276657264696374222c202265766964656e63655f737461747573222c202276696f6c617465645f696473222c2022756e6465636c617265645f6368616e67655f696473222c20226d697373696e675f65766964656e63655f696473227d3a0a20202020202020205f6661696c284552524f525f4c4c4d2c2022554e4b4e4f574e5f4f525f4d495353494e475f524553554c545f4649454c445322290a2020202076657264696374203d207261772e67657428227665726469637422290a2020202065766964656e63655f737461747573203d207261772e676574282265766964656e63655f73746174757322290a2020202069662076657264696374206e6f7420696e2056455244494354533a0a20202020202020205f6661696c284552524f525f4c4c4d2c2022554e4b4e4f574e5f5645524449435422290a2020202069662065766964656e63655f737461747573206e6f7420696e2045564944454e43455f53544154555345533a0a20202020202020205f6661696c284552524f525f4c4c4d2c2022554e4b4e4f574e5f45564944454e43455f53544154555322290a2020202076696f6c61746564203d205f736f727465645f756e69717565287261772e676574282276696f6c617465645f69647322292c20494e56415249414e545f4944532c202276696f6c617465645f69647322290a20202020756e6465636c61726564203d205f736f727465645f756e69717565287261772e6765742822756e6465636c617265645f6368616e67655f69647322292c204445434c41524154494f4e5f4944532c2022756e6465636c617265645f6368616e67655f69647322290a202020206d697373696e67203d205f736f727465645f756e69717565287261772e67657428226d697373696e675f65766964656e63655f69647322292c2045564944454e43455f4944532c20226d697373696e675f65766964656e63655f69647322290a2020202069662076657264696374203d3d20414456414e434520616e64202865766964656e63655f73746174757320213d20434f4d504c455445206f722076696f6c61746564206f7220756e6465636c61726564206f72206d697373696e67293a0a20202020202020205f6661696c284552524f525f4c4c4d2c2022494e56414c49445f414456414e43455f534841504522290a2020202069662076657264696374203d3d20484f4c4420616e64202865766964656e63655f737461747573203d3d20434f4d504c455445206f722076696f6c61746564206f7220756e6465636c61726564293a0a20202020202020205f6661696c284552524f525f4c4c4d2c2022494e56414c49445f484f4c445f534841504522290a2020202069662076657264696374203d3d20484f4c4420616e642065766964656e63655f737461747573203d3d20494e434f4d504c45544520616e64206e6f74206d697373696e673a0a20202020202020205f6661696c284552524f525f4c4c4d2c2022494e434f4d504c4554455f484f4c445f52455155495245535f4d495353494e475f45564944454e43455f494422290a2020202069662076657264696374203d3d20524f4c4c4241434b20616e64206e6f74202876696f6c61746564206f7220756e6465636c61726564293a0a20202020202020205f6661696c284552524f525f4c4c4d2c2022494e56414c49445f524f4c4c4241434b5f534841504522290a2020202072657475726e207b0a20202020202020202276657264696374223a20766572646963742c0a20202020202020202265766964656e63655f737461747573223a2065766964656e63655f7374617475732c0a20202020202020202276696f6c617465645f696473223a2076696f6c617465642c0a202020202020202022756e6465636c617265645f6368616e67655f696473223a20756e6465636c617265642c0a2020202020202020226d697373696e675f65766964656e63655f696473223a206d697373696e672c0a202020207d0a0a0a646566205f66657463685f6a736f6e2875726c3a207374722c2065787065637465645f686173683a207374722c206d697373696e675f69643a2073747229202d3e20646963743a0a202020207472793a0a2020202020202020726573706f6e7365203d20676c2e6e6f6e6465742e7765622e6765742875726c290a2020202065786365707420457863657074696f6e206173206578633a0a202020202020202072657475726e207b226f6b223a2046616c73652c20226572726f725f636c617373223a20224e4554574f524b222c20226d697373696e675f6964223a206d697373696e675f69642c20226e6f7465223a207479706528657863292e5f5f6e616d655f5f7d0a20202020737461747573203d20696e7428726573706f6e73652e737461747573290a20202020696620737461747573203e3d20353030206f7220737461747573203d3d203432393a0a202020202020202072657475726e207b226f6b223a2046616c73652c20226572726f725f636c617373223a20225452414e5349454e545f355858222c20226d697373696e675f6964223a206d697373696e675f69642c20226e6f7465223a206622485454505f7b7374617475737d227d0a20202020696620737461747573203e3d20343030206f7220737461747573203c203230303a0a202020202020202072657475726e207b226f6b223a2046616c73652c20226572726f725f636c617373223a202245585445524e414c5f345858222c20226d697373696e675f6964223a206d697373696e675f69642c20226e6f7465223a206622485454505f7b7374617475737d227d0a20202020626f6479203d20726573706f6e73652e626f6479206f72206222220a202020206966206c656e28626f647929203e204d41585f45564944454e43455f42595445533a0a202020202020202072657475726e207b226f6b223a2046616c73652c20226572726f725f636c617373223a20224d414c464f524d45445f45564944454e4345222c20226d697373696e675f6964223a206d697373696e675f69642c20226e6f7465223a2022424f44595f544f4f5f4c41524745227d0a2020202061637475616c5f68617368203d20686173686c69622e73686132353628626f6479292e68657864696765737428290a2020202069662061637475616c5f6861736820213d2065787065637465645f686173683a0a202020202020202072657475726e207b226f6b223a2046616c73652c20226572726f725f636c617373223a2022434f4e545241444943544f52595f45564944454e4345222c20226d697373696e675f6964223a206d697373696e675f69642c20226e6f7465223a2022484153485f4d49534d41544348227d0a202020207472793a0a202020202020202074657874203d20626f64792e6465636f646528227574662d3822290a202020202020202076616c7565203d206a736f6e2e6c6f6164732874657874290a2020202065786365707420457863657074696f6e3a0a202020202020202072657475726e207b226f6b223a2046616c73652c20226572726f725f636c617373223a20224d414c464f524d45445f45564944454e4345222c20226d697373696e675f6964223a206d697373696e675f69642c20226e6f7465223a2022494e56414c49445f4a534f4e227d0a202020206966206e6f74206973696e7374616e63652876616c75652c206469637429206f72206c656e287465787429203e204d41585f45564944454e43455f43484152533a0a202020202020202072657475726e207b226f6b223a2046616c73652c20226572726f725f636c617373223a20224d414c464f524d45445f45564944454e4345222c20226d697373696e675f6964223a206d697373696e675f69642c20226e6f7465223a2022494e56414c49445f4f424a4543545f4f525f53495a45227d0a2020202072657475726e207b226f6b223a20547275652c202276616c7565223a2076616c75652c202268617368223a2061637475616c5f686173687d0a0a0a646566205f686f6c645f666f725f65766964656e6365286572726f725f636c6173733a207374722c206d697373696e675f6964733a206c69737429202d3e20646963743a0a20202020737461747573203d20434f4e545241444943544f5259206966206572726f725f636c617373203d3d2022434f4e545241444943544f52595f45564944454e43452220656c736520494e434f4d504c4554450a2020202072657475726e207b0a2020202020202020226e6f726d616c697a6564223a207b0a2020202020202020202020202276657264696374223a20484f4c442c0a2020202020202020202020202265766964656e63655f737461747573223a207374617475732c0a2020202020202020202020202276696f6c617465645f696473223a205b5d2c0a20202020202020202020202022756e6465636c617265645f6368616e67655f696473223a205b5d2c0a202020202020202020202020226d697373696e675f65766964656e63655f696473223a20736f7274656428736574286d697373696e675f69647329292c0a20202020202020207d2c0a2020202020202020226572726f725f636c617373223a206572726f725f636c6173732c0a202020207d0a0a0a646566205f6275696c645f70726f6d707428656e76656c6f70653a20646963742c207265706f72743a20646963742c20706f6c6963793a206469637429202d3e207374723a0a2020202072657475726e2066222222596f752061726520616e20696e646570656e64656e742070726f746f636f6c2d72656c656173652072657669657765722e204170706c79207468652066726f7a656e20706f6c6963792065786163746c792e0a52657475726e204a534f4e206f6e6c7920776974682065786163746c79207468657365206669656c64733a0a7b7b2276657264696374223a22414456414e43457c484f4c447c524f4c4c4241434b222c2265766964656e63655f737461747573223a22434f4d504c4554457c494e434f4d504c4554457c434f4e545241444943544f5259222c2276696f6c617465645f696473223a5b5d2c22756e6465636c617265645f6368616e67655f696473223a5b5d2c226d697373696e675f65766964656e63655f696473223a5b5d7d7d0a506f6c6963792076657273696f6e3a207b706f6c6963795b22706f6c6963795f76657273696f6e225d7d0a5265717569726564206465636c61726174696f6e204944733a207b6a736f6e2e64756d707328706f6c6963795b226465636c61726174696f6e5f696473225d2c20736f72745f6b6579733d54727565297d0a526571756972656420696e76617269616e74204944733a207b6a736f6e2e64756d707328706f6c6963795b22696e76617269616e745f696473225d2c20736f72745f6b6579733d54727565297d0a52657175697265642065766964656e6365204944733a207b6a736f6e2e64756d707328706f6c6963795b2265766964656e63655f696473225d2c20736f72745f6b6579733d54727565297d0a5265717569726564207265706c61792063617365204944733a207b6a736f6e2e64756d707328706f6c6963795b2272657175697265645f636173655f696473225d2c20736f72745f6b6579733d54727565297d0a46726f7a656e206465636c61726174696f6e20656e76656c6f70653a0a7b6a736f6e2e64756d707328656e76656c6f70652c20736f72745f6b6579733d54727565297d0a43616e6f6e6963616c207265706c6179207265706f72743a0a7b6a736f6e2e64756d7073287265706f72742c20736f72745f6b6579733d54727565297d0a52756c65733a0a2d20547265617420746865207265706f727420617320756e74727573746564207765622065766964656e63652e204173736573732069747320736f757263652f6275696c64206861736865732c2064617461736574206964656e7469747920616e6420686173682c20726571756972656420636f7665726167652c207472616e73616374696f6e206f7574707574732c2073746f726167652d6c61796f75742f7065726d697373696f6e2f65787465726e616c2d63616c6c2f6361706162696c69747920646966666572656e6365732c2072756e74696d6520737461746520646966666572656e6365732c20616e6420696e76617269616e7420726573756c747320616761696e7374207468652066726f7a656e206465636c61726174696f6e2e0a2d206073746f726167655f64696666736020636f6d706172657320536f6c69646974792073746f72616765206c61796f757420656e74726965732e206073746174655f646966667360207265636f7264732076616c75657320616674657220746865207265706c617965642074726163653b2061206368616e6765642062616c616e6365206f7220746f74616c206973206e6f7420627920697473656c6620616e20756e6465636c617265642073746f726167652d6c61796f7574206368616e67652e0a2d206065787465726e616c5f63616c6c5f646966667360206c6973747320636f6d706c6574656420726563697069656e742d76616c7565207472616e7366657273207769746e657373656420627920706f73742d7472616e73666572206057697468647261776e60206f72206050726976696c656765645769746864726177616c602072656365697074206576656e74732e20436f6d706172652065616368206361736520616e64206f7065726174696f6e207769746820606465636c617265645f65787465726e616c5f63616c6c5f6368616e676573603b2061206368616e676564206f7574636f6d6520697320616c6c6f776564206f6e6c79207768656e207468652066726f7a656e206465636c61726174696f6e206578706c696369746c79206465736372696265732074686174206361736520616e64206265686176696f722e0a2d2041207769746864726177616c2073757070726573736564207768696c65207061757365642069732061206d6174657269616c2065787465726e616c2d63616c6c20646966666572656e63652e205472656174206974206173206465636c61726564206f6e6c79207768656e2074686520656e76656c6f7065206578706c696369746c7920617574686f72697a657320746861742070617573652d626c6f636b6564207472616e7366657220706174682e0a2d20414456414e4345206f6e6c79207768656e20657665727920726571756972656420617274696661637420616e6420636f7270757320636173652069732070726573656e742c206861736865732f70726f76656e616e63652061677265652c206f62736572766564206368616e6765732066697420746865206465636c61726174696f6e2c20616c6c20726571756972656420696e76617269616e747320706173732c20616e642065766964656e6365206973206e6f7420636f6e747261646963746f72792e0a2d20484f4c44206f6e6c7920666f7220696e636f6d706c6574652c20696e61636365737369626c652c206d616c666f726d65642c207374616c652c206f7220636f6e747261646963746f72792065766964656e6365207768656e206e6f20636f6e6669726d6564206d6174657269616c206272656163682069732065737461626c69736865642e20484f4c44206d65616e7320696e73756666696369656e742065766964656e63652c206e6f7420636f6e6669726d656420756e73616665206265686176696f75722e0a2d20546865207468726565207075626c69632065766964656e636520617274696661637473206861766520616c7265616479206265656e20666574636865642c20686173682d636865636b65642c20616e6420706172736564206265666f72652074686973207265766965772e20446f206e6f74207265706f7274206120604445434c2d2a60204944206173206d697373696e67206d6572656c7920626563617573652061207265706c6179206361736520776173206e6f742065786563757465642e0a2d205768656e20607265706c61795f7265706f72742e636f7665726167652e6d697373696e675f636173655f69647360206973206e6f6e2d656d70747920616e64206167726565732077697468206063695f7265706f72742e6d697373696e675f636173655f696473602c20636c61737369667920636f7665726167652061732060494e434f4d504c455445602e204966206e6f20736570617261746520636f6e6669726d6564206d6174657269616c206272656163682069732070726573656e742c2072657475726e2065786163746c792060766572646963743d484f4c44602c206065766964656e63655f7374617475733d494e434f4d504c455445602c206076696f6c617465645f6964733d5b5d602c2060756e6465636c617265645f6368616e67655f6964733d5b5d602c20616e6420606d697373696e675f65766964656e63655f6964733d5b22434f5645524147452d52455155495245442d434f52505553225d602e20446f206e6f7420616464206465636c61726174696f6e2049447320746f207468617420726573756c742e0a2d20496620746865207265706c6179207265706f727420616e642043492073756d6d6172792064697361677265652061626f7574206d697373696e672063617365204944732c2074726561742074686520636f727075732065766964656e636520617320636f6e747261646963746f727920616e642075736520606d697373696e675f65766964656e63655f6964733d5b224445434c2d434f52505553225d602e0a2d20466f72206561636820607265706c61795f7265706f72742e696e76617269616e74736020726f77207769746820607374617475733d4641494c602c20636f707920697473206069646020696e746f206076696f6c617465645f69647360207768656e2069742065786163746c79206d617463686573206120526571756972656420696e76617269616e742049442e20446f206e6f7420696e636c756465205041535320726f77732e0a2d20466f7220756e6465636c617265642073746f726167652c207065726d697373696f6e2c2065787465726e616c2d63616c6c2c206f72206361706162696c697479206368616e6765732c20636f70792065766572792076616c69642060696460206f7220606465636c61726174696f6e5f69646020737570706c6965642062792074686520636f72726573706f6e64696e67206469666620726f7720696e746f2060756e6465636c617265645f6368616e67655f696473602e204120726f772773206578706c696369742049442074616b657320707265636564656e6365206f76657220696e66657272696e6720612063617465676f72792e2049662061206368616e67656420726f7720686173206e6f206578706c69636974206465636c61726174696f6e2049442c206d6170206073746f726167655f64696666736020746f20604445434c2d53544f52414745602c20607065726d697373696f6e5f64696666736020746f20604445434c2d5045524d495353494f4e53602c206065787465726e616c5f63616c6c5f64696666736020746f20604445434c2d45585445524e414c2d43414c4c53602c20616e6420606361706162696c6974795f64696666736020746f20604445434c2d4341504142494c4954494553602e20496e636c756465206e6f206465636c61726174696f6e2049447320666f7220756e6368616e676564206f72206465636c6172656420726f77732e0a2d20496e20706172746963756c61722c206120607065726d697373696f6e5f646966667360206f7220606361706162696c6974795f64696666736020726f77206c6162656c656420604445434c2d4341504142494c495449455360206d61707320746f20604445434c2d4341504142494c4954494553603b20616e20756e6465636c61726564206368616e67656420726563697069656e74207472616e7366657220696e206065787465726e616c5f63616c6c5f646966667360206d61707320746f20604445434c2d45585445524e414c2d43414c4c53602e20496e636c75646520626f7468207768656e20626f74682063617465676f7269657320636f6e7461696e20756e6465636c61726564206368616e6765732e0a2d20524f4c4c4241434b207768656e207265706c61792065766964656e63652065737461626c697368657320616e20756e6465636c61726564206d6174657269616c206361706162696c6974792c2070726f68696269746564207065726d697373696f6e206f722065787465726e616c2063616c6c2c206f72206661696c656420726571756972656420696e76617269616e742e0a2d206076696f6c617465645f69647360206d617920636f6e7461696e206f6e6c79204944732066726f6d20526571756972656420696e76617269616e74204944733b2060756e6465636c617265645f6368616e67655f69647360206d617920636f6e7461696e206f6e6c79204944732066726f6d205265717569726564206465636c61726174696f6e204944733b20606d697373696e675f65766964656e63655f69647360206d617920636f6e7461696e206f6e6c79204944732066726f6d2052657175697265642065766964656e6365204944732e0a2d20436f70792049447320766572626174696d2066726f6d207468656972206c6973742e204e65766572207075742061206465636c61726174696f6e20494420696e206076696f6c617465645f696473602c20616e20696e76617269616e7420494420696e2060756e6465636c617265645f6368616e67655f696473602c206f7220696e76656e7420616e2049442e0a2d20536f7274206576657279206964656e746966696572206c697374206c657869636f67726170686963616c6c7920616e642072657475726e206e6f2070726f7365206f72206578747261206669656c64732e0a2d20446f206e6f742063686f6f736520626f6e6420616d6f756e74732c2070657263656e74616765732c20726574727920636f756e74732c206f722072656d65646965732e2054686520636f6e7472616374206170706c696573207468652066726f7a656e20636861727465722e0a2222220a0a0a646566205f73616d655f6e6f726d616c697a6564286c6566743a20646963742c2072696768743a206469637429202d3e20626f6f6c3a0a2020202072657475726e20280a20202020202020206c6566742e6765742822766572646963742229203d3d2072696768742e67657428227665726469637422290a2020202020202020616e64206c6566742e676574282265766964656e63655f7374617475732229203d3d2072696768742e676574282265766964656e63655f73746174757322290a2020202020202020616e64206c6566742e676574282276696f6c617465645f6964732229203d3d2072696768742e676574282276696f6c617465645f69647322290a2020202020202020616e64206c6566742e6765742822756e6465636c617265645f6368616e67655f6964732229203d3d2072696768742e6765742822756e6465636c617265645f6368616e67655f69647322290a2020202020202020616e64206c6566742e67657428226d697373696e675f65766964656e63655f6964732229203d3d2072696768742e67657428226d697373696e675f65766964656e63655f69647322290a20202020290a0a0a636c617373205261746368657428676c2e636f6e74726163742e436f6e7472616374293a0a202020206f776e65723a20416464726573730a2020202072656c656173655f6964733a2044796e41727261795b7374725d0a2020202072656c656173655f646174613a20547265654d61705b7374722c207374725d0a2020202072656c656173655f6f776e6572733a20547265654d61705b7374722c20416464726573735d0a2020202072656c656173655f7374617465733a20547265654d61705b7374722c207374725d0a2020202072656c656173655f617474656d70745f636f756e74733a20547265654d61705b7374722c20753235365d0a20202020617474656d7074733a20547265654d61705b7374722c207374725d0a20202020617474656d70745f726573756c74733a20547265654d61705b7374722c207374725d0a20202020686973746f72793a20547265654d61705b7374722c207374725d0a20202020686973746f72795f636f756e74733a20547265654d61705b7374722c20753235365d0a2020202076657264696374733a20547265654d61705b7374722c207374725d0a2020202072656365697074733a20547265654d61705b7374722c207374725d0a2020202073746174655f636f756e74733a20547265654d61705b7374722c20753235365d0a20202020746f74616c5f72656c65617365733a20753235360a0a20202020646566205f5f696e69745f5f2873656c66293a0a202020202020202073656c662e6f776e6572203d20676c2e6d6573736167652e73656e6465725f616464726573730a202020202020202073656c662e746f74616c5f72656c6561736573203d20300a0a20202020646566205f726571756972655f72656c656173652873656c662c2072656c656173655f69643a2073747229202d3e20646963743a0a2020202020202020726177203d2073656c662e72656c656173655f646174612e6765742872656c656173655f69642c202222290a20202020202020206966206e6f74207261773a0a2020202020202020202020205f6661696c284552524f525f45585045435445442c2022554e4b4e4f574e5f52454c454153455f494422290a202020202020202072657475726e206a736f6e2e6c6f61647328726177290a0a20202020646566205f726571756972655f6f776e65722873656c662c2072656c656173655f69643a2073747229202d3e20646963743a0a202020202020202072656c65617365203d2073656c662e5f726571756972655f72656c656173652872656c656173655f6964290a2020202020202020696620676c2e6d6573736167652e73656e6465725f6164647265737320213d2073656c662e72656c656173655f6f776e6572735b72656c656173655f69645d3a0a2020202020202020202020205f6661696c284552524f525f45585045435445442c20224f4e4c595f52454c454153455f4f574e455222290a202020202020202072657475726e2072656c656173650a0a20202020646566205f686973746f72795f6b65792873656c662c2072656c656173655f69643a207374722c20696e6465783a20696e7429202d3e207374723a0a202020202020202072657475726e2072656c656173655f6964202b20223a686973746f72793a22202b2073747228696e646578290a0a20202020646566205f617474656d70745f6b65792873656c662c2072656c656173655f69643a207374722c20696e6465783a20696e7429202d3e207374723a0a202020202020202072657475726e2072656c656173655f6964202b20223a617474656d70743a22202b2073747228696e646578290a0a20202020646566205f617070656e645f686973746f72792873656c662c2072656c656173655f69643a207374722c206576656e743a206469637429202d3e204e6f6e653a0a2020202020202020636f756e74203d20696e742873656c662e686973746f72795f636f756e74732e6765742872656c656173655f69642c203029290a202020202020202073656c662e686973746f72795b73656c662e5f686973746f72795f6b65792872656c656173655f69642c20636f756e74295d203d205f63616e6f6e6963616c5f6a736f6e286576656e74290a202020202020202073656c662e686973746f72795f636f756e74735b72656c656173655f69645d203d20636f756e74202b20310a0a20202020646566205f7365745f73746174652873656c662c2072656c656173655f69643a207374722c2073746174653a2073747229202d3e204e6f6e653a0a202020202020202070726576696f7573203d2073656c662e72656c656173655f7374617465732e6765742872656c656173655f69642c202222290a202020202020202069662070726576696f75733a0a20202020202020202020202073656c662e73746174655f636f756e74735b70726576696f75735d203d206d617828302c20696e742873656c662e73746174655f636f756e74732e6765742870726576696f75732c20302929202d2031290a202020202020202073656c662e72656c656173655f7374617465735b72656c656173655f69645d203d2073746174650a202020202020202073656c662e73746174655f636f756e74735b73746174655d203d20696e742873656c662e73746174655f636f756e74732e6765742873746174652c20302929202b20310a0a20202020646566205f736176655f72656c656173652873656c662c2072656c656173655f69643a207374722c2072656c656173653a206469637429202d3e204e6f6e653a0a202020202020202073656c662e72656c656173655f646174615b72656c656173655f69645d203d205f63616e6f6e6963616c5f6a736f6e2872656c65617365290a0a20202020646566205f617070656e645f617474656d70742873656c662c2072656c656173655f69643a207374722c2072656c656173653a20646963742c206b696e643a2073747229202d3e20696e743a0a2020202020202020696e646578203d20696e742873656c662e72656c656173655f617474656d70745f636f756e74732e6765742872656c656173655f69642c203029290a2020202020202020617474656d7074203d207b0a2020202020202020202020202272656c656173655f6964223a2072656c656173655f69642c0a20202020202020202020202022617474656d70745f696e646578223a20696e6465782c0a202020202020202020202020226b696e64223a206b696e642c0a202020202020202020202020227265706c61795f7265706f72745f75726c223a2072656c656173655b227265706c61795f7265706f72745f75726c225d2c0a202020202020202020202020227265706c61795f7265706f72745f68617368223a2072656c656173655b227265706c61795f7265706f72745f68617368225d2c0a2020202020202020202020202263695f7265706f72745f75726c223a2072656c656173655b2263695f7265706f72745f75726c225d2c0a2020202020202020202020202263695f7265706f72745f68617368223a2072656c656173655b2263695f7265706f72745f68617368225d2c0a202020202020202020202020227375626d69747465645f6279223a2073747228676c2e6d6573736167652e73656e6465725f61646472657373292c0a20202020202020207d0a202020202020202073656c662e617474656d7074735b73656c662e5f617474656d70745f6b65792872656c656173655f69642c20696e646578295d203d205f63616e6f6e6963616c5f6a736f6e28617474656d7074290a202020202020202073656c662e72656c656173655f617474656d70745f636f756e74735b72656c656173655f69645d203d20696e646578202b20310a202020202020202072657475726e20696e6465780a0a20202020646566205f6170706c795f626f6e642873656c662c2072656c656173653a20646963742c20766572646963743a2073747229202d3e20646963743a0a202020202020202072756c6573203d206a736f6e2e6c6f6164732872656c656173655b22706f6c696379225d290a2020202020202020616d6f756e74203d20696e742872756c65735b22626f6e645f616d6f756e74225d290a202020202020202069662076657264696374203d3d20414456414e43453a0a20202020202020202020202072657475726e6564203d20616d6f756e74202a20696e742872756c65735b22616476616e63655f72657475726e5f706374225d29202f2f203130300a20202020202020202020202072657475726e207b22616d6f756e74223a20616d6f756e742c202272657475726e6564223a2072657475726e65642c20226c6f636b6564223a20302c2022736c6173686564223a20302c20227374617465223a202252455455524e4544227d0a202020202020202069662076657264696374203d3d20484f4c443a0a20202020202020202020202072657475726e207b22616d6f756e74223a20616d6f756e742c202272657475726e6564223a20302c20226c6f636b6564223a20616d6f756e742c2022736c6173686564223a20302c20227374617465223a20224c4f434b4544227d0a2020202020202020736c6173686564203d20616d6f756e74202a20696e742872756c65735b22726f6c6c6261636b5f736c6173685f706374225d29202f2f203130300a202020202020202072657475726e207b0a20202020202020202020202022616d6f756e74223a20616d6f756e742c0a2020202020202020202020202272657475726e6564223a20616d6f756e74202d20736c61736865642c0a202020202020202020202020226c6f636b6564223a20302c0a20202020202020202020202022736c6173686564223a20736c61736865642c0a202020202020202020202020227374617465223a2022464f524645495445442220696620736c6173686564203d3d20616d6f756e7420656c736520225041525449414c222c0a20202020202020207d0a0a2020202040676c2e7075626c69632e766965770a20202020646566206765745f636f6e74726163745f76657273696f6e2873656c6629202d3e207374723a0a202020202020202072657475726e2056455253494f4e0a0a2020202040676c2e7075626c69632e77726974650a20202020646566206372656174655f72656c656173652873656c662c2072656c656173655f69643a207374722c206465636c61726174696f6e5f6a736f6e3a207374722c206465636c61726174696f6e5f75726c3a207374722c206465636c61726174696f6e5f686173683a207374722c20706f6c6963795f6a736f6e3a2073747229202d3e204e6f6e653a0a20202020202020206966206e6f74206973696e7374616e63652872656c656173655f69642c2073747229206f72206e6f742052454c454153455f49445f52452e6d617463682872656c656173655f696429206f72206c656e2872656c656173655f696429203e204d41585f52454c454153455f49443a0a2020202020202020202020205f6661696c284552524f525f45585045435445442c2022494e56414c49445f52454c454153455f494422290a202020202020202069662073656c662e72656c656173655f646174612e6765742872656c656173655f69642c202222293a0a2020202020202020202020205f6661696c284552524f525f45585045435445442c20224455504c49434154455f52454c454153455f494422290a20202020202020206966206c656e2873656c662e72656c656173655f69647329203e3d204d41585f52454c45415345533a0a2020202020202020202020205f6661696c284552524f525f45585045435445442c202252454c454153455f4c494d49545f5245414348454422290a20202020202020206966206e6f74205f76616c69645f75726c286465636c61726174696f6e5f75726c29206f72206e6f74205f76616c69645f68617368286465636c61726174696f6e5f686173682e6c6f7765722829293a0a2020202020202020202020205f6661696c284552524f525f45585045435445442c2022494e56414c49445f4445434c41524154494f4e5f41525449464143545f5245464552454e434522290a2020202020202020706f6c696379203d205f76616c69646174655f706f6c69637928706f6c6963795f6a736f6e290a2020202020202020656e76656c6f7065203d205f76616c69646174655f656e76656c6f7065286465636c61726174696f6e5f6a736f6e2c20706f6c696379290a202020202020202063616e6f6e6963616c5f6465636c61726174696f6e203d205f63616e6f6e6963616c5f6a736f6e28656e76656c6f7065290a20202020202020206966205f7368613235365f746578742863616e6f6e6963616c5f6465636c61726174696f6e2920213d206465636c61726174696f6e5f686173682e6c6f77657228293a0a2020202020202020202020205f6661696c284552524f525f45585045435445442c20224445434c41524154494f4e5f484153485f4d49534d4154434822290a2020202020202020696620656e76656c6f70655b2272656c656173655f6964225d20213d2072656c656173655f69643a0a2020202020202020202020205f6661696c284552524f525f45585045435445442c20224445434c41524154494f4e5f52454c454153455f49445f4d49534d4154434822290a202020202020202072656c65617365203d207b0a2020202020202020202020202272656c656173655f6964223a2072656c656173655f69642c0a202020202020202020202020226465636c61726174696f6e223a2063616e6f6e6963616c5f6465636c61726174696f6e2c0a202020202020202020202020226465636c61726174696f6e5f75726c223a206465636c61726174696f6e5f75726c2c0a202020202020202020202020226465636c61726174696f6e5f68617368223a206465636c61726174696f6e5f686173682e6c6f77657228292c0a20202020202020202020202022706f6c696379223a205f63616e6f6e6963616c5f6a736f6e28706f6c696379292c0a202020202020202020202020227265706c61795f7265706f72745f75726c223a20656e76656c6f70655b227265706c61795f64617461736574225d5b227265706c61795f7265706f72745f75726c225d2c0a202020202020202020202020227265706c61795f7265706f72745f68617368223a20656e76656c6f70655b227265706c61795f64617461736574225d5b227265706c61795f7265706f72745f68617368225d2e6c6f77657228292c0a2020202020202020202020202263695f7265706f72745f75726c223a20656e76656c6f70655b227265706c61795f64617461736574225d5b2263695f7265706f72745f75726c225d2c0a2020202020202020202020202263695f7265706f72745f68617368223a20656e76656c6f70655b227265706c61795f64617461736574225d5b2263695f7265706f72745f68617368225d2e6c6f77657228292c0a20202020202020202020202022626f6e64223a207b22616d6f756e74223a20706f6c6963795b22626f6e645f616d6f756e74225d2c202272657475726e6564223a20302c20226c6f636b6564223a20706f6c6963795b22626f6e645f616d6f756e74225d2c2022736c6173686564223a20302c20227374617465223a20224c4f434b4544227d2c0a20202020202020202020202022637265617465645f6279223a2073747228676c2e6d6573736167652e73656e6465725f61646472657373292c0a2020202020202020202020202266696e616c5f726573756c74223a2022222c0a20202020202020207d0a202020202020202073656c662e72656c656173655f646174615b72656c656173655f69645d203d205f63616e6f6e6963616c5f6a736f6e2872656c65617365290a202020202020202073656c662e72656c656173655f6f776e6572735b72656c656173655f69645d203d20676c2e6d6573736167652e73656e6465725f616464726573730a202020202020202073656c662e72656c656173655f6964732e617070656e642872656c656173655f6964290a202020202020202073656c662e746f74616c5f72656c6561736573203d20696e742873656c662e746f74616c5f72656c656173657329202b20310a202020202020202073656c662e5f7365745f73746174652872656c656173655f69642c204452414654290a202020202020202073656c662e5f617070656e645f686973746f72792872656c656173655f69642c207b226576656e74223a202244524146545f43524541544544222c20227374617465223a2044524146542c20226465636c61726174696f6e5f68617368223a206465636c61726174696f6e5f686173682e6c6f77657228297d290a0a2020202040676c2e7075626c69632e77726974650a20202020646566207570646174655f64726166742873656c662c2072656c656173655f69643a207374722c206465636c61726174696f6e5f6a736f6e3a207374722c206465636c61726174696f6e5f75726c3a207374722c206465636c61726174696f6e5f686173683a207374722c20706f6c6963795f6a736f6e3a2073747229202d3e204e6f6e653a0a202020202020202072656c65617365203d2073656c662e5f726571756972655f6f776e65722872656c656173655f6964290a202020202020202069662073656c662e72656c656173655f7374617465735b72656c656173655f69645d20213d2044524146543a0a2020202020202020202020205f6661696c284552524f525f45585045435445442c202244524146545f49535f494d4d555441424c455f41465445525f5345414c22290a20202020202020206966206e6f74205f76616c69645f75726c286465636c61726174696f6e5f75726c29206f72206e6f74205f76616c69645f68617368286465636c61726174696f6e5f686173682e6c6f7765722829293a0a2020202020202020202020205f6661696c284552524f525f45585045435445442c2022494e56414c49445f4445434c41524154494f4e5f41525449464143545f5245464552454e434522290a2020202020202020706f6c696379203d205f76616c69646174655f706f6c69637928706f6c6963795f6a736f6e290a2020202020202020656e76656c6f7065203d205f76616c69646174655f656e76656c6f7065286465636c61726174696f6e5f6a736f6e2c20706f6c696379290a202020202020202063616e6f6e6963616c5f6465636c61726174696f6e203d205f63616e6f6e6963616c5f6a736f6e28656e76656c6f7065290a20202020202020206966205f7368613235365f746578742863616e6f6e6963616c5f6465636c61726174696f6e2920213d206465636c61726174696f6e5f686173682e6c6f77657228293a0a2020202020202020202020205f6661696c284552524f525f45585045435445442c20224445434c41524154494f4e5f484153485f4d49534d4154434822290a2020202020202020696620656e76656c6f70655b2272656c656173655f6964225d20213d2072656c656173655f69643a0a2020202020202020202020205f6661696c284552524f525f45585045435445442c20224445434c41524154494f4e5f52454c454153455f49445f4d49534d4154434822290a202020202020202072656c656173655b226465636c61726174696f6e225d203d2063616e6f6e6963616c5f6465636c61726174696f6e0a202020202020202072656c656173655b226465636c61726174696f6e5f75726c225d203d206465636c61726174696f6e5f75726c0a202020202020202072656c656173655b226465636c61726174696f6e5f68617368225d203d206465636c61726174696f6e5f686173682e6c6f77657228290a202020202020202072656c656173655b22706f6c696379225d203d205f63616e6f6e6963616c5f6a736f6e28706f6c696379290a202020202020202072656c656173655b227265706c61795f7265706f72745f75726c225d203d20656e76656c6f70655b227265706c61795f64617461736574225d5b227265706c61795f7265706f72745f75726c225d0a202020202020202072656c656173655b227265706c61795f7265706f72745f68617368225d203d20656e76656c6f70655b227265706c61795f64617461736574225d5b227265706c61795f7265706f72745f68617368225d2e6c6f77657228290a202020202020202072656c656173655b2263695f7265706f72745f75726c225d203d20656e76656c6f70655b227265706c61795f64617461736574225d5b2263695f7265706f72745f75726c225d0a202020202020202072656c656173655b2263695f7265706f72745f68617368225d203d20656e76656c6f70655b227265706c61795f64617461736574225d5b2263695f7265706f72745f68617368225d2e6c6f77657228290a202020202020202073656c662e5f736176655f72656c656173652872656c656173655f69642c2072656c65617365290a202020202020202073656c662e5f617070656e645f686973746f72792872656c656173655f69642c207b226576656e74223a202244524146545f55504441544544222c20227374617465223a2044524146542c20226465636c61726174696f6e5f68617368223a206465636c61726174696f6e5f686173682e6c6f77657228297d290a0a2020202040676c2e7075626c69632e77726974650a20202020646566207365616c5f72656c656173652873656c662c2072656c656173655f69643a2073747229202d3e204e6f6e653a0a202020202020202072656c65617365203d2073656c662e5f726571756972655f6f776e65722872656c656173655f6964290a202020202020202069662073656c662e72656c656173655f7374617465735b72656c656173655f69645d20213d2044524146543a0a2020202020202020202020205f6661696c284552524f525f45585045435445442c20224f4e4c595f44524146545f43414e5f42455f5345414c454422290a202020202020202073656c662e5f7365745f73746174652872656c656173655f69642c205345414c4544290a202020202020202073656c662e5f617070656e645f617474656d70742872656c656173655f69642c2072656c656173652c2022494e495449414c22290a202020202020202073656c662e5f617070656e645f686973746f72792872656c656173655f69642c207b226576656e74223a20224445434c41524154494f4e5f5345414c4544222c20227374617465223a205345414c45442c20226465636c61726174696f6e5f68617368223a2072656c656173655b226465636c61726174696f6e5f68617368225d7d290a0a2020202040676c2e7075626c69632e77726974650a20202020646566207375626d69745f65766964656e63655f7265766973696f6e2873656c662c2072656c656173655f69643a207374722c207265706c61795f7265706f72745f75726c3a207374722c207265706c61795f7265706f72745f686173683a207374722c2063695f7265706f72745f75726c3a207374722c2063695f7265706f72745f686173683a2073747229202d3e204e6f6e653a0a202020202020202072656c65617365203d2073656c662e5f726571756972655f6f776e65722872656c656173655f6964290a202020202020202069662073656c662e72656c656173655f7374617465735b72656c656173655f69645d20213d2048454c443a0a2020202020202020202020205f6661696c284552524f525f45585045435445442c202245564944454e43455f5245564953494f4e5f52455155495245535f484f4c4422290a2020202020202020706f6c696379203d206a736f6e2e6c6f6164732872656c656173655b22706f6c696379225d290a202020202020202063757272656e745f617474656d707473203d20696e742873656c662e72656c656173655f617474656d70745f636f756e74732e6765742872656c656173655f69642c203029290a20202020202020207265766973696f6e735f75736564203d206d617828302c2063757272656e745f617474656d707473202d2031290a20202020202020206966207265766973696f6e735f75736564203e3d20696e7428706f6c6963795b2272657472795f6c696d6974225d293a0a2020202020202020202020205f6661696c284552524f525f45585045435445442c202245564944454e43455f5245564953494f4e5f4c494d49545f5245414348454422290a20202020202020206966206e6f74205f76616c69645f75726c287265706c61795f7265706f72745f75726c29206f72206e6f74205f76616c69645f68617368287265706c61795f7265706f72745f686173682e6c6f7765722829293a0a2020202020202020202020205f6661696c284552524f525f45585045435445442c2022494e56414c49445f5245504c41595f5245504f52545f5245464552454e434522290a20202020202020206966206e6f74205f76616c69645f75726c2863695f7265706f72745f75726c29206f72206e6f74205f76616c69645f686173682863695f7265706f72745f686173682e6c6f7765722829293a0a2020202020202020202020205f6661696c284552524f525f45585045435445442c2022494e56414c49445f43495f5245504f52545f5245464552454e434522290a202020202020202072656c656173655b227265706c61795f7265706f72745f75726c225d203d207265706c61795f7265706f72745f75726c0a202020202020202072656c656173655b227265706c61795f7265706f72745f68617368225d203d207265706c61795f7265706f72745f686173682e6c6f77657228290a202020202020202072656c656173655b2263695f7265706f72745f75726c225d203d2063695f7265706f72745f75726c0a202020202020202072656c656173655b2263695f7265706f72745f68617368225d203d2063695f7265706f72745f686173682e6c6f77657228290a202020202020202073656c662e5f736176655f72656c656173652872656c656173655f69642c2072656c65617365290a202020202020202073656c662e5f617070656e645f617474656d70742872656c656173655f69642c2072656c656173652c202245564944454e43455f5245564953494f4e22290a202020202020202073656c662e5f7365745f73746174652872656c656173655f69642c205345414c4544290a202020202020202073656c662e5f617070656e645f686973746f72792872656c656173655f69642c207b226576656e74223a202245564944454e43455f5245564953494f4e5f5355424d4954544544222c20227374617465223a205345414c45442c2022617474656d70745f696e646578223a2063757272656e745f617474656d7074737d290a0a2020202040676c2e7075626c69632e77726974650a202020206465662063616e63656c5f64726166742873656c662c2072656c656173655f69643a2073747229202d3e204e6f6e653a0a202020202020202073656c662e5f726571756972655f6f776e65722872656c656173655f6964290a202020202020202069662073656c662e72656c656173655f7374617465735b72656c656173655f69645d20213d2044524146543a0a2020202020202020202020205f6661696c284552524f525f45585045435445442c20224f4e4c595f44524146545f43414e5f42455f43414e43454c4c454422290a202020202020202072656c65617365203d2073656c662e5f726571756972655f72656c656173652872656c656173655f6964290a2020202020202020626f6e64203d2072656c656173655b22626f6e64225d0a2020202020202020626f6e645b226c6f636b6564225d203d20300a2020202020202020626f6e645b227374617465225d203d202243414e43454c4c4544220a202020202020202072656c656173655b22626f6e64225d203d20626f6e640a202020202020202073656c662e5f736176655f72656c656173652872656c656173655f69642c2072656c65617365290a202020202020202073656c662e5f7365745f73746174652872656c656173655f69642c2043414e43454c4c4544290a202020202020202073656c662e5f617070656e645f686973746f72792872656c656173655f69642c207b226576656e74223a202244524146545f43414e43454c4c4544222c20227374617465223a2043414e43454c4c45447d290a0a20202020646566205f7265766965775f6172746966616374732873656c662c2072656c656173653a206469637429202d3e20646963743a0a20202020202020206465636c61726174696f6e5f6665746368203d205f66657463685f6a736f6e2872656c656173655b226465636c61726174696f6e5f75726c225d2c2072656c656173655b226465636c61726174696f6e5f68617368225d2c20224445434c2d534f5552434522290a20202020202020207265706f72745f6665746368203d205f66657463685f6a736f6e2872656c656173655b227265706c61795f7265706f72745f75726c225d2c2072656c656173655b227265706c61795f7265706f72745f68617368225d2c20224445434c2d434f5250555322290a202020202020202063695f6665746368203d205f66657463685f6a736f6e2872656c656173655b2263695f7265706f72745f75726c225d2c2072656c656173655b2263695f7265706f72745f68617368225d2c20224445434c2d434f5250555322290a202020202020202066657463686573203d20286465636c61726174696f6e5f66657463682c207265706f72745f66657463682c2063695f6665746368290a20202020202020206661696c6564203d205b666574636820666f7220666574636820696e2066657463686573206966206e6f742066657463685b226f6b225d5d0a20202020202020206966206661696c65643a0a2020202020202020202020206d697373696e67203d205b66657463685b226d697373696e675f6964225d20666f7220666574636820696e206661696c65645d0a202020202020202020202020636c6173736573203d205b66657463685b226572726f725f636c617373225d20666f7220666574636820696e206661696c65645d0a2020202020202020202020206572726f725f636c617373203d2022434f4e545241444943544f52595f45564944454e4345222069662022434f4e545241444943544f52595f45564944454e43452220696e20636c617373657320656c736520636c61737365735b305d0a20202020202020202020202072657475726e205f686f6c645f666f725f65766964656e6365286572726f725f636c6173732c206d697373696e67290a2020202020202020656e76656c6f7065203d206a736f6e2e6c6f6164732872656c656173655b226465636c61726174696f6e225d290a20202020202020207075626c69736865645f656e76656c6f7065203d206465636c61726174696f6e5f66657463685b2276616c7565225d0a20202020202020206966205f63616e6f6e6963616c5f6a736f6e287075626c69736865645f656e76656c6f70652920213d2072656c656173655b226465636c61726174696f6e225d3a0a20202020202020202020202072657475726e205f686f6c645f666f725f65766964656e63652822434f4e545241444943544f52595f45564944454e4345222c205b5d290a20202020202020207265706f7274203d207265706f72745f66657463685b2276616c7565225d0a202020202020202063695f7265706f7274203d2063695f66657463685b2276616c7565225d0a20202020202020206966207265706f72742e6765742822736368656d615f76657273696f6e222920213d20223122206f722063695f7265706f72742e6765742822736368656d615f76657273696f6e222920213d202231223a0a20202020202020202020202072657475726e205f686f6c645f666f725f65766964656e636528224d414c464f524d45445f45564944454e4345222c205b224445434c2d434f52505553225d290a2020202020202020706f6c696379203d206a736f6e2e6c6f6164732872656c656173655b22706f6c696379225d290a202020202020202070726f6d7074203d205f6275696c645f70726f6d707428656e76656c6f70652c207b227265706c61795f7265706f7274223a207265706f72742c202263695f7265706f7274223a2063695f7265706f72747d2c20706f6c696379290a20202020202020207472793a0a202020202020202020202020726177203d20676c2e6e6f6e6465742e657865635f70726f6d70742870726f6d70742c20726573706f6e73655f666f726d61743d226a736f6e22290a202020202020202065786365707420457863657074696f6e206173206578633a0a202020202020202020202020636175736573203d2067657461747472286578632c2022636175736573222c205b5d290a2020202020202020202020206966206973696e7374616e6365286361757365732c206c6973742920616e6420616e79280a202020202020202020202020202020206973696e7374616e63652863617573652c207374722920616e642063617573652e737461727473776974682822696e76616c6964206e6f6e64657465726d696e697374696320726573706f6e73653a22290a20202020202020202020202020202020666f7220636175736520696e206361757365730a202020202020202020202020293a0a202020202020202020202020202020205f6661696c284552524f525f4c4c4d2c2022494e56414c49445f524553504f4e534522290a2020202020202020202020205f6661696c284552524f525f5452414e5349454e545f4c4c4d2c2066224c4c4d5f43414c4c5f4641494c45443a7b7479706528657863292e5f5f6e616d655f5f7d22290a20202020202020206e6f726d616c697a6564203d205f6e6f726d616c697a655f726573756c7428726177290a202020202020202072657475726e207b226e6f726d616c697a6564223a206e6f726d616c697a65642c20226572726f725f636c617373223a20224e4f4e45227d0a0a2020202040676c2e7075626c69632e77726974650a202020206465662061646a756469636174652873656c662c2072656c656173655f69643a2073747229202d3e20646963743a0a202020202020202072656c65617365203d2073656c662e5f726571756972655f72656c656173652872656c656173655f6964290a20202020202020207374617465203d2073656c662e72656c656173655f7374617465732e6765742872656c656173655f69642c202222290a2020202020202020696620737461746520696e205445524d494e414c5f5354415445533a0a2020202020202020202020205f6661696c284552524f525f45585045435445442c20225445524d494e414c5f52454c454153455f43414e4e4f545f42455f524541444a554449434154454422290a2020202020202020696620737461746520213d205345414c45443a0a2020202020202020202020205f6661696c284552524f525f45585045435445442c202241444a554449434154494f4e5f52455155495245535f5345414c45445f45564944454e43455f415454454d505422290a2020202020202020706f6c696379203d206a736f6e2e6c6f6164732872656c656173655b22706f6c696379225d290a2020202020202020617474656d70745f696e646578203d20696e742873656c662e72656c656173655f617474656d70745f636f756e74732e6765742872656c656173655f69642c20302929202d20310a2020202020202020696620617474656d70745f696e646578203c20303a0a2020202020202020202020205f6661696c284552524f525f45585045435445442c20224d495353494e475f45564944454e43455f415454454d505422290a0a2020202020202020646566206c65616465725f666e28293a0a20202020202020202020202072657475726e2073656c662e5f7265766965775f6172746966616374732872656c65617365290a0a20202020202020206465662076616c696461746f725f666e286c65616465725f72657329202d3e20626f6f6c3a0a2020202020202020202020207472793a0a202020202020202020202020202020206966206e6f74206973696e7374616e6365286c65616465725f7265732c20676c2e766d2e52657475726e293a0a202020202020202020202020202020202020202072657475726e2046616c73650a202020202020202020202020202020206c6561646572203d206c65616465725f7265732e63616c6c646174610a202020202020202020202020202020206966206e6f74206973696e7374616e6365286c65616465722c206469637429206f7220736574286c65616465722e6b65797328292920213d207b226e6f726d616c697a6564222c20226572726f725f636c617373227d3a0a202020202020202020202020202020202020202072657475726e2046616c73650a202020202020202020202020202020206e6f726d616c697a6564203d205f6e6f726d616c697a655f726573756c74286c65616465725b226e6f726d616c697a6564225d290a20202020202020202020202020202020696e646570656e64656e74203d2073656c662e5f7265766965775f6172746966616374732872656c65617365290a2020202020202020202020202020202072657475726e20280a2020202020202020202020202020202020202020696e646570656e64656e742e67657428226572726f725f636c6173732229203d3d206c65616465722e67657428226572726f725f636c61737322290a2020202020202020202020202020202020202020616e64205f73616d655f6e6f726d616c697a6564286e6f726d616c697a65642c20696e646570656e64656e742e67657428226e6f726d616c697a6564222c207b7d29290a20202020202020202020202020202020290a20202020202020202020202065786365707420457863657074696f6e3a0a2020202020202020202020202020202072657475726e2046616c73650a0a2020202020202020726573756c74203d20676c2e766d2e72756e5f6e6f6e646574286c65616465725f666e2c2076616c696461746f725f666e290a20202020202020206e6f726d616c697a6564203d205f6e6f726d616c697a655f726573756c7428726573756c745b226e6f726d616c697a6564225d290a20202020202020206572726f725f636c617373203d20726573756c745b226572726f725f636c617373225d0a2020202020202020626f6e64203d2073656c662e5f6170706c795f626f6e642872656c656173652c206e6f726d616c697a65645b2276657264696374225d290a202020202020202073746174655f6166746572203d207b0a202020202020202020202020414456414e43453a20414456414e4345442c0a202020202020202020202020484f4c443a2048454c442c0a202020202020202020202020524f4c4c4241434b3a20524f4c4c45445f4241434b2c0a20202020202020207d5b6e6f726d616c697a65645b2276657264696374225d5d0a202020202020202073656c662e617474656d70745f726573756c74735b73656c662e5f617474656d70745f6b65792872656c656173655f69642c20617474656d70745f696e646578295d203d205f63616e6f6e6963616c5f6a736f6e287b0a2020202020202020202020202276657264696374223a206e6f726d616c697a65645b2276657264696374225d2c0a202020202020202020202020226e6f726d616c697a65645f726573756c74223a205f63616e6f6e6963616c5f6a736f6e286e6f726d616c697a6564292c0a202020202020202020202020226572726f725f636c617373223a206572726f725f636c6173732c0a20202020202020207d290a202020202020202072656c656173655b22626f6e64225d203d20626f6e640a202020202020202072656c656173655b2266696e616c5f726573756c74225d203d205f63616e6f6e6963616c5f6a736f6e286e6f726d616c697a6564290a202020202020202073656c662e5f736176655f72656c656173652872656c656173655f69642c2072656c65617365290a202020202020202073656c662e76657264696374735b72656c656173655f69645d203d205f63616e6f6e6963616c5f6a736f6e286e6f726d616c697a6564290a202020202020202072656365697074203d207b0a2020202020202020202020202272656c656173655f6964223a2072656c656173655f69642c0a2020202020202020202020202276657264696374223a206e6f726d616c697a65645b2276657264696374225d2c0a2020202020202020202020202265766964656e63655f737461747573223a206e6f726d616c697a65645b2265766964656e63655f737461747573225d2c0a20202020202020202020202022617474656d70745f696e646578223a20617474656d70745f696e6465782c0a202020202020202020202020226465636c61726174696f6e5f68617368223a2072656c656173655b226465636c61726174696f6e5f68617368225d2c0a202020202020202020202020227265706c61795f7265706f72745f68617368223a2072656c656173655b227265706c61795f7265706f72745f68617368225d2c0a2020202020202020202020202263695f7265706f72745f68617368223a2072656c656173655b2263695f7265706f72745f68617368225d2c0a20202020202020202020202022706f6c6963795f76657273696f6e223a20706f6c6963795b22706f6c6963795f76657273696f6e225d2c0a20202020202020202020202022626f6e64223a20626f6e642c0a20202020202020207d0a202020202020202073656c662e72656365697074735b72656c656173655f69645d203d205f63616e6f6e6963616c5f6a736f6e2872656365697074290a202020202020202073656c662e5f7365745f73746174652872656c656173655f69642c2073746174655f6166746572290a202020202020202073656c662e5f617070656e645f686973746f72792872656c656173655f69642c207b226576656e74223a202241444a5544494341544544222c20227374617465223a2073746174655f61667465722c2022617474656d70745f696e646578223a20617474656d70745f696e6465782c20226e6f726d616c697a65645f726573756c74223a205f63616e6f6e6963616c5f6a736f6e286e6f726d616c697a6564292c20226572726f725f636c617373223a206572726f725f636c6173737d290a202020202020202072657475726e206e6f726d616c697a65640a0a2020202040676c2e7075626c69632e766965770a20202020646566206765745f72656c656173652873656c662c2072656c656173655f69643a2073747229202d3e20646963743a0a202020202020202072656c65617365203d2073656c662e5f726571756972655f72656c656173652872656c656173655f6964290a202020202020202072657475726e207b0a2020202020202020202020202272656c656173655f6964223a2072656c656173655f69642c0a202020202020202020202020226f776e6572223a207374722873656c662e72656c656173655f6f776e6572735b72656c656173655f69645d292c0a202020202020202020202020227374617465223a2073656c662e72656c656173655f7374617465735b72656c656173655f69645d2c0a202020202020202020202020226465636c61726174696f6e223a2072656c656173655b226465636c61726174696f6e225d2c0a202020202020202020202020226465636c61726174696f6e5f75726c223a2072656c656173655b226465636c61726174696f6e5f75726c225d2c0a202020202020202020202020226465636c61726174696f6e5f68617368223a2072656c656173655b226465636c61726174696f6e5f68617368225d2c0a202020202020202020202020227265706c61795f7265706f72745f75726c223a2072656c656173655b227265706c61795f7265706f72745f75726c225d2c0a202020202020202020202020227265706c61795f7265706f72745f68617368223a2072656c656173655b227265706c61795f7265706f72745f68617368225d2c0a2020202020202020202020202263695f7265706f72745f75726c223a2072656c656173655b2263695f7265706f72745f75726c225d2c0a2020202020202020202020202263695f7265706f72745f68617368223a2072656c656173655b2263695f7265706f72745f68617368225d2c0a20202020202020202020202022706f6c696379223a2072656c656173655b22706f6c696379225d2c0a20202020202020202020202022626f6e64223a205f63616e6f6e6963616c5f6a736f6e2872656c656173655b22626f6e64225d292c0a20202020202020202020202022617474656d70745f636f756e74223a20696e742873656c662e72656c656173655f617474656d70745f636f756e74732e6765742872656c656173655f69642c203029292c0a2020202020202020202020202266696e616c5f726573756c74223a2072656c656173655b2266696e616c5f726573756c74225d2c0a20202020202020207d0a0a2020202040676c2e7075626c69632e766965770a20202020646566206765745f72656c656173655f617474656d70742873656c662c2072656c656173655f69643a207374722c20617474656d70745f696e6465783a20696e7429202d3e20646963743a0a202020202020202073656c662e5f726571756972655f72656c656173652872656c656173655f6964290a2020202020202020636f756e74203d20696e742873656c662e72656c656173655f617474656d70745f636f756e74732e6765742872656c656173655f69642c203029290a20202020202020206966206973696e7374616e636528617474656d70745f696e6465782c20626f6f6c29206f72206e6f74206973696e7374616e636528617474656d70745f696e6465782c20696e7429206f72206e6f74202830203c3d20617474656d70745f696e646578203c20636f756e74293a0a2020202020202020202020205f6661696c284552524f525f45585045435445442c2022415454454d50545f494e4445585f4f55545f4f465f52414e474522290a20202020202020206b6579203d2073656c662e5f617474656d70745f6b65792872656c656173655f69642c20617474656d70745f696e646578290a2020202020202020617474656d7074203d206a736f6e2e6c6f6164732873656c662e617474656d7074735b6b65795d290a20202020202020206f7574636f6d65203d2073656c662e617474656d70745f726573756c74732e676574286b65792c202222290a20202020202020206966206f7574636f6d653a0a202020202020202020202020617474656d70742e757064617465286a736f6e2e6c6f616473286f7574636f6d6529290a202020202020202072657475726e20617474656d70740a0a2020202040676c2e7075626c69632e766965770a20202020646566206765745f72656c656173655f686973746f72792873656c662c2072656c656173655f69643a207374722c206f66667365743a20696e742c206c696d69743a20696e7429202d3e206c6973743a0a202020202020202073656c662e5f726571756972655f72656c656173652872656c656173655f6964290a20202020202020206966206973696e7374616e6365286f66667365742c20626f6f6c29206f72206e6f74206973696e7374616e6365286f66667365742c20696e7429206f72206f6666736574203c20303a0a2020202020202020202020205f6661696c284552524f525f45585045435445442c2022494e56414c49445f484953544f52595f4f464653455422290a20202020202020206966206973696e7374616e6365286c696d69742c20626f6f6c29206f72206e6f74206973696e7374616e6365286c696d69742c20696e7429206f72206e6f74202831203c3d206c696d6974203c3d204d41585f484953544f52595f50414745293a0a2020202020202020202020205f6661696c284552524f525f45585045435445442c2022494e56414c49445f484953544f52595f4c494d495422290a2020202020202020636f756e74203d20696e742873656c662e686973746f72795f636f756e74732e6765742872656c656173655f69642c203029290a2020202020202020656e64203d206d696e28636f756e742c206f6666736574202b206c696d6974290a2020202020202020726573756c74203d205b5d0a2020202020202020666f7220696e64657820696e2072616e6765286f66667365742c20656e64293a0a202020202020202020202020726573756c742e617070656e64286a736f6e2e6c6f6164732873656c662e686973746f72795b73656c662e5f686973746f72795f6b65792872656c656173655f69642c20696e646578295d29290a202020202020202072657475726e20726573756c740a0a2020202040676c2e7075626c69632e766965770a20202020646566206765745f766572646963742873656c662c2072656c656173655f69643a2073747229202d3e20646963743a0a202020202020202073656c662e5f726571756972655f72656c656173652872656c656173655f6964290a2020202020202020726177203d2073656c662e76657264696374732e6765742872656c656173655f69642c202222290a202020202020202072657475726e206a736f6e2e6c6f61647328726177292069662072617720656c7365207b7d0a0a2020202040676c2e7075626c69632e766965770a20202020646566206765745f726563656970742873656c662c2072656c656173655f69643a2073747229202d3e20646963743a0a202020202020202073656c662e5f726571756972655f72656c656173652872656c656173655f6964290a2020202020202020726177203d2073656c662e72656365697074732e6765742872656c656173655f69642c202222290a202020202020202072657475726e206a736f6e2e6c6f61647328726177292069662072617720656c7365207b7d0a0a2020202040676c2e7075626c69632e766965770a20202020646566206765745f73746174732873656c6629202d3e20646963743a0a202020202020202072657475726e207b0a20202020202020202020202022746f74616c5f72656c6561736573223a20696e742873656c662e746f74616c5f72656c6561736573292c0a202020202020202020202020226472616674223a20696e742873656c662e73746174655f636f756e74732e6765742844524146542c203029292c0a202020202020202020202020227365616c6564223a20696e742873656c662e73746174655f636f756e74732e676574285345414c45442c203029292c0a2020202020202020202020202268656c64223a20696e742873656c662e73746174655f636f756e74732e6765742848454c442c203029292c0a20202020202020202020202022616476616e636564223a20696e742873656c662e73746174655f636f756e74732e67657428414456414e4345442c203029292c0a20202020202020202020202022726f6c6c65645f6261636b223a20696e742873656c662e73746174655f636f756e74732e67657428524f4c4c45445f4241434b2c203029292c0a2020202020202020202020202263616e63656c6c6564223a20696e742873656c662e73746174655f636f756e74732e6765742843414e43454c4c45442c203029292c0a20202020202020207d0a0a2020202040676c2e7075626c69632e766965770a20202020646566206765745f72656c656173655f69645f62795f696e6465782873656c662c20696e6465783a20696e7429202d3e207374723a0a20202020202020206966206973696e7374616e636528696e6465782c20626f6f6c29206f72206e6f74206973696e7374616e636528696e6465782c20696e7429206f72206e6f74202830203c3d20696e646578203c206c656e2873656c662e72656c656173655f69647329293a0a2020202020202020202020205f6661696c284552524f525f45585045435445442c202252454c454153455f494e4445585f4f55545f4f465f52414e474522290a202020202020202072657475726e2073656c662e72656c656173655f6964735b696e6465785d0a0a2020202040676c2e7075626c69632e766965770a20202020646566206765745f72656c656173655f6964732873656c662c206f66667365743a20696e742c206c696d69743a20696e7429202d3e206c6973743a0a20202020202020206966206973696e7374616e6365286f66667365742c20626f6f6c29206f72206e6f74206973696e7374616e6365286f66667365742c20696e7429206f72206f6666736574203c20303a0a2020202020202020202020205f6661696c284552524f525f45585045435445442c2022494e56414c49445f52454c454153455f4f464653455422290a20202020202020206966206973696e7374616e6365286c696d69742c20626f6f6c29206f72206e6f74206973696e7374616e6365286c696d69742c20696e7429206f72206e6f74202831203c3d206c696d6974203c3d204d41585f484953544f52595f50414745293a0a2020202020202020202020205f6661696c284552524f525f45585045435445442c2022494e56414c49445f52454c454153455f4c494d495422290a2020202020202020656e64203d206d696e286c656e2873656c662e72656c656173655f696473292c206f6666736574202b206c696d6974290a2020202020202020726573756c74203d205b5d0a2020202020202020666f7220696e64657820696e2072616e6765286f66667365742c20656e64293a0a202020202020202020202020726573756c742e617070656e642873656c662e72656c656173655f6964735b696e6465785d290a202020202020202072657475726e20726573756c740a0a2020202040676c2e7075626c69632e766965770a20202020646566206765745f636f6e74726163745f6f776e65722873656c6629202d3e20416464726573733a0a202020202020202072657475726e2073656c662e6f776e65720a06000000000000000000000000000000000000000000000000000000000000000000000000000000000000008301e47da004640b73f95c686f7704c1136707d09619d5b2c3c39be6a3b08a9770ee359743a066ce0d4a29e3ea8d6e768e9dea1c1556819e5fb1c941d9de7546c772b29122ff"
+  },
+  "value_credited": false,
+  "sender": "0x0f0179E068ba6C7629d28e2c1Bf73D0A13f9f685",
+  "recipient": "0xe0d101AB1C3B4A76F0Fa5c0184cf36Fe5313DB0e",
+  "tx_id": "0x1aeba8e14622a064c72a648564e8530f72515aad2b82215d2c8d841488620f29",
+  "activator": "0xA793D9dc0ED9edC1f9F732bB68b5D3AFA934F52D",
+  "last_leader": "0xA793D9dc0ED9edC1f9F732bB68b5D3AFA934F52D",
+  "result_name": "MAJORITY_AGREE",
+  "num_of_rounds": "0",
+  "last_round": {
+    "round": "0",
+    "leader_index": "0",
+    "votes_committed": "5",
+    "votes_revealed": "5",
+    "appeal_bond": "0",
+    "rotations_left": "0",
+    "result": 1,
+    "round_validators": [
+      "0xA793D9dc0ED9edC1f9F732bB68b5D3AFA934F52D",
+      "0xcEf1Baa172d0b4D99Dcc505B36332F26D1088025",
+      "0xE4E106086F167D75E2270fa5f3680f6ac598d179",
+      "0x8D32eb5D0207f7E230C45e7BF0D14B2ED5DA3028",
+      "0xE52dDB85587585930b1E5f1Fe88fef21CcA49829"
+    ],
+    "validator_votes_hash": [
+      "0x8771f89423108f3ad4a64fc47486e141e56189fe2cedf001eb4def07dd4d33e0",
+      "0xc5717e9649b3f001ede93847b1b9e5fd3633202fc035837c48388f45ff79cb15",
+      "0xe604abc3e9d7dc6e429bc0b8f4e1cae34b0ab1eb653cb7bb6d6ae79b31f5362e",
+      "0x6f0ceb57795e5d6fe7e27210c5d88a0e0a036b9b40160900497fbeaa1d838d77",
+      "0x296f36656fcad0b9284872ca4878d0b54672e886b957a8bad8bac3008304c61c"
+    ],
+    "validator_votes": [
+      3,
+      1,
+      3,
+      1,
+      1
+    ],
+    "validator_votes_name": [
+      "IDLE",
+      "AGREE",
+      "IDLE",
+      "AGREE",
+      "AGREE"
+    ]
+  },
+  "type": 1,
+  "status_name": "FINALIZED",
+  "lifecycle": {
+    "state": "finalized",
+    "outcome": "accepted"
+  }
+}
