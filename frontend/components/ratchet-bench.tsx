@@ -407,6 +407,12 @@ export default function RatchetBench() {
 
   return (
     <div className="app-shell">
+      <svg className="svg-definitions" aria-hidden="true" focusable="false">
+        <filter id="pencil-ink" x="-8%" y="-8%" width="116%" height="116%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="1" seed="7" result="grain" />
+          <feDisplacementMap in="SourceGraphic" in2="grain" scale="0.55" />
+        </filter>
+      </svg>
       <header className="topbar">
         <a className="brand" href="#top" aria-label="Ratchet home">
           <span className="brand-mark"><GearMark /></span>
@@ -496,6 +502,10 @@ export default function RatchetBench() {
                     </div>
 
                     <div className="verdict-strip">
+                      <svg className={`decision-doodle decision-doodle-${verdictName.toLowerCase()}`} viewBox="0 0 84 42" aria-hidden="true">
+                        <path d="M79 3 C77 19 62 31 28 35" />
+                        <path d="M42 25 27 35l-1-14" />
+                      </svg>
                       <div className="verdict-main">
                         <span className="section-index">ACTIVE GATE <span className="gate-step">{String(Math.max(1, selectedIndex + 1)).padStart(2, "0")} / 05</span></span>
                         <strong className={`verdict-word verdict-${verdictName.toLowerCase()}`}>{verdictName}</strong>
@@ -504,7 +514,7 @@ export default function RatchetBench() {
                       <div className="gate-consequence">
                         <span className="section-index">DEMO BOND · NOT ASSETS</span>
                         <strong>{String(bond.amount ?? "—")} <small>units</small></strong>
-                        <span className="bond-breakdown">{String(bond.state ?? "UNSET")} · {String(bond.locked ?? 0)} locked · {String(bond.returned ?? 0)} returned · {String(bond.slashed ?? 0)} slashed</span>
+                        <span className="bond-breakdown">{String(bond.state ?? "UNSET")} · <span className="bond-locked">{String(bond.locked ?? 0)} locked</span> · <span className="bond-returned">{String(bond.returned ?? 0)} returned</span> · <span className="bond-slashed">{String(bond.slashed ?? 0)} slashed</span></span>
                       </div>
                     </div>
 

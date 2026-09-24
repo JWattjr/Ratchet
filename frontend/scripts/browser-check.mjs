@@ -12,10 +12,13 @@ const port = Number(process.env.RATCHET_UI_PORT ?? 4317);
 const origin = `http://127.0.0.1:${port}`;
 const screenshot = process.argv.includes("--screenshots");
 const responsive = process.argv.includes("--responsive");
+const verdictScreenshots = process.argv.includes("--verdicts");
 const hasProductionBuild = existsSync(resolve(frontend, ".next", "BUILD_ID")) && process.env.RATCHET_UI_USE_DEV_SERVER !== "1";
 const desktopPath = resolve(root, ".impeccable", "review", "desktop.png");
 const mobilePath = resolve(root, ".impeccable", "review", "mobile.png");
-const portalShotDir = resolve(root, "artifacts", "screenshots");
+const portalShotDir = process.env.RATCHET_SCREENSHOT_DIR
+  ? resolve(root, process.env.RATCHET_SCREENSHOT_DIR)
+  : resolve(root, "artifacts", "screenshots");
 const deployment = JSON.parse(await readFile(resolve(frontend, "lib", "deployment.json"), "utf8"));
 const configuredAddress = process.env.NEXT_PUBLIC_RATCHET_ADDRESS?.trim() || (
   deployment.network === "studioDevnet" && deployment.chainId === 61997 ? deployment.contract : ""
@@ -98,7 +101,54 @@ try {
     assert.doesNotMatch(body, /0x[a-fA-F0-9]{40}/, "unconfigured page must not display a fabricated live contract address");
   }
 
-  const widths = responsive ? [1440, 1280, 768, 390] : [1440];
+  if (verdictScreenshots) {
+    assert.ok(configuredAddress, "verdict screenshots require the live deployment address");
+    const expected = [
+      ["RATCHET-ADVANCE", "ADVANCED"],
+      ["RATCHET-HOLD", "HELD"],
+      ["RATCHET-ROLLBACK", "ROLLED_BACK"],
+    ];
+    const picker = page.locator(".release-picker-label select");
+    const available = await picker.locator("option").evaluateAll((options) => options.map((option) => option.value));
+    const missing = expected.map(([id]) => id).filter((id) => !available.includes(id));
+    assert.deepEqual(missing, [], `live contract is missing demo releases: ${missing.join(", ")}`);
+    await mkdir(portalShotDir, { recursive: true });
+    for (const [id, state] of expected) {
+      await picker.selectOption(id);
+      const stateSnapshot = await page.waitForFunction(({ releaseId, releaseState }) => {
+        const title = document.querySelector(".release-heading-row h3")?.textContent?.trim();
+        const verdict = document.querySelector(".verdict-word")?.textContent?.trim();
+        const status = document.querySelector(".release-heading-row .status")?.textContent?.trim();
+        const failure = Array.from(document.querySelectorAll(".inline-alert.error"))
+          .map((alert) => alert.textContent?.trim() ?? "")
+          .find((message) => message.includes(releaseId) || message.includes("Could not read Studio Next"));
+        if (failure) return { failure, title, verdict, status };
+        return title === releaseId && verdict === releaseId.replace("RATCHET-", "") && status === releaseState
+          ? { title, verdict, status }
+          : false;
+      }, { releaseId: id, releaseState: state }, { timeout: 45_000 });
+      const renderedState = await stateSnapshot.jsonValue();
+      assert.ok(!renderedState.failure, `${id} could not load from the live contract: ${renderedState.failure}`);
+      assert.deepEqual(
+        [renderedState.title, renderedState.verdict, renderedState.status],
+        [id, id.replace("RATCHET-", ""), state],
+        `${id} did not render the expected live verdict`,
+      );
+      await page.evaluate(() => document.fonts.ready);
+      const slug = id.toLowerCase();
+      for (const [width, height, suffix] of [[1440, 1000, "desktop"], [375, 844, "mobile"]]) {
+        await page.setViewportSize({ width, height });
+        await page.evaluate(() => window.scrollTo(0, 0));
+        await page.waitForTimeout(120);
+        const metrics = await page.evaluate(() => ({ client: document.documentElement.clientWidth, scroll: document.documentElement.scrollWidth }));
+        assert.ok(metrics.scroll <= metrics.client + 1, `${id} has horizontal overflow at ${width}px: ${JSON.stringify(metrics)}`);
+        await page.screenshot({ path: resolve(portalShotDir, `${slug}-${suffix}.png`), fullPage: true, animations: "disabled", caret: "hide" });
+      }
+    }
+    console.log(`Saved six live verdict screenshots under ${portalShotDir}.`);
+  }
+
+  const widths = responsive ? [1440, 1280, 768, 390, 375] : [1440];
   for (const width of widths) {
     await page.setViewportSize({ width, height: width <= 390 ? 844 : 1000 });
     await page.waitForTimeout(100);
@@ -109,7 +159,7 @@ try {
         const box = item.getBoundingClientRect();
         return { tag: item.tagName, width: box.width, height: box.height, label: item.getAttribute("aria-label") || item.textContent?.trim().slice(0, 32) };
       }).filter((item) => item.width > 0 && item.height > 0 && (item.width < 43 || item.height < 43)));
-      assert.equal(touchTargets.length, 0, `touch targets below 44px at 390px: ${JSON.stringify(touchTargets)}`);
+      assert.equal(touchTargets.length, 0, `touch targets below 44px at ${width}px: ${JSON.stringify(touchTargets)}`);
     }
   }
 
@@ -119,13 +169,13 @@ try {
     await page.setViewportSize({ width: 1440, height: 1000 });
     await page.screenshot({ path: desktopPath, fullPage: true, animations: "disabled" });
     await page.screenshot({ path: resolve(portalShotDir, "desktop.png"), fullPage: true, animations: "disabled" });
-    await page.setViewportSize({ width: 390, height: 844 });
+    await page.setViewportSize({ width: 375, height: 844 });
     await page.screenshot({ path: mobilePath, fullPage: true, animations: "disabled" });
     await page.screenshot({ path: resolve(portalShotDir, "mobile.png"), fullPage: true, animations: "disabled" });
     console.log(`Saved desktop and mobile screenshots under ${resolve(root, ".impeccable", "review")} and ${portalShotDir}.`);
   }
   assert.deepEqual(pageErrors, [], `uncaught browser errors: ${pageErrors.join("; ")}`);
-  console.log(`UI checks passed${responsive ? " at 1440, 1280, 768, and 390px" : ""}.`);
+  console.log(`UI checks passed${responsive ? " at 1440, 1280, 768, 390, and 375px" : ""}.`);
 } finally {
   if (browser) await browser.close();
   server.kill();
