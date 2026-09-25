@@ -14,6 +14,7 @@ from conftest import (
     envelope,
     mock_artifacts,
     policy,
+    set_tx_time,
     sha,
 )
 
@@ -29,7 +30,7 @@ def valid_advance():
 
 
 def test_version_create_owner_and_bounded_index_views(deployed, direct_vm, direct_alice):
-    assert deployed.get_contract_version() == "ratchet/1.0.9"
+    assert deployed.get_contract_version() == "ratchet/1.1.0"
     stored = create_release(deployed, "REL-1")
     release = deployed.get_release("REL-1")
     assert release["state"] == "DRAFT"
@@ -253,15 +254,62 @@ def test_rollback_requires_material_reason_and_applies_fixed_slash(deployed, dir
     assert json.loads(release["bond"]) == {"amount": 100, "returned": 65, "locked": 0, "slashed": 35, "state": "PARTIAL"}
 
 
-@pytest.mark.parametrize("status, error_class", [(404, "EXTERNAL_4XX"), (503, "TRANSIENT_5XX")])
-def test_http_failures_are_classified_as_hold_not_false_advance(deployed, direct_vm, status, error_class):
-    stored = create_release(deployed, f"REL-HTTP-{status}")
-    deployed.seal_release(f"REL-HTTP-{status}")
-    mock_artifacts(direct_vm, f"REL-HTTP-{status}", stored, valid_advance(), statuses={"replay": status})
-    result = deployed.adjudicate(f"REL-HTTP-{status}")
+def test_http_503_reverts_without_using_a_revision(deployed, direct_vm):
+    stored = create_release(deployed, "REL-HTTP-503")
+    deployed.seal_release("REL-HTTP-503")
+    mock_artifacts(direct_vm, "REL-HTTP-503", stored, valid_advance(), statuses={"replay": 503})
+    with direct_vm.expect_revert("TRANSIENT_5XX:DECL-CORPUS"):
+        deployed.adjudicate("REL-HTTP-503")
+    release = deployed.get_release("REL-HTTP-503")
+    assert release["state"] == "SEALED"
+    assert release["attempt_count"] == 1
+    assert "verdict" not in deployed.get_release_attempt("REL-HTTP-503", 0)
+    assert deployed.get_verdict("REL-HTTP-503") == {}
+
+
+def test_http_404_still_holds(deployed, direct_vm):
+    stored = create_release(deployed, "REL-HTTP-404")
+    deployed.seal_release("REL-HTTP-404")
+    mock_artifacts(direct_vm, "REL-HTTP-404", stored, valid_advance(), statuses={"replay": 404})
+    result = deployed.adjudicate("REL-HTTP-404")
     assert result["verdict"] == "HOLD"
     assert result["evidence_status"] == "INCOMPLETE"
-    assert deployed.get_release_attempt(f"REL-HTTP-{status}", 0)["error_class"] == error_class
+    assert deployed.get_release_attempt("REL-HTTP-404", 0)["error_class"] == "EXTERNAL_4XX"
+
+
+def test_expired_hold_rolls_back_with_policy_slash(deployed, direct_vm, direct_bob):
+    rules = policy(bond_amount=100, rollback_slash_pct=35)
+    stored = create_release(deployed, "REL-EXPIRY", rules)
+    deployed.seal_release("REL-EXPIRY")
+    hold = {
+        "verdict": "HOLD", "evidence_status": "INCOMPLETE", "violated_ids": [],
+        "undeclared_change_ids": [], "missing_evidence_ids": ["COVERAGE-REQUIRED-CORPUS"],
+    }
+    mock_artifacts(direct_vm, "REL-EXPIRY", stored, hold)
+    deployed.adjudicate("REL-EXPIRY")
+    release = deployed.get_release("REL-EXPIRY")
+    assert release["state"] == "HELD"
+    assert release["hold_deadline"] == release["held_at"] + 7 * 24 * 60 * 60
+    set_tx_time(direct_vm, "2026-09-30T11:59:59Z")
+    with direct_vm.expect_revert("HOLD_DEADLINE_NOT_REACHED"):
+        deployed.resolve_expired_hold("REL-EXPIRY")
+    direct_vm.sender = direct_bob
+    set_tx_time(direct_vm, "2026-09-30T12:00:00Z")
+    assert deployed.resolve_expired_hold("REL-EXPIRY")["verdict"] == "ROLLBACK"
+    release = deployed.get_release("REL-EXPIRY")
+    assert release["state"] == "ROLLED_BACK"
+    assert json.loads(release["bond"]) == {"amount": 100, "returned": 65, "locked": 0, "slashed": 35, "state": "PARTIAL"}
+    assert deployed.get_receipt("REL-EXPIRY")["verdict"] == "ROLLBACK"
+    assert deployed.get_receipt("REL-EXPIRY")["bond"]["slashed"] == 35
+    assert deployed.get_verdict("REL-EXPIRY")["verdict"] == "ROLLBACK"
+    assert deployed.get_release_history("REL-EXPIRY", 0, 10)[-1]["event"] == "HOLD_EXPIRED"
+
+
+def test_resolve_expired_hold_rejects_non_held_release(deployed, direct_vm):
+    create_release(deployed, "REL-NOT-HELD")
+    set_tx_time(direct_vm, "2026-10-01T12:00:00Z")
+    with direct_vm.expect_revert("RESOLUTION_REQUIRES_HOLD"):
+        deployed.resolve_expired_hold("REL-NOT-HELD")
 
 
 def test_malformed_report_and_contradictory_declaration_hold(deployed, direct_vm):

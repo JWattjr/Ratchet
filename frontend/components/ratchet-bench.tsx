@@ -71,7 +71,7 @@ const POLICY_TEMPLATE = {
   bond_amount: 90,
   advance_return_pct: 100,
   rollback_slash_pct: 50,
-  timeout_consequence: "LOCKED_NO_AUTO_EXPIRY",
+  timeout_consequence: "ROLLBACK_AFTER_HOLD_DEADLINE",
 };
 
 function shortHash(value?: string): string {
@@ -176,6 +176,7 @@ export default function RatchetBench() {
   const [revisionReportHash, setRevisionReportHash] = useState("");
   const [revisionCiUrl, setRevisionCiUrl] = useState("");
   const [revisionCiHash, setRevisionCiHash] = useState("");
+  const [nowMs, setNowMs] = useState(() => Date.now());
 
   const refreshDashboard = useCallback(async (quiet = false, force = false) => {
     if (!quiet) setDashboardLoading(true);
@@ -245,6 +246,13 @@ export default function RatchetBench() {
   }, [selectedId, refreshRelease]);
 
   useEffect(() => {
+    if (release?.state !== "HELD" || !release.hold_deadline) return;
+    const delay = Math.max(0, release.hold_deadline * 1000 - Date.now());
+    const timer = window.setTimeout(() => setNowMs(Date.now()), delay);
+    return () => window.clearTimeout(timer);
+  }, [release?.state, release?.hold_deadline]);
+
+  useEffect(() => {
     if (!release) return;
     let active = true;
     const urls = [release.replay_report_url, release.ci_report_url];
@@ -292,6 +300,8 @@ export default function RatchetBench() {
     ...(Array.isArray(declaration.declared_capabilities) ? declaration.declared_capabilities : []),
   ];
   const policy = parseJson<Record<string, unknown>>(release?.policy, {});
+  const holdDeadlineMs = Number(release?.hold_deadline ?? 0) * 1000;
+  const holdExpired = release?.state === "HELD" && holdDeadlineMs > 0 && nowMs >= holdDeadlineMs;
   const selectedIndex = STOPS.findIndex((stop) => stop.id === activeStop);
   const replayReport = artifacts?.report ?? null;
   const coverage = replayReport && typeof replayReport.coverage === "object" ? replayReport.coverage as Record<string, unknown> : null;
@@ -526,7 +536,8 @@ export default function RatchetBench() {
                     <div className="action-dock">
                       <div className="action-dock-copy">
                         <span className="section-index">CONTRACT CONTROL</span>
-                        <strong>{release.state === "DRAFT" ? "Freeze the declaration when it is ready." : release.state === "SEALED" ? "Send this sealed attempt for independent review." : release.state === "HELD" ? "Add a bounded evidence revision to continue." : "This release has reached a terminal state."}</strong>
+                        <strong>{release.state === "DRAFT" ? "Freeze the declaration when it is ready." : release.state === "SEALED" ? "Send this sealed attempt for independent review." : release.state === "HELD" ? "Revise the evidence or wait for the hold deadline." : "This release has reached a terminal state."}</strong>
+                        {release.state === "HELD" && holdDeadlineMs > 0 && !holdExpired ? <span>Hold can be resolved on {new Date(holdDeadlineMs).toLocaleString()}.</span> : null}
                         <span>On-chain actions require a wallet on chain {CHAIN_ID}.</span>
                       </div>
                       <div className="action-buttons">
@@ -536,6 +547,7 @@ export default function RatchetBench() {
                         </> : null}
                         {release.state === "SEALED" ? <button className="primary-button" onClick={() => void act("adjudicate", [release.release_id], "Adjudicate attempt")} disabled={actionBusy || !walletAddress}><span className="button-symbol"><ReleaseActionMark /></span>{actionBusy ? "Waiting for validators…" : "Adjudicate attempt"}</button> : null}
                         {release.state === "HELD" ? <button className="primary-button hold-button" onClick={() => { setRevisionForm((value) => !value); setActionError(""); }} disabled={actionBusy || !walletAddress}>Submit evidence revision</button> : null}
+                        {holdExpired ? <button className="primary-button hold-button" onClick={() => void act("resolve_expired_hold", [release.release_id], "Resolve expired hold")} disabled={actionBusy || !walletAddress}>{actionBusy ? "Working…" : "Resolve expired hold"}</button> : null}
                         {!walletAddress && release.state !== "ADVANCED" && release.state !== "ROLLED_BACK" && release.state !== "CANCELLED" ? <button className="quiet-link" onClick={handleConnect}>Connect wallet</button> : null}
                       </div>
                     </div>
@@ -611,7 +623,7 @@ export default function RatchetBench() {
                           <div className="full-width code-evidence"><span className="field-label">INDEPENDENT REVIEW ATTEMPTS</span>{attempts.map((attempt) => <p className="attempt-chip" key={attempt.attempt_index}>Attempt {attempt.attempt_index + 1} · {attempt.kind} · {attempt.verdict ?? "awaiting adjudication"} · {attempt.error_class ?? "no classified error"}</p>)}</div>
                         </div> : null}
                         {!detailLoading && activeStop === "action" ? <div className="action-sequence">
-                          <div className="action-outcome"><span className="field-label">CONTRACT STATE</span><strong>{release.state}</strong><p>{release.state === "ADVANCED" ? "The candidate passed its recorded release gate and the demo bond was returned. No EVM upgrade was executed." : release.state === "ROLLED_BACK" ? "Ratchet closed the candidate path and applied the frozen demo bond rule. The current implementation remains approved; no EVM rollback was executed." : release.state === "HELD" ? "The candidate remains blocked. The contract holds the demo units while bounded evidence revisions remain." : release.state === "CANCELLED" ? "The draft closed before sealing and the demo lock was released." : "No terminal contract action has been recorded."}</p></div>
+                          <div className="action-outcome"><span className="field-label">CONTRACT STATE</span><strong>{release.state}</strong><p>{release.state === "ADVANCED" ? "The candidate passed its recorded release gate and the demo bond was returned. No EVM upgrade was executed." : release.state === "ROLLED_BACK" ? "Ratchet closed the candidate path and applied the frozen demo bond rule. The current implementation remains approved; no EVM rollback was executed." : release.state === "HELD" ? "The candidate remains blocked. The demo bond stays locked until an evidence revision or the seven-day hold deadline; anyone may resolve an expired hold under the rollback rule." : release.state === "CANCELLED" ? "The draft closed before sealing and the demo lock was released." : "No terminal contract action has been recorded."}</p></div>
                           <div className="action-proof"><span className="field-label">FINAL RECEIPT</span>{receipt ? <><code>{receipt.declaration_hash}</code><code>{receipt.replay_report_hash}</code><code>{receipt.ci_report_hash}</code><span>Attempt {receipt.attempt_index + 1} · {receipt.policy_version}</span></> : <EmptyCell>The contract has not recorded a final adjudication receipt.</EmptyCell>}</div>
                           {lastTxHash ? <a href={`${EXPLORER_URL}/tx/${lastTxHash}`} target="_blank" rel="noreferrer">Latest wallet transaction · {shortHash(lastTxHash)} · open explorer</a> : null}
                         </div> : null}

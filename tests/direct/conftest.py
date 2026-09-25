@@ -1,6 +1,7 @@
 import hashlib
 import json
 import re
+import sys
 
 import pytest
 
@@ -61,7 +62,7 @@ def policy(retry_limit=1, bond_amount=90, rollback_slash_pct=50):
         "bond_amount": bond_amount,
         "advance_return_pct": 100,
         "rollback_slash_pct": rollback_slash_pct,
-        "timeout_consequence": "LOCKED_NO_AUTO_EXPIRY",
+        "timeout_consequence": "ROLLBACK_AFTER_HOLD_DEADLINE",
     }
 
 
@@ -137,8 +138,16 @@ def mock_artifacts(direct_vm, release_id, stored, normalized, *, declaration_ove
         )
 
 
+def set_tx_time(vm, iso_time):
+    vm.warp(iso_time)
+    gl = sys.modules.get("genlayer.gl")
+    if gl is not None and getattr(gl, "message_raw", None) is not None:
+        gl.message_raw["datetime"] = iso_time
+
+
 @pytest.fixture
 def deployed(direct_vm, direct_deploy, direct_alice):
     contract = direct_deploy("contracts/ratchet.py")
     direct_vm.sender = direct_alice
+    set_tx_time(direct_vm, "2026-09-23T12:00:00Z")
     return contract

@@ -42,7 +42,7 @@
 - Network resets can invalidate deployed addresses and old proofs; records must be regenerated and reverified before an app advertises the deployment as current.
 - Coverage is limited to named corpus transactions and stated invariants; it is not a formal proof, audit, or exhaustive test.
 - HTTPS and SHA-256 provide transport identity and content integrity relative to the committed digest, not long-term host availability.
-- The demo contract has no real collateral, dispute appeal, timeout unlock, or EVM upgrade integration. A HOLD locks the demo ledger bond until an allowed revision or separate administrative design is made.
+- The demo contract has no real collateral, dispute appeal, or EVM upgrade integration. A HOLD locks the demo ledger bond until an allowed revision or until anyone resolves the hold after seven days under the frozen rollback rule.
 - Production adoption would require protocol-specific threat analysis, independent security review, reproducible build attestations, deployment ownership procedures, and tested monitoring and recovery plans.
 
 ## Out of scope

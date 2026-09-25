@@ -10,11 +10,12 @@ rules. It never executes candidate EVM bytecode or a proxy upgrade.
 import hashlib
 import json
 import re
+from datetime import datetime, timezone
 
 from genlayer import *
 
 
-VERSION = "ratchet/1.0.9"
+VERSION = "ratchet/1.1.0"
 POLICY_VERSION = "ratchet-policy/1"
 
 DRAFT = "DRAFT"
@@ -66,6 +67,7 @@ MAX_ATTEMPTS = 4
 MAX_BOND_UNITS = 1_000_000
 MAX_EVIDENCE_BYTES = 400_000
 MAX_EVIDENCE_CHARS = 24_000
+HOLD_DEADLINE_SECONDS = 7 * 24 * 60 * 60
 RELEASE_ID_RE = re.compile(r"^[A-Z0-9][A-Z0-9._-]{1,47}$")
 HASH_RE = re.compile(r"^[0-9a-f]{64}$")
 URL_RE = re.compile(r"^https://[^\s<>]+$")
@@ -73,6 +75,14 @@ URL_RE = re.compile(r"^https://[^\s<>]+$")
 
 def _fail(prefix: str, message: str):
     raise gl.vm.UserError(f"{prefix} {message}")
+
+
+def _now_ts() -> int:
+    raw = str(gl.message_raw["datetime"])
+    moment = datetime.fromisoformat(raw.replace("Z", "+00:00"))
+    if moment.tzinfo is None:
+        moment = moment.replace(tzinfo=timezone.utc)
+    return int(moment.timestamp())
 
 
 def _canonical_json(value) -> str:
@@ -150,7 +160,7 @@ def _validate_policy(raw: str) -> dict:
         _fail(ERROR_EXPECTED, "ADVANCE_MUST_RETURN_FULL_BOND")
     if isinstance(rollback_slash_pct, bool) or not isinstance(rollback_slash_pct, int) or not (0 <= rollback_slash_pct <= 100):
         _fail(ERROR_EXPECTED, "INVALID_ROLLBACK_SLASH_PERCENT")
-    if policy.get("timeout_consequence") != "LOCKED_NO_AUTO_EXPIRY":
+    if policy.get("timeout_consequence") != "ROLLBACK_AFTER_HOLD_DEADLINE":
         _fail(ERROR_EXPECTED, "UNSUPPORTED_TIMEOUT_CONSEQUENCE")
     return {
         "policy_version": POLICY_VERSION,
@@ -162,7 +172,7 @@ def _validate_policy(raw: str) -> dict:
         "bond_amount": bond_amount,
         "advance_return_pct": advance_return_pct,
         "rollback_slash_pct": rollback_slash_pct,
-        "timeout_consequence": "LOCKED_NO_AUTO_EXPIRY",
+        "timeout_consequence": "ROLLBACK_AFTER_HOLD_DEADLINE",
     }
 
 
@@ -805,6 +815,9 @@ class Ratchet(gl.Contract):
         ci_fetch = _fetch_json(release["ci_report_url"], release["ci_report_hash"], "DECL-CORPUS")
         fetches = (declaration_fetch, report_fetch, ci_fetch)
         failed = [fetch for fetch in fetches if not fetch["ok"]]
+        for fetch in failed:
+            if fetch["error_class"] in ("NETWORK", "TRANSIENT_5XX"):
+                _fail(ERROR_TRANSIENT, f'{fetch["error_class"]}:{fetch["missing_id"]}')
         if failed:
             missing = [fetch["missing_id"] for fetch in failed]
             classes = [fetch["error_class"] for fetch in failed]
@@ -894,6 +907,8 @@ class Ratchet(gl.Contract):
         })
         release["bond"] = bond
         release["final_result"] = _canonical_json(normalized)
+        if state_after == HELD:
+            release["held_at"] = _now_ts()
         self._save_release(release_id, release)
         self.verdicts[release_id] = _canonical_json(normalized)
         receipt = {
@@ -912,6 +927,33 @@ class Ratchet(gl.Contract):
         self._append_history(release_id, {"event": "ADJUDICATED", "state": state_after, "attempt_index": attempt_index, "normalized_result": _canonical_json(normalized), "error_class": error_class})
         return normalized
 
+    @gl.public.write
+    def resolve_expired_hold(self, release_id: str) -> dict:
+        release = self._require_release(release_id)
+        if self.release_states.get(release_id, "") != HELD:
+            _fail(ERROR_EXPECTED, "RESOLUTION_REQUIRES_HOLD")
+        held_at = int(release.get("held_at", 0))
+        resolved_at = _now_ts()
+        if held_at <= 0 or resolved_at < held_at + HOLD_DEADLINE_SECONDS:
+            _fail(ERROR_EXPECTED, "HOLD_DEADLINE_NOT_REACHED")
+        bond = self._apply_bond(release, ROLLBACK)
+        result = json.loads(release["final_result"])
+        result["verdict"] = ROLLBACK
+        release["bond"] = bond
+        release["final_result"] = _canonical_json(result)
+        self._save_release(release_id, release)
+        self.verdicts[release_id] = _canonical_json(result)
+        receipt = json.loads(self.receipts[release_id])
+        receipt["verdict"] = ROLLBACK
+        receipt["bond"] = bond
+        self.receipts[release_id] = _canonical_json(receipt)
+        self._set_state(release_id, ROLLED_BACK)
+        self._append_history(release_id, {
+            "event": "HOLD_EXPIRED", "state": ROLLED_BACK, "verdict": ROLLBACK,
+            "held_at": held_at, "resolved_at": resolved_at,
+        })
+        return result
+
     @gl.public.view
     def get_release(self, release_id: str) -> dict:
         release = self._require_release(release_id)
@@ -928,6 +970,8 @@ class Ratchet(gl.Contract):
             "ci_report_hash": release["ci_report_hash"],
             "policy": release["policy"],
             "bond": _canonical_json(release["bond"]),
+            "held_at": int(release.get("held_at", 0)),
+            "hold_deadline": int(release.get("held_at", 0)) + HOLD_DEADLINE_SECONDS if release.get("held_at") else 0,
             "attempt_count": int(self.release_attempt_counts.get(release_id, 0)),
             "final_result": release["final_result"],
         }

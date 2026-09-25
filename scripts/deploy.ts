@@ -77,7 +77,7 @@ async function main() {
     readContract(address, "get_stats"),
   ]);
   const version = String(versionRaw);
-  if (version !== "ratchet/1.0.9") throw new Error(`Deployed contract reported unexpected version ${version}.`);
+  if (version !== "ratchet/1.1.0") throw new Error(`Deployed contract reported unexpected version ${version}.`);
   const owner = String(ownerRaw);
   const stats = asRecord(statsRaw, "get_stats");
   const deployment = {

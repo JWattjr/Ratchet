@@ -47,7 +47,7 @@ def test_seeded_contract_and_validator_consensus():
 
     factory = get_contract_factory(contract_file_path=str(ROOT / "contracts" / "ratchet.py"))
     contract = factory.build_contract(contract_address=ADDRESS, account=get_default_account())
-    assert contract.get_contract_version(args=[]).call() == "ratchet/1.0.9"
+    assert contract.get_contract_version(args=[]).call() == "ratchet/1.1.0"
     client = get_gl_client()
     observed_ids = set()
 

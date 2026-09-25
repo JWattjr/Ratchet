@@ -29,7 +29,7 @@ const policy = {
   bond_amount: 90,
   advance_return_pct: 100,
   rollback_slash_pct: 50,
-  timeout_consequence: "LOCKED_NO_AUTO_EXPIRY",
+  timeout_consequence: "ROLLBACK_AFTER_HOLD_DEADLINE",
 };
 
 const manifest = [

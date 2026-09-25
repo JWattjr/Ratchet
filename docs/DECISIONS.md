@@ -6,7 +6,7 @@
 | Runner | Full pinned `py-genlayer` hash in contract metadata | Reproducible GenVM runtime compatibility. |
 | UI direction | Ratchet Calibration Bench | A light, friendly inspection workbench carries declaration-to-observation comparison while keeping severity and proof readable. |
 | UI build path | Code-led | The brief explicitly selects disciplined code-led work; no comp is required. |
-| State expiry | No automatic expiry | The target time model is not treated as a safe deterministic release deadline. Held bonds remain locked until the bounded allowed revision or a separately designed resolution. |
+| State expiry | Seven-day HOLD deadline | The contract records the time a release enters `HELD`. After the deadline, anyone may settle it as `ROLLED_BACK` using the frozen bond rule without new web or LLM calls. |
 | Bond | Integer demonstration accounting units | The prototype must not imply custody or transfer of real funds. |
 | Evidence storage | Public HTTPS URLs plus exact SHA-256 references | Reports remain inspectable without storing entire replay bundles on-chain. |
 | Validator result | Strict normalized verdict and stable policy IDs | Consensus compares deterministic fields, not prose or model-selected remedies. |

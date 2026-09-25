@@ -21,7 +21,7 @@ Frontend RPC reads are shared briefly in memory and explicit refreshes bypass th
 
 ## Release state
 
-`DRAFT` accepts a validated, canonical declaration. `SEALED` records an immutable evidence attempt. A finalized `ADVANCE` closes in `ADVANCED`; `HOLD` closes that attempt in `HELD` and locks the demonstration bond while the single policy-bounded revision may be submitted; `ROLLBACK` closes in `ROLLED_BACK`. Draft cancellation is terminal. History and attempt records are append-only and are queryable separately from the current release record.
+`DRAFT` accepts a validated, canonical declaration. `SEALED` records an immutable evidence attempt. A finalized `ADVANCE` closes in `ADVANCED`; `HOLD` closes that attempt in `HELD` and locks the demonstration bond while the single policy-bounded revision may be submitted. After seven days, anyone can resolve a held release into `ROLLED_BACK` under the frozen rollback bond rule. A direct `ROLLBACK` also closes in `ROLLED_BACK`. Draft cancellation is terminal. History and attempt records are append-only and are queryable separately from the current release record.
 
 ## Frontend data discipline
 

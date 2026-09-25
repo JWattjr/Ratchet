@@ -17,6 +17,8 @@ export type Release = {
   ci_report_hash: string;
   policy: string;
   bond: string;
+  held_at?: number;
+  hold_deadline?: number;
   attempt_count: number;
   final_result: string;
 };
