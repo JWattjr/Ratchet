@@ -108,7 +108,7 @@ export async function rpc(method: string, params: unknown[] = []): Promise<unkno
 export async function ensureFunded(address: string): Promise<void> {
   const balance = BigInt(String(await rpc("eth_getBalance", [address, "latest"])));
   if (balance >= 10n ** 18n) return;
-  await rpc("sim_fundAccount", [address, (10n ** 20n).toString()]);
+  await rpc("sim_fundAccount", [address, Number(10n ** 20n)]);
   const funded = BigInt(String(await rpc("eth_getBalance", [address, "latest"])));
   if (funded < 10n ** 18n) throw new Error(`The ${NETWORK_LABEL} development faucet did not fund the deployer.`);
   console.log(`Funded the development signer from ${NETWORK_LABEL}'s test faucet.`);

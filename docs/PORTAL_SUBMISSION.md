@@ -17,16 +17,16 @@ The relationship between natural-language release intent and replay evidence req
 ## Live deployment values
 
 - Application URL: [https://ratchet-genlayer.vercel.app](https://ratchet-genlayer.vercel.app)
-- Production deployment: [READY deployment](https://ratchet-genlayer-hftg5cifw-wattxs-projects.vercel.app) (`dpl_ARdGzHta9sMYaPtmMmN2WoLC5ZVa`); the stable application URL above is the production alias.
+- Production deployment: the stable application URL above is the production alias.
 - Repository URL: [https://github.com/JWattjr/Ratchet](https://github.com/JWattjr/Ratchet).
-- Studio Next chain: `61997`.
+- Stable Studionet chain: `61999`.
 - Contract version: `ratchet/1.0.9`.
-- Contract address: [`0xB8d709F996B06C1a3990C7D8b6A3A1b520a9Fd20`](https://explorer-studio-dev.genlayer.com/address/0xB8d709F996B06C1a3990C7D8b6A3A1b520a9Fd20).
-- Deployment transaction: [finalized deployment](https://explorer-studio-dev.genlayer.com/tx/0xd1de61450feba7ce62c6a2823240dbd241d137e3e6c9bdaf3912b967796f7368).
-- ADVANCE: [`RATCHET-ADVANCE` — `ADVANCED`, evidence complete, 90 demo units returned](https://explorer-studio-dev.genlayer.com/tx/0xe3b866b97f709de677a353707a06f110feeab85828771fe5109c066f663439ba).
-- HOLD: [`RATCHET-HOLD` — `HELD`, evidence incomplete, 90 demo units remain locked](https://explorer-studio-dev.genlayer.com/tx/0x6d286b502cc451343b8fa87943c7182910d6c74e64350ec521d1a2a7b04b7c73).
-- ROLLBACK: [`RATCHET-ROLLBACK` — `ROLLED_BACK`, undeclared capability/invariant failure, 45 units returned and 45 slashed](https://explorer-studio-dev.genlayer.com/tx/0x465dda94d11e36f1e6b70dcd6facee80c68ebf342bcc4a578f97a9a64804ce4c).
-- [Desktop screenshot](../artifacts/screenshots/desktop.png) · [Mobile screenshot](../artifacts/screenshots/mobile.png).
+- Contract address: [`0x9e9e4bA8eC40D0661C66E37C3892831718Fc9b0F`](https://genlayer-explorer.vercel.app/address/0x9e9e4bA8eC40D0661C66E37C3892831718Fc9b0F).
+- Deployment transaction: [finalized deployment](https://genlayer-explorer.vercel.app/tx/0x7e71a87c939b10bed7ad60d4bbd5fd9bf0d43a3fa30a1ab0257ba2ded167a63d).
+- ADVANCE: [`RATCHET-ADVANCE` — `ADVANCED`, evidence complete, 90 demo units returned](https://genlayer-explorer.vercel.app/tx/0xd77a86951d6c6ccf25e7893adec86389b07638ea2723974b549e6500a85b958d).
+- HOLD: [`RATCHET-HOLD` — `HELD`, evidence incomplete, 90 demo units remain locked](https://genlayer-explorer.vercel.app/tx/0x7b1b3eb6061b0a728f1a7e961da0ccdd06bd1e24886f31be338e3021eb7bb072).
+- ROLLBACK: [`RATCHET-ROLLBACK` — `ROLLED_BACK`, undeclared capability/invariant failure, 45 units returned and 45 slashed](https://genlayer-explorer.vercel.app/tx/0x1688bdb3437e8e80f21ff747b84f48fee501e0ee54d563fc0b87653b6ca59ec5).
+- Screenshots: [ADVANCE desktop](../artifacts/screenshots/ratchet-advance-desktop.png) · [ADVANCE mobile](../artifacts/screenshots/ratchet-advance-mobile.png) · [HOLD desktop](../artifacts/screenshots/ratchet-hold-desktop.png) · [HOLD mobile](../artifacts/screenshots/ratchet-hold-mobile.png) · [ROLLBACK desktop](../artifacts/screenshots/ratchet-rollback-desktop.png) · [ROLLBACK mobile](../artifacts/screenshots/ratchet-rollback-mobile.png).
 
 The deployment and all nine release lifecycle writes have finalized receipts. Each receipt reports `FINISHED_WITH_RETURN` execution and `MAJORITY_AGREE` consensus. The outcomes are recorded separately from those transaction lifecycle and consensus fields.
 
@@ -36,14 +36,14 @@ Use [DEMO_SCRIPT.md](DEMO_SCRIPT.md). Open the honest declaration-to-replay trac
 
 ## Reset instructions
 
-After a Studio Next reset, regenerate the replay, redeploy and seed the three proposals, then refresh all live proof records:
+After a Studionet reset, regenerate the replay, redeploy and seed the three proposals, then refresh all live proof records:
 
 ```powershell
 $env:RATCHET_EVIDENCE_BASE_URL = "https://ratchet-genlayer.vercel.app"
 npm run reset:demo
 ```
 
-The script runs replay generation and verification, prepares evidence, deploys and seeds Ratchet, verifies the live receipts, profiles fees, and builds the frontend. Update the Vercel production `NEXT_PUBLIC_RATCHET_ADDRESS` to the new contract in `frontend/lib/deployment.json`, redeploy with `vercel --prod`, and replace the transaction links in this package from the new `deploy/studio-next-proof.json`. A Studio Next reset invalidates the old contract and transaction links.
+The script runs replay generation and verification, prepares evidence, deploys and seeds Ratchet, verifies the live receipts, and builds the frontend. Update the production deployment manifest and remove any stale Vercel `NEXT_PUBLIC_RATCHET_ADDRESS` override before redeploying with `vercel --prod`. Replace the transaction links in this package from `deploy/studionet-proof.json`. A Studionet reset invalidates the old contract and transaction links.
 
 ## Architecture and reproducibility
 
@@ -53,11 +53,10 @@ Read [ARCHITECTURE.md](ARCHITECTURE.md), [THREAT_MODEL.md](THREAT_MODEL.md), [re
 
 Observed checks for the deployed `ratchet/1.0.9` source and current frontend:
 
-- `npm run check`: replay compilation and verification, GenVM lint/schema, direct and replay tests, frontend lint/typecheck/build, browser UI checks, and responsive checks passed.
-- `npm run test:integration`: passed against Studio Next; checks live contract state, bond accounting, successful execution, and consensus metadata.
-- `npm run test:responsive`: passed at 1440, 1280, 768, and 390 px; desktop and mobile captures show the live selected release.
-- `npm run verify:proof`: verified 10 finalized Studio Next transactions, all 3 live release receipts, and 9 hosted evidence hashes.
-- `npm run profile:fees`: generated the fee profile from the three finalized adjudication receipts.
+- Validation gates: replay compilation and verification, GenVM lint/schema, 26 direct tests, 5 replay tests, frontend lint/typecheck/build, UI checks, and responsive checks passed. UI and responsive commands were rerun after the final mobile spacing and touch-target adjustments.
+- `npm run test:integration`: passed against Studionet; checks live contract state, bond accounting, successful execution, and consensus metadata.
+- `npm run test:live`: passed against the deployed contract and live evidence at 1440, 1280, 768, 390, and 375 px; it refreshed all six verdict screenshots.
+- `npm run verify:proof`: verified 10 finalized Studionet transactions, all 3 live release receipts, and 9 hosted evidence hashes.
 
 ## Limitations
 
@@ -65,4 +64,4 @@ The replay is a local deterministic Hardhat EVM run over a fixed representative 
 
 ## Tags
 
-GenLayer, Intelligent Contract, release governance, differential replay, declaration envelope, web evidence, natural-language policy, AI-validator consensus, subjective adjudication, deterministic authorization, Studio Next.
+GenLayer, Intelligent Contract, release governance, differential replay, declaration envelope, web evidence, natural-language policy, AI-validator consensus, subjective adjudication, deterministic authorization, Studionet.

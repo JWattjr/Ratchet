@@ -1,0 +1,239 @@
+{
+  "ctor": {
+    "params": [],
+    "kwparams": {}
+  },
+  "methods": {
+    "adjudicate": {
+      "params": [
+        [
+          "release_id",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "dict",
+      "payable": false
+    },
+    "cancel_draft": {
+      "params": [
+        [
+          "release_id",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "null",
+      "payable": false
+    },
+    "create_release": {
+      "params": [
+        [
+          "release_id",
+          "string"
+        ],
+        [
+          "declaration_json",
+          "string"
+        ],
+        [
+          "declaration_url",
+          "string"
+        ],
+        [
+          "declaration_hash",
+          "string"
+        ],
+        [
+          "policy_json",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "null",
+      "payable": false
+    },
+    "get_contract_owner": {
+      "params": [],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "address"
+    },
+    "get_contract_version": {
+      "params": [],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "string"
+    },
+    "get_receipt": {
+      "params": [
+        [
+          "release_id",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "dict"
+    },
+    "get_release": {
+      "params": [
+        [
+          "release_id",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "dict"
+    },
+    "get_release_attempt": {
+      "params": [
+        [
+          "release_id",
+          "string"
+        ],
+        [
+          "attempt_index",
+          "int"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "dict"
+    },
+    "get_release_history": {
+      "params": [
+        [
+          "release_id",
+          "string"
+        ],
+        [
+          "offset",
+          "int"
+        ],
+        [
+          "limit",
+          "int"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "array"
+    },
+    "get_release_id_by_index": {
+      "params": [
+        [
+          "index",
+          "int"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "string"
+    },
+    "get_release_ids": {
+      "params": [
+        [
+          "offset",
+          "int"
+        ],
+        [
+          "limit",
+          "int"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "array"
+    },
+    "get_stats": {
+      "params": [],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "dict"
+    },
+    "get_verdict": {
+      "params": [
+        [
+          "release_id",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": true,
+      "ret": "dict"
+    },
+    "seal_release": {
+      "params": [
+        [
+          "release_id",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "null",
+      "payable": false
+    },
+    "submit_evidence_revision": {
+      "params": [
+        [
+          "release_id",
+          "string"
+        ],
+        [
+          "replay_report_url",
+          "string"
+        ],
+        [
+          "replay_report_hash",
+          "string"
+        ],
+        [
+          "ci_report_url",
+          "string"
+        ],
+        [
+          "ci_report_hash",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "null",
+      "payable": false
+    },
+    "update_draft": {
+      "params": [
+        [
+          "release_id",
+          "string"
+        ],
+        [
+          "declaration_json",
+          "string"
+        ],
+        [
+          "declaration_url",
+          "string"
+        ],
+        [
+          "declaration_hash",
+          "string"
+        ],
+        [
+          "policy_json",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "null",
+      "payable": false
+    }
+  }
+}

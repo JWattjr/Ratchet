@@ -1,0 +1,28 @@
+{
+  "network": "studionet",
+  "chainId": 61999,
+  "rpc": "https://studio.genlayer.com/api",
+  "explorer": "https://genlayer-explorer.vercel.app",
+  "contract": "0x9e9e4bA8eC40D0661C66E37C3892831718Fc9b0F",
+  "owner": "0x0f0179e068ba6c7629d28e2c1bf73d0a13f9f685",
+  "deployTransaction": "0x7e71a87c939b10bed7ad60d4bbd5fd9bf0d43a3fa30a1ab0257ba2ded167a63d",
+  "deployExplorer": "https://genlayer-explorer.vercel.app/tx/0x7e71a87c939b10bed7ad60d4bbd5fd9bf0d43a3fa30a1ab0257ba2ded167a63d",
+  "addressExplorer": "https://genlayer-explorer.vercel.app/address/0x9e9e4bA8eC40D0661C66E37C3892831718Fc9b0F",
+  "deployedAt": "2026-09-24T23:52:16.808Z",
+  "contractVersion": "ratchet/1.0.9",
+  "runner": "1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6",
+  "runnerHeader": "# { \"Depends\": \"py-genlayer:1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6\" }",
+  "sourceSha256": "fa9e728159af2123a54602f777d4b58dd220f4e8afb9516d00bb885cf9f5243a",
+  "abiSchema": "deploy/studionet-schema.json",
+  "initialStats": {
+    "advanced": 0,
+    "cancelled": 0,
+    "draft": 0,
+    "held": 0,
+    "rolled_back": 0,
+    "sealed": 0,
+    "total_releases": 0
+  },
+  "receiptStatus": "FINALIZED",
+  "deployer": "0x0f0179E068ba6C7629d28e2c1Bf73D0A13f9f685"
+}

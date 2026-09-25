@@ -1,0 +1,68 @@
+{
+  "schema_version": "1",
+  "proof_kind": "verified-archival-snapshot",
+  "verified_at": "2026-09-25T00:02:24.204Z",
+  "source_commit": "c98f942c22b4714c8067081f92c8a47f52e78134",
+  "network": "studionet",
+  "chain_id": 61999,
+  "contract": "0x9e9e4bA8eC40D0661C66E37C3892831718Fc9b0F",
+  "explorer": "https://genlayer-explorer.vercel.app",
+  "deployment_transaction": "0x7e71a87c939b10bed7ad60d4bbd5fd9bf0d43a3fa30a1ab0257ba2ded167a63d",
+  "github_ci_runs": "https://github.com/JWattjr/Ratchet/actions/workflows/ci.yml",
+  "releases": [
+    {
+      "release_id": "RATCHET-ADVANCE",
+      "state": "ADVANCED",
+      "verdict": "ADVANCE",
+      "evidence_status": "COMPLETE",
+      "declaration_hash": "91b066aae8687801b9b203110425fc2cfc155c2b5704e830fa20923cd90a278f",
+      "replay_report_hash": "7eee52519f7691eeba46af6ecb0891f0ca4e9aa5af3c00450552d3267a430ca7",
+      "ci_report_hash": "8574e815d0ebd8ec985984383aa2c66fd1803a2ac81eb4a1a4ba4e3e9ccb57e9",
+      "bond": {
+        "amount": 90,
+        "locked": 0,
+        "returned": 90,
+        "slashed": 0,
+        "state": "RETURNED"
+      },
+      "adjudication_transaction": "0xd77a86951d6c6ccf25e7893adec86389b07638ea2723974b549e6500a85b958d",
+      "adjudication_explorer_url": "https://genlayer-explorer.vercel.app/tx/0xd77a86951d6c6ccf25e7893adec86389b07638ea2723974b549e6500a85b958d"
+    },
+    {
+      "release_id": "RATCHET-HOLD",
+      "state": "HELD",
+      "verdict": "HOLD",
+      "evidence_status": "INCOMPLETE",
+      "declaration_hash": "740db3ebfe80e94dc600dd610ea4668f39dffafea6104e3b933fc8cc1cd000df",
+      "replay_report_hash": "19d2291048444b68333893e9db79f8647626acf482738715725309c68ab5c068",
+      "ci_report_hash": "baccb58ceae162a5dfb792934d976dd98d5a3f2f34425a2db08b3f3b9a5a9b29",
+      "bond": {
+        "amount": 90,
+        "locked": 90,
+        "returned": 0,
+        "slashed": 0,
+        "state": "LOCKED"
+      },
+      "adjudication_transaction": "0x7b1b3eb6061b0a728f1a7e961da0ccdd06bd1e24886f31be338e3021eb7bb072",
+      "adjudication_explorer_url": "https://genlayer-explorer.vercel.app/tx/0x7b1b3eb6061b0a728f1a7e961da0ccdd06bd1e24886f31be338e3021eb7bb072"
+    },
+    {
+      "release_id": "RATCHET-ROLLBACK",
+      "state": "ROLLED_BACK",
+      "verdict": "ROLLBACK",
+      "evidence_status": "COMPLETE",
+      "declaration_hash": "28b5faa5a2e0bcdb2ce138c924248c6c76b54dab96534ed4897240edd9d4dd60",
+      "replay_report_hash": "3655e0cd50993c0ce7827a10580bd86b4ea3b29434a5c35d19885a80bba317be",
+      "ci_report_hash": "881c71fffac2b72058019f817bffa9912742d2074abe5b9b5675024b2fc18162",
+      "bond": {
+        "amount": 90,
+        "locked": 0,
+        "returned": 45,
+        "slashed": 45,
+        "state": "PARTIAL"
+      },
+      "adjudication_transaction": "0x1688bdb3437e8e80f21ff747b84f48fee501e0ee54d563fc0b87653b6ca59ec5",
+      "adjudication_explorer_url": "https://genlayer-explorer.vercel.app/tx/0x1688bdb3437e8e80f21ff747b84f48fee501e0ee54d563fc0b87653b6ca59ec5"
+    }
+  ]
+}

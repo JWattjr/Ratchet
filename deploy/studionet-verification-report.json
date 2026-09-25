@@ -1,0 +1,111 @@
+{
+  "schema_version": "1",
+  "verified_at": "2026-09-25T00:02:24.204Z",
+  "network": "studionet",
+  "chain_id": 61999,
+  "contract": "0x9e9e4bA8eC40D0661C66E37C3892831718Fc9b0F",
+  "explorer": "https://genlayer-explorer.vercel.app",
+  "verified_transactions": [
+    {
+      "action": "deploy",
+      "hash": "0x7e71a87c939b10bed7ad60d4bbd5fd9bf0d43a3fa30a1ab0257ba2ded167a63d",
+      "explorer_url": "https://genlayer-explorer.vercel.app/tx/0x7e71a87c939b10bed7ad60d4bbd5fd9bf0d43a3fa30a1ab0257ba2ded167a63d",
+      "lifecycle": "FINALIZED",
+      "execution": "SUCCESS",
+      "consensus": "MAJORITY_AGREE"
+    },
+    {
+      "release_id": "RATCHET-ADVANCE",
+      "action": "RATCHET-ADVANCE-create",
+      "hash": "0xca0acba970d759e5d0ac61b073ac4c5f5d2c3e23f7c013ea9a5fe3b74312bfa2",
+      "explorer_url": "https://genlayer-explorer.vercel.app/tx/0xca0acba970d759e5d0ac61b073ac4c5f5d2c3e23f7c013ea9a5fe3b74312bfa2",
+      "lifecycle": "FINALIZED",
+      "execution": "SUCCESS",
+      "consensus": "MAJORITY_AGREE",
+      "local_receipt_sha256": "3b88c506c8c0c293db4be1e6848fcc3af4bf551dffd50265a73569fdc29d882e"
+    },
+    {
+      "release_id": "RATCHET-ADVANCE",
+      "action": "RATCHET-ADVANCE-seal",
+      "hash": "0x0e9dfa622427accf1c8006525b70876b1dac2f77acba8235d0abe0f4d7255eea",
+      "explorer_url": "https://genlayer-explorer.vercel.app/tx/0x0e9dfa622427accf1c8006525b70876b1dac2f77acba8235d0abe0f4d7255eea",
+      "lifecycle": "FINALIZED",
+      "execution": "SUCCESS",
+      "consensus": "MAJORITY_AGREE",
+      "local_receipt_sha256": "55ee33a19715d6ca9f612c5a519d588d99b9334f83bd8e2e58d62e5dee26940e"
+    },
+    {
+      "release_id": "RATCHET-ADVANCE",
+      "action": "RATCHET-ADVANCE-adjudicate",
+      "hash": "0xd77a86951d6c6ccf25e7893adec86389b07638ea2723974b549e6500a85b958d",
+      "explorer_url": "https://genlayer-explorer.vercel.app/tx/0xd77a86951d6c6ccf25e7893adec86389b07638ea2723974b549e6500a85b958d",
+      "lifecycle": "FINALIZED",
+      "execution": "SUCCESS",
+      "consensus": "MAJORITY_AGREE",
+      "local_receipt_sha256": "926126b29be183842463dab9f010d0c58b8a2b4b2a4a4c0141ffe3315d179c7c"
+    },
+    {
+      "release_id": "RATCHET-HOLD",
+      "action": "RATCHET-HOLD-create",
+      "hash": "0xec79f034ae9ac2fbcf740faee7ef0516a79ed964214a996831ad45dfd706406b",
+      "explorer_url": "https://genlayer-explorer.vercel.app/tx/0xec79f034ae9ac2fbcf740faee7ef0516a79ed964214a996831ad45dfd706406b",
+      "lifecycle": "FINALIZED",
+      "execution": "SUCCESS",
+      "consensus": "MAJORITY_AGREE",
+      "local_receipt_sha256": "be646ac67e6e85938f11dbe040144ec1cd836e39bc4d94fb5a8ea83baf807b25"
+    },
+    {
+      "release_id": "RATCHET-HOLD",
+      "action": "RATCHET-HOLD-seal",
+      "hash": "0x957182aa84789376cb070e17c1245c35a14a2006f97816e3327841dc4a604869",
+      "explorer_url": "https://genlayer-explorer.vercel.app/tx/0x957182aa84789376cb070e17c1245c35a14a2006f97816e3327841dc4a604869",
+      "lifecycle": "FINALIZED",
+      "execution": "SUCCESS",
+      "consensus": "MAJORITY_AGREE",
+      "local_receipt_sha256": "f17cf3ba7debd52c4c630d71468d4abe07747bfd20c4c340c7701eb4f1ae911c"
+    },
+    {
+      "release_id": "RATCHET-HOLD",
+      "action": "RATCHET-HOLD-adjudicate",
+      "hash": "0x7b1b3eb6061b0a728f1a7e961da0ccdd06bd1e24886f31be338e3021eb7bb072",
+      "explorer_url": "https://genlayer-explorer.vercel.app/tx/0x7b1b3eb6061b0a728f1a7e961da0ccdd06bd1e24886f31be338e3021eb7bb072",
+      "lifecycle": "FINALIZED",
+      "execution": "SUCCESS",
+      "consensus": "MAJORITY_AGREE",
+      "local_receipt_sha256": "9442dfca957d85f99c45ba8f0e3b53a57558b07d8b3669b633d11b3c6bb1d092"
+    },
+    {
+      "release_id": "RATCHET-ROLLBACK",
+      "action": "RATCHET-ROLLBACK-create",
+      "hash": "0xc9c43d17ca1a85dab6438c07af731ea576fce850e194c4335a31b1fa1f7aa68b",
+      "explorer_url": "https://genlayer-explorer.vercel.app/tx/0xc9c43d17ca1a85dab6438c07af731ea576fce850e194c4335a31b1fa1f7aa68b",
+      "lifecycle": "FINALIZED",
+      "execution": "SUCCESS",
+      "consensus": "MAJORITY_AGREE",
+      "local_receipt_sha256": "b23d34ee8551f669a88515eba5ace2012e308b31e5f8dd48c615445fb2d04707"
+    },
+    {
+      "release_id": "RATCHET-ROLLBACK",
+      "action": "RATCHET-ROLLBACK-seal",
+      "hash": "0x090467eeade63a5d38df28b9bd9f7c4c3efad834c50f26241b1585d985cc0dfe",
+      "explorer_url": "https://genlayer-explorer.vercel.app/tx/0x090467eeade63a5d38df28b9bd9f7c4c3efad834c50f26241b1585d985cc0dfe",
+      "lifecycle": "FINALIZED",
+      "execution": "SUCCESS",
+      "consensus": "MAJORITY_AGREE",
+      "local_receipt_sha256": "2824fac4d11a350fabb510e94b83e16754baa13dd7dad3cc90f4dc050d4c79dc"
+    },
+    {
+      "release_id": "RATCHET-ROLLBACK",
+      "action": "RATCHET-ROLLBACK-adjudicate",
+      "hash": "0x1688bdb3437e8e80f21ff747b84f48fee501e0ee54d563fc0b87653b6ca59ec5",
+      "explorer_url": "https://genlayer-explorer.vercel.app/tx/0x1688bdb3437e8e80f21ff747b84f48fee501e0ee54d563fc0b87653b6ca59ec5",
+      "lifecycle": "FINALIZED",
+      "execution": "SUCCESS",
+      "consensus": "MAJORITY_AGREE",
+      "local_receipt_sha256": "590795c10435ab5ee8794a326de4eefb9ea6693b515c1617eaaeffdc63ef5981"
+    }
+  ],
+  "verified_release_count": 3,
+  "hosted_evidence_hashes_verified": true,
+  "live_contract_receipts_match": true
+}
