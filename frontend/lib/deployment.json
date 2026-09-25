@@ -3,9 +3,9 @@
   "chainId": 61999,
   "rpc": "https://studio.genlayer.com/api",
   "explorer": "https://genlayer-explorer.vercel.app",
-  "contract": "0x9e9e4bA8eC40D0661C66E37C3892831718Fc9b0F",
+  "contract": "0xcfb9E7aEb1C0D6c3b506CCaFb770F94143e51FaB",
   "owner": "0x0f0179e068ba6c7629d28e2c1bf73d0a13f9f685",
-  "deployTransaction": "0x7e71a87c939b10bed7ad60d4bbd5fd9bf0d43a3fa30a1ab0257ba2ded167a63d",
-  "deployedAt": "2026-09-24T23:52:16.808Z",
+  "deployTransaction": "0xae5cc7a14bf5e48b6ee5442db651ca2c84f422d263b1540228983b150cbce2e9",
+  "deployedAt": "2026-09-25T16:07:19.850Z",
   "runner": "1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6"
 }

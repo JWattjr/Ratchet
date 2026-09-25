@@ -141,6 +141,10 @@ try {
         [id, id.replace("RATCHET-", ""), state],
         `${id} did not render the expected live verdict`,
       );
+      if (id === "RATCHET-HOLD") {
+        assert.match(await page.locator(".action-dock-copy").innerText(), /Hold can be resolved on /);
+        assert.equal(await page.getByRole("button", { name: "Resolve expired hold" }).count(), 0);
+      }
       await page.evaluate(() => document.fonts.ready);
       const slug = id.toLowerCase();
       for (const [width, height, suffix] of [[1440, 1000, "desktop"], [375, 844, "mobile"]]) {
@@ -152,6 +156,13 @@ try {
         await page.screenshot({ path: resolve(portalShotDir, `${slug}-${suffix}.png`), fullPage: true, animations: "disabled", caret: "hide" });
       }
     }
+    const futurePage = await browser.newPage({ viewport: { width: 1440, height: 1000 } });
+    await futurePage.clock.install({ time: new Date(Date.now() + 8 * 24 * 60 * 60 * 1000) });
+    await futurePage.goto(origin, { waitUntil: "domcontentloaded", timeout: 60_000 });
+    await futurePage.locator(".release-picker-label select").selectOption("RATCHET-HOLD");
+    await futurePage.waitForFunction(() => document.querySelector(".release-heading-row h3")?.textContent?.trim() === "RATCHET-HOLD", undefined, { timeout: 45_000 });
+    await futurePage.getByRole("button", { name: "Resolve expired hold" }).waitFor({ timeout: 45_000 });
+    await futurePage.close();
     console.log(`Saved six live verdict screenshots under ${portalShotDir}.`);
   }
 

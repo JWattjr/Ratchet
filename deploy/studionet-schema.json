@@ -167,6 +167,18 @@
       "readonly": true,
       "ret": "dict"
     },
+    "resolve_expired_hold": {
+      "params": [
+        [
+          "release_id",
+          "string"
+        ]
+      ],
+      "kwparams": {},
+      "readonly": false,
+      "ret": "dict",
+      "payable": false
+    },
     "seal_release": {
       "params": [
         [

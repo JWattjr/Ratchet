@@ -20,15 +20,16 @@ The relationship between natural-language release intent and replay evidence req
 - Production deployment: the stable application URL above is the production alias.
 - Repository URL: [https://github.com/JWattjr/Ratchet](https://github.com/JWattjr/Ratchet).
 - Stable Studionet chain: `61999`.
-- Contract version: `ratchet/1.0.9`.
-- Contract address: [`0x9e9e4bA8eC40D0661C66E37C3892831718Fc9b0F`](https://genlayer-explorer.vercel.app/address/0x9e9e4bA8eC40D0661C66E37C3892831718Fc9b0F).
-- Deployment transaction: [finalized deployment](https://genlayer-explorer.vercel.app/tx/0x7e71a87c939b10bed7ad60d4bbd5fd9bf0d43a3fa30a1ab0257ba2ded167a63d).
-- ADVANCE: [`RATCHET-ADVANCE` — `ADVANCED`, evidence complete, 90 demo units returned](https://genlayer-explorer.vercel.app/tx/0xd77a86951d6c6ccf25e7893adec86389b07638ea2723974b549e6500a85b958d).
-- HOLD: [`RATCHET-HOLD` — `HELD`, evidence incomplete, 90 demo units remain locked](https://genlayer-explorer.vercel.app/tx/0x7b1b3eb6061b0a728f1a7e961da0ccdd06bd1e24886f31be338e3021eb7bb072).
-- ROLLBACK: [`RATCHET-ROLLBACK` — `ROLLED_BACK`, undeclared capability/invariant failure, 45 units returned and 45 slashed](https://genlayer-explorer.vercel.app/tx/0x1688bdb3437e8e80f21ff747b84f48fee501e0ee54d563fc0b87653b6ca59ec5).
+- Contract version: `ratchet/1.1.0`.
+- Contract address: [`0xcfb9E7aEb1C0D6c3b506CCaFb770F94143e51FaB`](https://genlayer-explorer.vercel.app/address/0xcfb9E7aEb1C0D6c3b506CCaFb770F94143e51FaB).
+- Deployment transaction: [finalized deployment](https://genlayer-explorer.vercel.app/tx/0xae5cc7a14bf5e48b6ee5442db651ca2c84f422d263b1540228983b150cbce2e9).
+- ADVANCE: [`RATCHET-ADVANCE` — `ADVANCED`, evidence complete, 90 demo units returned](https://genlayer-explorer.vercel.app/tx/0x0b255d83075bc6c9e551110f25c84a3a229199f7ae87da8989767943054f4f49).
+- HOLD: [`RATCHET-HOLD` — `HELD`, evidence incomplete, 90 demo units locked until its seven-day deadline](https://genlayer-explorer.vercel.app/tx/0x540dcf746cfa7fd649c7162704c78443a8dd86f8dad00d4e9d18f236046ef149).
+- ROLLBACK: [`RATCHET-ROLLBACK` — `ROLLED_BACK`, undeclared capability/invariant failure, 45 units returned and 45 slashed](https://genlayer-explorer.vercel.app/tx/0x35b041025acbe7339536d9e58812e09e4f71ff353583eeef9450ac45722308d7).
 - Screenshots: [ADVANCE desktop](../artifacts/screenshots/ratchet-advance-desktop.png) · [ADVANCE mobile](../artifacts/screenshots/ratchet-advance-mobile.png) · [HOLD desktop](../artifacts/screenshots/ratchet-hold-desktop.png) · [HOLD mobile](../artifacts/screenshots/ratchet-hold-mobile.png) · [ROLLBACK desktop](../artifacts/screenshots/ratchet-rollback-desktop.png) · [ROLLBACK mobile](../artifacts/screenshots/ratchet-rollback-mobile.png).
 
 The deployment and all nine release lifecycle writes have finalized receipts. Each receipt reports `FINISHED_WITH_RETURN` execution and `MAJORITY_AGREE` consensus. The outcomes are recorded separately from those transaction lifecycle and consensus fields.
+The HOLD release displays its seven-day resolution date. After that deadline, anyone can invoke `resolve_expired_hold`; the frontend shows a "Resolve expired hold" button and the bond follows the ROLLBACK rule.
 
 ## 60-second demo
 
@@ -51,9 +52,9 @@ Read [ARCHITECTURE.md](ARCHITECTURE.md), [THREAT_MODEL.md](THREAT_MODEL.md), [re
 
 ## Test summary
 
-Observed checks for the deployed `ratchet/1.0.9` source and current frontend:
+Observed checks for the deployed `ratchet/1.1.0` source and current frontend:
 
-- Validation gates: replay compilation and verification, GenVM lint/schema, 26 direct tests, 5 replay tests, frontend lint/typecheck/build, UI checks, and responsive checks passed. UI and responsive commands were rerun after the final mobile spacing and touch-target adjustments.
+- Validation gates: replay generation, GenVM lint, 28 direct tests, 5 replay tests, frontend lint/typecheck/build passed.
 - `npm run test:integration`: passed against Studionet; checks live contract state, bond accounting, successful execution, and consensus metadata.
 - `npm run test:live`: passed against the deployed contract and live evidence at 1440, 1280, 768, 390, and 375 px; it refreshed all six verdict screenshots.
 - `npm run verify:proof`: verified 10 finalized Studionet transactions, all 3 live release receipts, and 9 hosted evidence hashes.
