@@ -57,8 +57,8 @@ a { color: inherit; }
 .app-shell { min-height: 100vh; overflow: hidden; }
 .topbar { height: 76px; display: flex; align-items: center; gap: 38px; padding: 0 max(32px, calc((100vw - 1376px) / 2)); background: var(--paper-light); border-bottom: 1px solid var(--line); position: relative; z-index: 2; }
 .brand { display: inline-flex; gap: 11px; align-items: center; text-decoration: none; min-width: 226px; }
-.brand-mark { color: var(--blue); width: 38px; height: 38px; border: 1px solid var(--line-strong); display: grid; place-items: center; background: var(--paper-light); }
-.gear-mark { width: 26px; height: 26px; display: block; }
+.brand-mark { width: 38px; height: 38px; display: grid; place-items: center; }
+.brand-mark img { display: block; width: 100%; height: 100%; }
 .brand strong { display: block; color: var(--ink-strong); line-height: 1.1; }
 .brand small { display: block; color: var(--muted); text-transform: uppercase; margin-top: 4px; }
 .top-nav { display: flex; align-items: center; gap: 27px; flex: 1; }
@@ -276,7 +276,7 @@ main { width: 100%; }
 
 .no-release-state { min-height: 355px; display: flex; align-items: center; gap: 22px; padding: 28px; }
 .no-release-mark { width: 78px; height: 78px; display: grid; place-items: center; border: 1px solid var(--line); background: var(--bench); color: var(--blue); flex: 0 0 auto; }
-.no-release-mark .gear-mark { width: 43px; height: 43px; }
+.no-release-mark img { width: 43px; height: 43px; }
 .no-release-state strong { color: var(--ink-strong); }
 .no-release-state p { max-width: 620px; margin: 5px 0 9px; color: var(--muted); }
 .no-release-state code { display: block; margin: 0 0 12px; color: var(--subtle); overflow-wrap: anywhere; }
@@ -291,7 +291,7 @@ main { width: 100%; }
 .method-boundary { grid-column: 2; color: var(--muted); line-height: 1.55; margin: 3px 0 0; max-width: 770px; }
 .footer { min-height: 50px; border-top: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; gap: 16px; color: var(--muted); }
 .footer-brand { display: flex; align-items: center; gap: 6px; color: var(--ink); text-decoration: none; }
-.footer-brand .gear-mark { width: 18px; height: 18px; color: var(--blue); }
+.footer-brand img { display: block; width: 18px; height: 18px; }
 .footer > a:last-child { color: var(--blue-deep); text-decoration: none; }
 .footer > a:last-child:hover { text-decoration: underline; }
 
@@ -414,7 +414,7 @@ main { width: 100%; }
   .explorer-link { grid-column: 2; min-height: 44px; }
   .no-release-state { min-height: 330px; align-items: flex-start; flex-direction: column; gap: 12px; padding: 22px 16px; }
   .no-release-mark { width: 62px; height: 62px; }
-  .no-release-mark .gear-mark { width: 34px; height: 34px; }
+  .no-release-mark img { width: 34px; height: 34px; }
   .method-band { display: block; padding: 27px 2px 19px; }
   .method-columns { grid-template-columns: 1fr; gap: 12px; margin-top: 18px; }
   .method-columns article { padding-left: 25px; min-height: 48px; }
@@ -459,9 +459,7 @@ button, input, textarea, select { accent-color: var(--blue); }
 
 .topbar { background: transparent; border-bottom: 0; }
 .topbar::after, .footer::before { content: ""; position: absolute; height: 1px; left: max(16px, calc((100vw - 1370px) / 2)); right: max(16px, calc((100vw - 1370px) / 2)); bottom: 0; background: var(--line); opacity: .82; transform: rotate(-.12deg); }
-.brand-mark { border-color: var(--line-strong); border-radius: var(--radius-dialog); background: transparent; }
-.gear-mark, .quiet-icon-button svg, .inline-mark, .button-symbol svg, .comparison-connector svg { filter: url("#pencil-ink"); stroke-linecap: round; stroke-linejoin: round; }
-.gear-mark path { fill: none; stroke: currentColor; stroke-width: 1.25; }
+.quiet-icon-button svg, .inline-mark, .button-symbol svg, .comparison-connector svg { filter: url("#pencil-ink"); stroke-linecap: round; stroke-linejoin: round; }
 .brand strong, .brand small, .top-nav a, .wallet-button, .connection-head,
 .intro-copy h1, .bay-title h2, .release-heading-row h3, .section-index, .field-label,
 .release-picker-label, .status, .verdict-word, .gate-consequence strong,
@@ -657,7 +655,6 @@ button, input, textarea, select { accent-color: var(--blue); }
 .footer { position: relative; border-top: 0; font-size: var(--type-label); }
 .footer::before { top: 0; bottom: auto; }
 .footer-brand { font: var(--type-action) var(--hand); }
-.footer-brand .gear-mark { color: var(--blue); }
 .footer > a:last-child { color: var(--blue-deep); }
 
 .modal-backdrop { background: rgb(52 48 39 / 42%); }

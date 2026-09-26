@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import {
   canonicalJson,
@@ -111,16 +112,6 @@ async function readSameOriginArtifact(url: string, expectedHash: string): Promis
 function statusClass(state?: string): string {
   const value = state?.toLowerCase() ?? "unknown";
   return `status status-${value.replaceAll("_", "-")}`;
-}
-
-function GearMark() {
-  return (
-    <svg className="gear-mark" viewBox="0 0 40 40" aria-hidden="true">
-      <path d="M17 3h6l1 4a14 14 0 0 1 3.2 1.3l3.5-2 4.2 4.2-2 3.5a14 14 0 0 1 1.3 3.2l4 1v6l-4 1a14 14 0 0 1-1.3 3.2l2 3.5-4.2 4.2-3.5-2A14 14 0 0 1 24 35l-1 4h-6l-1-4a14 14 0 0 1-3.2-1.3l-3.5 2-4.2-4.2 2-3.5A14 14 0 0 1 5.8 23l-4-1v-6l4-1a14 14 0 0 1 1.3-3.2l-2-3.5 4.2-4.2 3.5 2A14 14 0 0 1 16 7z" transform="translate(0 -1)" fill="currentColor" />
-      <circle cx="20" cy="19" r="8" fill="var(--paper)" />
-      <circle cx="20" cy="19" r="3" fill="currentColor" />
-    </svg>
-  );
 }
 
 function RefreshMark() {
@@ -423,7 +414,7 @@ export default function RatchetBench() {
       </svg>
       <header className="topbar">
         <a className="brand" href="#top" aria-label="Ratchet home">
-          <span className="brand-mark"><GearMark /></span>
+          <span className="brand-mark"><Image src="/ratchet-logo.svg" alt="" width={38} height={38} priority /></span>
           <span><strong>ratchet</strong><small>release calibration bench</small></span>
         </a>
         <nav className="top-nav" aria-label="Main navigation">
@@ -639,7 +630,7 @@ export default function RatchetBench() {
                   </>
                 ) : (
                   <div className="no-release-state">
-                    <div className="no-release-mark"><GearMark /></div>
+                    <div className="no-release-mark"><Image src="/ratchet-logo.svg" alt="" width={43} height={43} /></div>
                     <div><strong>{dashboardLoading ? "Reading the release index" : !CONTRACT_ADDRESS ? `Connect Ratchet to ${NETWORK_LABEL}` : "No releases are recorded yet"}</strong>
                       <p>{!CONTRACT_ADDRESS ? `The interface does not substitute sample records for chain state. Configure the deployed ${NETWORK_LABEL} contract to enable live review.` : dashboard?.networkOk ? "Create a release declaration to begin a live review. First publish its declaration, replay report, and CI receipt at public HTTPS addresses." : `The configured RPC is unavailable. Try again when ${NETWORK_LABEL} can answer a live read.`}</p>
                       {!CONTRACT_ADDRESS ? <code>chain {CHAIN_ID} · {RPC_URL}</code> : null}
@@ -686,7 +677,7 @@ export default function RatchetBench() {
             <a className="hosted-ci-link" href="https://github.com/JWattjr/Ratchet/actions/workflows/ci.yml" target="_blank" rel="noreferrer">Open hosted replay verification and downloadable commit attestation</a>
           </section>
 
-          <footer className="footer"><a className="footer-brand" href="#top"><GearMark /> ratchet</a><span>{NETWORK_LABEL} · chain {CHAIN_ID} · evidence remains inspectable without a wallet</span><a href="https://docs.genlayer.com" target="_blank" rel="noreferrer">GenLayer documentation</a></footer>
+          <footer className="footer"><a className="footer-brand" href="#top"><Image src="/ratchet-logo.svg" alt="" width={18} height={18} /> ratchet</a><span>{NETWORK_LABEL} · chain {CHAIN_ID} · evidence remains inspectable without a wallet</span><a href="https://docs.genlayer.com" target="_blank" rel="noreferrer">GenLayer documentation</a></footer>
         </section>
       </main>
 
